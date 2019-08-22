@@ -1,0 +1,76 @@
+---
+title: "Data wrangling"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message = FALSE}
+library(tidyverse)
+library(knitr)
+library(here)
+```
+
+Read in the dataset. This should result in 154 individuals.
+
+```{r}
+pog_all <- read_csv(here("raw-data/Pog29.csv")) # n = 154
+# Look at the data. Commented out because the output is large.
+#pog_all
+```
+
+Now let's do some tidying so the dataset is easier to use...
+
+```{r}
+pog <-
+  pog_all %>%
+  # Remove the unusable entries
+  filter(Usable != "no") %>%
+  # Replace A and J with Adult and Juvenile
+  mutate(Age = case_when(Age == "A" ~ "Adult", 
+                         Age == "J" ~ "Juvenile")) %>%
+  # Rename some variables so they are easier to remember
+  rename(BiteForce = BF4) %>%
+  rename(SVL = SVLm) %>%
+  rename(LSR_HLroret = G1) %>%
+  rename(LSR_HLroqu = G2) %>%
+  rename(LSR_HWqu = G3) %>%
+  rename(LSR_HWmt = G4) %>%
+  rename(LSR_HDmt = G5) %>%
+  # Remove the Wild and wild caught individuals
+  filter(Origin == "Captive") %>%
+  # Select required variables
+  select(ID, Genotype, Age, BiteForce, 
+         Mass, SVL, HLroret, HLroqu, HWqu, HWmt, HDmt,
+         LSR_HLroret, LSR_HLroqu, LSR_HWqu, LSR_HWmt, LSR_HDmt)
+```
+
+Let's check how many individuals we have in each group, and that adults are > 150mm and juveniles < 150mm
+```{r}
+# Summarise data
+sum_pog <- 
+  pog %>%
+  group_by(Age, Genotype) %>%
+  summarise(n = n(),
+            minSVL = min(SVL),
+            maxSVL = max(SVL))
+
+kable(sum_pog)
+```
+And get total numbers of each genotype...
+```{r}
+# Summarise data
+sum_pog1 <- 
+  pog %>%
+  group_by(Genotype) %>%
+  summarise(n())
+
+kable(sum_pog1)
+```
+
+Finally let's output this data into the data folder for use in later analyses.
+```{r}
+write_csv(pog, path = here("data/pogona-data.csv"))
+```
