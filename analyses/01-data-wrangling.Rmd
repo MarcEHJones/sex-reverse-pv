@@ -42,7 +42,7 @@ pog <-
   # Remove the Wild and wild caught individuals
   filter(Origin == "Captive") %>%
   # Select required variables
-  select(ID, Genotype, Age, BiteForce, 
+  select(ID, Genotype, Age, BiteForce, BFnolever,
          Mass, SVL, HLroret, HLroqu, HWqu, HWmt, HDmt,
          LSR_HLroret, LSR_HLroqu, LSR_HWqu, LSR_HWmt, LSR_HDmt)
 ```
