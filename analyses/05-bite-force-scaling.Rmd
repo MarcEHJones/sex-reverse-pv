@@ -56,7 +56,7 @@ names(output) <- c("response", "predictor", "df",
                    "slopediff_ZWF", "se_ZWF",
                    "t_ZWF", "p_ZWF",
                    "slopediff_ZZM", "se_ZZM",
-                   "t_ZWF", "p_ZWF",
+                   "t_ZZM", "p_ZZM",
                    "adj.r2")
 
 # Short function to help write output files
@@ -83,7 +83,7 @@ write_output <- function(model, response, predictor, n){
     output[n, "slopediff_ZZM"] <- y$coefficients[6]
     output[n, "se_ZZM"] <- y$coefficients[12]
     output[n, "t_ZZM"] <- y$coefficients[18]
-    output[n, "p_ZWF"] <- y$coefficients[24]
+    output[n, "p_ZZM"] <- y$coefficients[24]
     output[n, "adj.r2"] <- y$adj.r.squared
     return(output)
 }
