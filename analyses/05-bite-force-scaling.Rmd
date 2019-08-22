@@ -1,0 +1,265 @@
+---
+title: "Bite force versus size analyses"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load the libraries
+```{r, message = FALSE}
+library(tidyverse)
+library(knitr)
+library(broom)
+library(ggfortify)
+library(here)
+```
+
+Read in the dataset, relevel the genotype variable so everything is compared to ZZf as that's the key comparison.
+
+```{r}
+pog <- read_csv(here("data/pogona-data.csv"))
+
+pog <-
+  pog %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
+```
+
+This creates figure 1
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(SVL) (mm)")
+
+ggsave(here("figures/svl-bf.png"))
+```
+
+Next set up an empty output file
+```{r}
+output <- data.frame(array(dim = c(14, 20)))
+names(output) <- c("response", "predictor", "df", 
+                   "F_pred", "p_pred", 
+                   "F_gen", "p_gen", 
+                   "F_int", "p_int", 
+                   "slope_ZZF", "slope_se_ZZF",
+                   "slopediff_ZWF", "se_ZWF",
+                   "t_ZWF", "p_ZWF",
+                   "slopediff_ZZM", "se_ZZM",
+                   "t_ZWF", "p_ZWF",
+                   "adj.r2")
+
+# Short function to help write output files
+write_output <- function(model, response, predictor, n){
+  
+  x <- tidy(anova(model))
+  y <- summary(model)
+    
+  output[n, "response"] <- response
+  output[n, "predictor"] <- predictor
+  output[n, "df"] <- x$df[4]
+    output[n, "F_pred"] <- x$statistic[1]
+    output[n, "p_pred"] <- x$p.value[1]
+    output[n, "F_gen"] <- x$statistic[2]
+    output[n, "p_gen"] <- x$p.value[2]
+    output[n, "F_int"] <- x$statistic[3]
+    output[n, "p_int"] <- x$p.value[3]
+    output[n, "slope_ZZF"] <- y$coefficients[2]
+    output[n, "slope_se_ZZF"] <- y$coefficients[8]
+    output[n, "slopediff_ZWF"] <- y$coefficients[5]
+    output[n, "se_ZWF"] <- y$coefficients[11]
+    output[n, "t_ZWF"] <- y$coefficients[17]
+    output[n, "p_ZWF"] <- y$coefficients[23]
+    output[n, "slopediff_ZZM"] <- y$coefficients[6]
+    output[n, "se_ZZM"] <- y$coefficients[12]
+    output[n, "t_ZZM"] <- y$coefficients[18]
+    output[n, "p_ZWF"] <- y$coefficients[24]
+    output[n, "adj.r2"] <- y$adj.r.squared
+    return(output)
+}
+```
+
+Mass
+```{r}
+# Fit the model
+m1 <- lm(log(BiteForce) ~ log(Mass) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m1)
+tidy(anova(m1))
+summary(m1)
+
+output <- write_output(m1, "log(Bite Force)", "log(Mass)", 1)
+```
+
+SVL
+```{r}
+# Fit the model
+m2 <- lm(log(BiteForce) ~ log(SVL) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m2)
+tidy(anova(m2))
+summary(m2)
+
+output <- write_output(m2, "log(Bite Force)", "log(SVL)", 2)
+```
+
+HLroret
+```{r}
+# Fit the model
+m3 <- lm(log(BiteForce) ~ log(HLroret) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m3)
+tidy(anova(m3))
+tidy(summary(m3))
+
+output <- write_output(m3, "log(Bite Force)", "log(HLroret)", 3)
+```
+
+HLroqu
+```{r}
+# Fit the model
+m4 <- lm(log(BiteForce) ~ log(HLroqu) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m4)
+tidy(anova(m4))
+tidy(summary(m4))
+
+output <- write_output(m4, "log(Bite Force)", "log(HLroqu)", 4)
+```
+
+HWqu
+```{r}
+# Fit the model
+m5 <- lm(log(BiteForce) ~ log(HWqu) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m5)
+tidy(anova(m5))
+tidy(summary(m5))
+
+output <- write_output(m5, "log(Bite Force)", "log(HWqu)", 5)
+```
+
+HWmt
+```{r}
+# Fit the model
+m6 <- lm(log(BiteForce) ~ log(HWmt) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m6)
+tidy(anova(m6))
+tidy(summary(m6))
+
+output <- write_output(m6, "log(Bite Force)", "log(HWmt)", 6)
+```
+
+HDmt
+```{r}
+# Fit the model
+m7 <- lm(log(BiteForce) ~ log(HDmt) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m7)
+tidy(anova(m7))
+tidy(summary(m7))
+
+output <- write_output(m7, "log(Bite Force)", "log(HDmt)", 7)
+```
+
+And get rid of the lever...
+
+Mass
+```{r}
+# Fit the model
+m8 <- lm(log(BFnolever) ~ log(Mass) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m8)
+tidy(anova(m8))
+summary(m8)
+
+output <- write_output(m8, "log(Bite Force nl)", "log(Mass)", 8)
+```
+
+SVL
+```{r}
+# Fit the model
+m9 <- lm(log(BFnolever) ~ log(SVL) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m9)
+tidy(anova(m9))
+summary(m9)
+
+output <- write_output(m9, "log(Bite Force nl)", "log(SVL)", 9)
+```
+
+HLroret
+```{r}
+# Fit the model
+m10 <- lm(log(BFnolever) ~ log(HLroret) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m10)
+tidy(anova(m10))
+tidy(summary(m10))
+
+output <- write_output(m10, "log(Bite Force nl)", "log(HLroret)", 10)
+```
+
+HLroqu
+```{r}
+# Fit the model
+m11 <- lm(log(BFnolever) ~ log(HLroqu) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m11)
+tidy(anova(m11))
+tidy(summary(m11))
+
+output <- write_output(m11, "log(Bite Force nl)", "log(HLroqu)", 11)
+```
+
+HWqu
+```{r}
+# Fit the model
+m12 <- lm(log(BFnolever) ~ log(HWqu) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m12)
+tidy(anova(m12))
+tidy(summary(m12))
+
+output <- write_output(m12, "log(Bite Force nl)", "log(HWqu)", 12)
+```
+
+HWmt
+```{r}
+# Fit the model
+m13 <- lm(log(BFnolever) ~ log(HWmt) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m13)
+tidy(anova(m13))
+tidy(summary(m13))
+
+output <- write_output(m13, "log(Bite Force nl)", "log(HWmt)", 13)
+```
+
+HDmt
+```{r}
+# Fit the model
+m14 <- lm(log(BFnolever) ~ log(HDmt) * Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m14)
+tidy(anova(m14))
+tidy(summary(m14))
+
+output <- write_output(m14, "log(Bite Force nl)", "log(HDmt)", 14)
+```
+
+Write all outputs to file
+```{r}
+write_csv(output, path = here("outputs/bite-force-scaling-results.csv"))
+```
