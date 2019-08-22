@@ -1,0 +1,100 @@
+---
+title: "PCA plot"
+output: html_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
+library(tidyverse)
+library(knitr)
+library(here)
+library(patchwork) # need to install from GitHub
+library(ggConvexHull) # need to install from GitHub install_github("cmartin/ggConvexHull")
+library(ggfortify)
+library(car)
+library(broom)
+
+# Helper functions for plotting
+remove_y <- 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
+remove_x <-   
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+Read in the dataset, relevel the genotype variable so everything is compared to ZZf as that's the key comparison.
+
+```{r}
+pog <- read_csv(here("data/pogona-data.csv"))
+
+pog <-
+  pog %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
+```
+
+PCA
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+#First process the data so we can use it...
+
+# Perform a principal components analysis on log shape variables
+pca_head <- princomp(as.matrix(select(pog, LSR_HLroret:LSR_HDmt)),
+                     scores = TRUE, cor = TRUE)
+
+# Recombine this with the full dataset
+# First make a dataset of just the PC scores and label the rows with ID
+# taken from the dataset as these are in the same order
+pca_head_ds <- data.frame(pca_head$scores, ID = pog$ID)
+
+# Next join this on "ID" to the original data
+pog2 <- left_join(pog, pca_head_ds, by = "ID")
+```
+
+PCA outputs
+```{r}
+loadings(pca_head)
+summary(pca_head)
+```
+
+Plot PC plot with convex hulls
+```{r, echo = FALSE}
+pc12 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (33.97%)", y = "PC2 (26.7%)") +
+  theme(legend.position = "none")
+
+pc13 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (33.97%)", y = "PC3 (21.83%)") +
+  theme(legend.position = "none")
+
+pc23 <-
+  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (26.7%)", y = "PC3 (21.83%)")
+
+(pc12 + pc13) / (pc23 + plot_spacer())
+
+ggsave(here("figures/pca-plots.png"))
+```
