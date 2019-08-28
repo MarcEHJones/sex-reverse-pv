@@ -1,6 +1,9 @@
 ---
 title: "Summarising differences across genotypes"
-output: html_document
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -63,7 +66,7 @@ pogsumA <-
   pogA %>%
   group_by(Genotype) %>%
   summarize_at(vars(Mass, SVL, HLroret, HLroqu, 
-                    HWqu, HWmt, HDmt, BiteForce, BFnolever), 
+                    HWqu, HWmt, HDmt, BiteForce, BFnolever, IncTemp, Temp), 
                list(mean = mean, SE = se)) %>%
   mutate_if(is.numeric, round, digits = 2)
 
@@ -141,6 +144,53 @@ svlplot <-
 
 ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
 ```
+Temperature
+
+```{r, warning = FALSE}
+
+pogA
+
+tempplot <-
+  ggplot(pogA, aes(x = Genotype, y = Temp, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = Temp_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = Temp_mean,
+                                    ymin = Temp_mean - Temp_SE,
+                                    ymax = Temp_mean + Temp_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(0, 50) +
+  ylab("Temp")
+
+tempplot
+
+inctempplot <-
+  ggplot(pogA, aes(x = Genotype, y = IncTemp, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = IncTemp), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = IncTemp_mean,
+                                    ymin = IncTemp_mean - IncTemp_SE,
+                                    ymax = IncTemp_mean + IncTemp_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(0, 50) +
+  ylab("IncTemp")
+
+(tempplot + inctempplot)
+
+#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+
+```
+
+
 And for the head shape (supplementary in the draft?)
 
 ```{r, warning = FALSE}
