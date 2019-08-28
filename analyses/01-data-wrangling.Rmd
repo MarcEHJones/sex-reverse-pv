@@ -16,7 +16,7 @@ library(here)
 Read in the dataset. This should result in 154 individuals.
 
 ```{r}
-pog_all <- read_csv(here("raw-data/Pog29.csv")) # n = 154
+pog_all <- read_csv(here("raw-data/Pog30.csv")) # n = 154
 # Look at the data. Commented out because the output is large.
 #pog_all
 ```
@@ -72,5 +72,5 @@ kable(sum_pog1)
 
 Finally let's output this data into the data folder for use in later analyses.
 ```{r}
-write_csv(pog, path = here("data/pogona-data2.csv"))
+write_csv(pog, path = here("data/pogona-data.csv"))
 ```

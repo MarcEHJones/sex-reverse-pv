@@ -144,11 +144,24 @@ svlplot <-
 
 ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
 ```
-Temperature
+Temperature table
+
+```{r}
+pogtempsum <- 
+  pogA %>%
+  group_by(Genotype) %>%
+  summarize_at(vars(IncTemp, Temp), 
+               list(mean = mean, SE = se)) %>%
+  mutate_if(is.numeric, round, digits = 2)
+
+kable(pogtempsum)
+```
+
+Temperature plots
 
 ```{r, warning = FALSE}
 
-pogA
+
 
 tempplot <-
   ggplot(pogA, aes(x = Genotype, y = Temp, 
