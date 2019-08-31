@@ -16,7 +16,9 @@ library(here)
 Read in the dataset. This should result in 154 individuals.
 
 ```{r}
-pog_all <- read_csv(here("raw-data/Pog29.csv")) # n = 154
+pog_all <- read_csv(here("raw-data/Pog29.csv"), na = c("na")) 
+# NAs are na in data, convert to NA
+# n = 154
 # Look at the data. Commented out because the output is large.
 #pog_all
 ```
@@ -44,7 +46,8 @@ pog <-
   # Select required variables
   select(ID, Genotype, Age, BiteForce, BFnolever,
          Mass, SVL, HLroret, HLroqu, HWqu, HWmt, HDmt,
-         LSR_HLroret, LSR_HLroqu, LSR_HWqu, LSR_HWmt, LSR_HDmt, IncTemp, Temp)
+         LSR_HLroret, LSR_HLroqu, LSR_HWqu, LSR_HWmt, LSR_HDmt,
+         IncTemp, Temp)
 ```
 
 Let's check how many individuals we have in each group, and that adults are > 150mm and juveniles < 150mm
@@ -72,5 +75,5 @@ kable(sum_pog1)
 
 Finally let's output this data into the data folder for use in later analyses.
 ```{r}
-write_csv(pog, path = here("data/pogona-data2.csv"))
+write_csv(pog, path = here("data/pogona-data.csv"))
 ```
