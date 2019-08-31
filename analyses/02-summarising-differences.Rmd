@@ -23,7 +23,8 @@ library(patchwork) #install from github
 Write a quick standard error function
 ```{r}
 se <- function(x){
-  sqrt(var(x)/length(x))
+  sqrt(var(x, na.rm = TRUE)/
+       sum(!is.na(x) == TRUE))
 }
 ```
 
@@ -66,8 +67,9 @@ pogsumA <-
   pogA %>%
   group_by(Genotype) %>%
   summarize_at(vars(Mass, SVL, HLroret, HLroqu, 
-                    HWqu, HWmt, HDmt, BiteForce, BFnolever, IncTemp, Temp), 
-               list(mean = mean, SE = se)) %>%
+                    HWqu, HWmt, HDmt, BiteForce, BFnolever, IncTemp,
+                    Temp), 
+               list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
   mutate_if(is.numeric, round, digits = 2)
 
 kable(pogsumA)
@@ -142,14 +144,11 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
 ```
 Temperature
 
 ```{r, warning = FALSE}
-
-pogA
-
 tempplot <-
   ggplot(pogA, aes(x = Genotype, y = Temp, 
                 colour = Genotype, fill = Genotype)) +
