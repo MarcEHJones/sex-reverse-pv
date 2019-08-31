@@ -16,7 +16,7 @@ library(here)
 Read in the dataset. This should result in 154 individuals.
 
 ```{r}
-pog_all <- read_csv(here("raw-data/Pog29.csv"), na = c("na")) 
+pog_all <- read_csv(here("raw-data/Pog30.csv"), na = c("na")) 
 # NAs are na in data, convert to NA
 # n = 154
 # Look at the data. Commented out because the output is large.
