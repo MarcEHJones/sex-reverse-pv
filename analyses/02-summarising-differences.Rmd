@@ -144,7 +144,7 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
 ```
 Temperature
 
@@ -162,10 +162,8 @@ tempplot <-
                 width = 0.1) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
-  ylim(0, 50) +
-  ylab("Temp")
-
-tempplot
+  ylim(20, 40) +
+  ylab(expression('Temperature (°C)'))
 
 inctempplot <-
   ggplot(pogA, aes(x = Genotype, y = IncTemp, 
@@ -173,19 +171,20 @@ inctempplot <-
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = IncTemp), size = 2) +
+  geom_point(data = pogsumA, aes(y = IncTemp_mean), size = 2) +
   geom_errorbar(data = pogsumA, aes(y = IncTemp_mean,
                                     ymin = IncTemp_mean - IncTemp_SE,
                                     ymax = IncTemp_mean + IncTemp_SE),
                 width = 0.1) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
-  ylim(0, 50) +
-  ylab("IncTemp")
+  ylim(20, 40) +
+  ylab(expression('Incubation temperature (°C)'))
+
 
 (tempplot + inctempplot)
 
-#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+#ggsave(here("figures/genotype-means-temp-inctemp.png"), height = 5)
 
 ```
 
@@ -277,5 +276,5 @@ HDmtplot <-
   (HWquplot + HWmtplot) / 
   (HDmtplot + plot_spacer())
 
-ggsave(here("figures/genotype-means-headvars.png"), height = 7)
+#ggsave(here("figures/genotype-means-headvars.png"), height = 7)
 ```
