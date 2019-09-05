@@ -70,7 +70,7 @@ ggsave(here("figures/mass-bf.png"))
 ```
 
 
-This creates a plot of log(SVL) vs log(Mass)
+This creates a plot of log(SVL) vs log(Mass).
 
 
 ```{r, message = FALSE}
@@ -93,10 +93,7 @@ ggsave(here("figures/svl-mass.png"))
 
 
 
-This creates a plot of BF vs log(SVL)
-(figure 1 in the draft but figure 3 in the new version)
-
-
+This code creates a plot of BF vs log(SVL) colour coded according to temperature.
 
 
 ```{r, message = FALSE}
@@ -118,6 +115,9 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 ```
 
 
+This code creates a plot of BF vs log(SVL) colour coded according to temperature divided by genotype.
+
+
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
@@ -137,6 +137,9 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 ```
 
 
+This code creates a plot of BF vs log(SVL) colour coded according to inclubation temperature divided by genotype.
+
+BUT IT DOESN'T WORK :C
 
 ```{r, message = FALSE}
 
