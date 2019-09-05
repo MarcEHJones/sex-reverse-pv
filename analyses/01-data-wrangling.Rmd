@@ -13,7 +13,7 @@ library(knitr)
 library(here)
 ```
 
-Read in the dataset. This should result in 154 individuals.
+Read in the dataset. This should result in 154 individuals. 91 of these are captive animals that can be used for the present study. 
 
 ```{r}
 
