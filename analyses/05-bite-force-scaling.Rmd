@@ -84,7 +84,7 @@ ggplot(pog, aes(x = log(SVL), y = log(Mass),
   theme_bw(base_size = 14) +
   #theme(legend.title = element_blank()) +
   ylim(0, 5)+
-  xlim(4, 6) +
+  xlim(4, 5.5) +
   ylab("log(Mass) (g)") +
   xlab("log(SVL) (mm)")
 

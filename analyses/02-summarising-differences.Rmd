@@ -67,12 +67,15 @@ pogsumA <-
   pogA %>%
   group_by(Genotype) %>%
   summarize_at(vars(Mass, SVL, HLroret, HLroqu, 
-                    HWqu, HWmt, HDmt, BiteForce, BFnolever, IncTemp,
-                    Temp), 
+                    HWqu, HWmt, HDmt, BiteForce, BFnolever), 
                list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
   mutate_if(is.numeric, round, digits = 2)
 
 kable(pogsumA)
+
+write_csv(pogsumA, path = here("outputs/morphometrics-results.csv"))
+
+```
 ```
 
 3. Make figures showing the distributions of variables in relation to genotype 
@@ -241,18 +244,25 @@ HDmtplot <-
 ```
 
 
+```
 5. Temperature table 
 (supplimentary in the new version?)
 
-```{r}
+```{r, warning = FALSE}
+
 pogtempsum <- 
   pogA %>%
   group_by(Genotype) %>%
   summarize_at(vars(IncTemp, Temp), 
-               list(mean = mean, SE = se)) %>%
+               list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
   mutate_if(is.numeric, round, digits = 2)
 
 kable(pogtempsum)
+
+write_csv(pogtempsum, path = here("outputs/temperature.csv"))
+
+```
+
 ```
 
 6. Temperature plots
