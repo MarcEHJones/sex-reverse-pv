@@ -46,7 +46,7 @@ First to make the models easier to interpret, relevel the genotype variable so e
 
 Next set up an empty output file
 ```{r}
-output <- data.frame(array(dim = c(9, 15)))
+output <- data.frame(array(dim = c(11, 15)))
 names(output) <- c("response", "df1", "df2", "F", "p", 
                   "mean_ZZF", "se_ZZF",
                   "meandiff_ZWF", "se_ZWF", "t_ZWF", "p_ZWF",
@@ -77,7 +77,6 @@ write_output <- function(model, response, n){
     return(output)
 }
 ```
-
 
 Mass
 ```{r}
@@ -185,6 +184,30 @@ tidy(anova(m9))
 tidy(summary(m9))
 
 output <- write_output(m9, "log(HDmt)", 9)
+```
+
+Temp
+```{r}
+# Fit the model
+m10 <- lm(log(Temp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m10)
+tidy(anova(m10))
+summary(m10)
+
+output <- write_output(m10, "log(Temp)", 10)
+```
+
+IncTemp
+```{r}
+# Fit the model
+m11 <- lm(log(IncTemp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m11)
+tidy(anova(m11))
+summary(m11)
+
+output <- write_output(m11, "log(IncTemp)", 11)
 ```
 
 Write all outputs to file

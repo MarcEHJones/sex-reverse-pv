@@ -23,7 +23,8 @@ library(patchwork) #install from github
 Write a quick standard error function
 ```{r}
 se <- function(x){
-  sqrt(var(x)/length(x))
+  sqrt(var(x, na.rm = TRUE)/
+       sum(!is.na(x) == TRUE))
 }
 ```
 
@@ -66,8 +67,9 @@ pogsumA <-
   pogA %>%
   group_by(Genotype) %>%
   summarize_at(vars(Mass, SVL, HLroret, HLroqu, 
-                    HWqu, HWmt, HDmt, BiteForce, BFnolever, IncTemp, Temp), 
-               list(mean = mean, SE = se)) %>%
+                    HWqu, HWmt, HDmt, BiteForce, BFnolever, IncTemp,
+                    Temp), 
+               list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
   mutate_if(is.numeric, round, digits = 2)
 
 kable(pogsumA)
@@ -161,8 +163,6 @@ Temperature plots
 
 ```{r, warning = FALSE}
 
-
-
 tempplot <-
   ggplot(pogA, aes(x = Genotype, y = Temp, 
                 colour = Genotype, fill = Genotype)) +
@@ -176,10 +176,8 @@ tempplot <-
                 width = 0.1) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
-  ylim(0, 50) +
-  ylab("Temp")
-
-tempplot
+  ylim(20, 40) +
+  ylab(expression('Temperature (°C)'))
 
 inctempplot <-
   ggplot(pogA, aes(x = Genotype, y = IncTemp, 
@@ -187,19 +185,20 @@ inctempplot <-
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = IncTemp), size = 2) +
+  geom_point(data = pogsumA, aes(y = IncTemp_mean), size = 2) +
   geom_errorbar(data = pogsumA, aes(y = IncTemp_mean,
                                     ymin = IncTemp_mean - IncTemp_SE,
                                     ymax = IncTemp_mean + IncTemp_SE),
                 width = 0.1) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
-  ylim(0, 50) +
-  ylab("IncTemp")
+  ylim(20, 40) +
+  ylab(expression('Incubation temperature (°C)'))
+
 
 (tempplot + inctempplot)
 
-#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+#ggsave(here("figures/genotype-means-temp-inctemp.png"), height = 5)
 
 ```
 
@@ -291,5 +290,5 @@ HDmtplot <-
   (HWquplot + HWmtplot) / 
   (HDmtplot + plot_spacer())
 
-ggsave(here("figures/genotype-means-headvars.png"), height = 7)
+#ggsave(here("figures/genotype-means-headvars.png"), height = 7)
 ```
