@@ -91,6 +91,81 @@ ggplot(pog, aes(x = log(SVL), y = log(Mass),
 ggsave(here("figures/svl-mass.png"))
 ```
 
+
+
+This creates a plot of BF vs log(SVL)
+(figure 1 in the draft but figure 3 in the new version)
+
+
+
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+                colour = Temp, fill = Temp)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/temp-genotype-bf.png"))
+```
+
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+                colour = Temp, fill = Temp, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/temp-genotype-bf.png"))
+```
+
+
+
+```{r, message = FALSE}
+
+
+# urgh - how do I get it to ignore the NAs?
+
+
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+                colour = Inctemp, fill = Inctemp, shape = Genotype (., na.rm = TRUE))) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(SVL) (mm)")
+
+
+
+ ~ mean(., na.rm = TRUE),
+
+#ggsave(here("figures/Inctemp-genotype-bf.png"))
+```
+
+
 Next set up an empty output file
 ```{r}
 output <- data.frame(array(dim = c(14, 20)))
