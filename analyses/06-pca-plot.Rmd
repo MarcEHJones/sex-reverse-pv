@@ -11,8 +11,16 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(knitr)
 library(here)
-library(patchwork) # need to install from GitHub
-library(ggConvexHull) # need to install from GitHub install_github("cmartin/ggConvexHull")
+library(patchwork) 
+
+#need to install from GitHub 
+#install_github("cmartin/ggConvexHull")
+#install_github("ggConvexHull")
+devtools::install_github("cmartin/ggConvexHull")
+
+# need to install from GitHub
+library(ggConvexHull)  
+
 library(ggfortify)
 library(car)
 library(broom)
@@ -96,5 +104,5 @@ pc23 <-
 
 (pc12 + pc13) / (pc23 + plot_spacer())
 
-ggsave(here("figures/pca-plots.png"))
+#ggsave(here("figures/pca-plots.png"))
 ```
