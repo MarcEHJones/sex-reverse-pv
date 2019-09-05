@@ -26,7 +26,9 @@ pog <-
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
 ```
 
-This creates figure 1
+This creates a plot of BF vs log(SVL)
+(figure 1 in the draft but figure 3 in the new version)
+
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
@@ -43,6 +45,50 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   xlab("log(SVL) (mm)")
 
 ggsave(here("figures/svl-bf.png"))
+```
+
+
+This creates a plot of BF vs log(Mass)
+
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(Mass), y = log(BiteForce), 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 6) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(Mass) (g)")
+
+ggsave(here("figures/mass-bf.png"))
+```
+
+
+This creates a plot of log(SVL) vs log(Mass)
+
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(Mass), 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 6) +
+  ylab("log(Mass) (g)") +
+  xlab("log(SVL) (mm)")
+
+ggsave(here("figures/svl-mass.png"))
 ```
 
 Next set up an empty output file
