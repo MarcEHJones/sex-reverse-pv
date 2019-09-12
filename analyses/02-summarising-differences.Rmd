@@ -76,7 +76,6 @@ kable(pogsumA)
 write_csv(pogsumA, path = here("outputs/morphometrics-results.csv"))
 
 ```
-```
 
 3. Make figures showing the distributions of variables in relation to genotype 
 (Figure 3 in the draft and Figure 1 in the new version)
@@ -148,7 +147,7 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
 ```
 
 
@@ -243,8 +242,6 @@ HDmtplot <-
 #ggsave(here("figures/genotype-means-headvars.png"), height = 7)
 ```
 
-
-```
 5. Temperature table 
 (supplimentary in the new version?)
 
@@ -259,9 +256,7 @@ pogtempsum <-
 
 kable(pogtempsum)
 
-write_csv(pogtempsum, path = here("outputs/temperature.csv"))
-
-```
+#write_csv(pogtempsum, path = here("outputs/temperature.csv"))
 
 ```
 
@@ -275,9 +270,9 @@ tempplot <-
                 colour = Genotype, fill = Genotype)) +
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = Temp_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = Temp_mean,
+  # Add mean and se from pogtempsum
+  geom_point(data = pogtempsum, aes(y = Temp_mean), size = 2) +
+  geom_errorbar(data = pogtempsum, aes(y = Temp_mean,
                                     ymin = Temp_mean - Temp_SE,
                                     ymax = Temp_mean + Temp_SE),
                 width = 0.1) +
@@ -291,9 +286,9 @@ inctempplot <-
                 colour = Genotype, fill = Genotype)) +
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = IncTemp_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = IncTemp_mean,
+  # Add mean and se from ppogtempsum
+  geom_point(data = pogtempsum, aes(y = IncTemp_mean), size = 2) +
+  geom_errorbar(data = pogtempsum, aes(y = IncTemp_mean,
                                     ymin = IncTemp_mean - IncTemp_SE,
                                     ymax = IncTemp_mean + IncTemp_SE),
                 width = 0.1) +
