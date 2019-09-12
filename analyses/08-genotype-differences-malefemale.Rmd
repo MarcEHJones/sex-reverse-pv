@@ -1,0 +1,202 @@
+---
+title: "ANOVAs for different genotypes"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load the libraries
+```{r, message = FALSE}
+library(tidyverse)
+library(knitr)
+library(broom)
+library(ggfortify)
+library(here)
+```
+
+Write a quick standard error function
+```{r}
+se <- function(x){
+  sqrt(var(x)/length(x))
+}
+```
+
+Read in the dataset, and create a dataset with only adults and only males and females
+```{r}
+pog <- read_csv(here("data/pogona-data.csv"))
+
+pogA <- 
+  pog %>%
+  filter(Age == "Adult") %>%
+  filter(Genotype != "ZZF")
+```
+
+Fit ANOVAs to look at differences in size, head shape and bite force in males and females.
+
+Set up an empty output file
+```{r}
+output <- data.frame(array(dim = c(11, 11)))
+names(output) <- c("response", "df1", "df2", "F", "p", 
+                  "mean_ZWF", "se_ZWF",
+                  "meandiff_ZZM", "se_ZZM", "t_ZZM", "p_ZZM")
+
+# Short function to help write output files
+write_output <- function(model, response, n){
+  
+  x <- tidy(anova(model))
+  y <- summary(model)
+    
+  output[n, "response"] <- response
+  output[n, "df1"] <- x$df[1]
+    output[n, "df2"] <- x$df[2]
+    output[n, "F"] <- x$statistic[1]
+    output[n, "p"] <- x$p.value[1]
+    output[n, "mean_ZWF"] <- y$coefficients[1]
+    output[n, "se_ZWF"] <- y$coefficients[3]
+    output[n, "meandiff_ZZM"] <- y$coefficients[2]
+    output[n, "se_ZZM"] <- y$coefficients[4]
+    output[n, "t_ZZM"] <- y$coefficients[6]
+    output[n, "p_ZZM"] <- y$coefficients[8]
+    
+    return(output)
+}
+```
+
+Mass
+```{r}
+# Fit the model
+m1 <- lm(log(Mass) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m1)
+tidy(anova(m1))
+summary(m1)
+
+output <- write_output(m1, "log(Mass)", 1)
+```
+
+SVL
+```{r}
+# Fit the model
+m2 <- lm(log(SVL) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m2)
+tidy(anova(m2))
+summary(m2)
+
+output <- write_output(m2, "log(SVL)", 2)
+```
+
+Bite Force
+```{r}
+# Fit the model
+m3 <- lm(log(BiteForce) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m3)
+tidy(anova(m3))
+tidy(summary(m3))
+
+output <- write_output(m3, "log(Bite Force)", 3)
+```
+
+Bite Force no lever
+```{r}
+# Fit the model
+m4 <- lm(log(BFnolever) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m4)
+tidy(anova(m4))
+tidy(summary(m4))
+
+output <- write_output(m4, "log(Bite Force nl)", 4)
+```
+
+HLroret
+```{r}
+# Fit the model
+m5 <- lm(log(HLroret) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m5)
+tidy(anova(m5))
+tidy(summary(m5))
+
+output <- write_output(m5, "log(HLroret)", 5)
+```
+
+HLroqu
+```{r}
+# Fit the model
+m6 <- lm(log(HLroqu) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m6)
+tidy(anova(m6))
+tidy(summary(m6))
+
+output <- write_output(m6, "log(HLroqu)", 6)
+```
+
+HWqu
+```{r}
+# Fit the model
+m7 <- lm(log(HWqu) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m7)
+tidy(anova(m7))
+tidy(summary(m7))
+
+output <- write_output(m7, "log(HWqu)", 7)
+```
+
+HWmt
+```{r}
+# Fit the model
+m8 <- lm(log(HWmt) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m8)
+tidy(anova(m8))
+tidy(summary(m8))
+
+output <- write_output(m8, "log(HWmt)", 8)
+```
+
+HDmt
+```{r}
+# Fit the model
+m9 <- lm(log(HDmt) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m9)
+tidy(anova(m9))
+tidy(summary(m9))
+
+output <- write_output(m9, "log(HDmt)", 9)
+```
+
+Temp
+```{r}
+# Fit the model
+m10 <- lm(log(Temp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m10)
+tidy(anova(m10))
+summary(m10)
+
+output <- write_output(m10, "log(Temp)", 10)
+```
+
+IncTemp
+```{r}
+# Fit the model
+m11 <- lm(log(IncTemp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m11)
+tidy(anova(m11))
+summary(m11)
+
+output <- write_output(m11, "log(IncTemp)", 11)
+```
+
+Write all outputs to file
+```{r}
+write_csv(output, path = here("outputs/genotype-anova-results-malefemale.csv"))
+```
