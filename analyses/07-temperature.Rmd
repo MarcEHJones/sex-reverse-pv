@@ -59,13 +59,11 @@ This code creates a plot of BF vs log(SVL) colour coded according to temperature
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Temp, fill = Temp, shape = Genotype)) +
-  geom_point(alpha = 0.8, na.rm = TRUE) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
-  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+                colour = Temp, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
+  scale_colour_gradientn(name = "Temperature (°C)", colours = heat.colors(10)) +
   theme_bw(base_size = 14) +
-  #theme(legend.title = element_blank()) +
   ylim(0, 5)+
   xlim(4, 5.5) +
   ylab("log(Bite Force) (N)") +
@@ -79,30 +77,25 @@ This code creates a plot of BF vs log(SVL) colour coded according to inclubation
 
 
 ```{r, message = FALSE}
-
-
-
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = IncTemp, fill = IncTemp, shape = Genotype)) +
-  geom_point(alpha = 0.8, na.rm = TRUE) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
-  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+                colour = IncTemp, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
+  scale_colour_gradientn(name = "Incubation Temp (°C)", colours = heat.colors(10)) +
   theme_bw(base_size = 14) +
-  #theme(legend.title = element_blank()) +
   ylim(0, 5)+
   xlim(4, 5.5) +
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)")
 
-#ggsave(here("figures/Inctemp-genotype-bf.png"))
+#ggsave(here("figures/inctemp-genotype-bf.png"))
 ```
 
 
 Next set up an empty output file
 ```{r}
-output <- data.frame(array(dim = c(14, 20)))
+output <- data.frame(array(dim = c(2, 20)))
 names(output) <- c("response", "predictor", "df", 
                    "F_pred", "p_pred", 
                    "F_gen", "p_gen", 
@@ -149,9 +142,9 @@ Temp
 # Fit the model
 t1 <- lm(log(BiteForce) ~ log(Temp) * Genotype, data = pog)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m1)
-tidy(anova(m1))
-summary(m1)
+autoplot(t1)
+tidy(anova(t1))
+summary(t1)
 
 #output <- write_output(t1, "log(Bite Force)", "log(temp)", 1)
 ```
@@ -159,13 +152,13 @@ summary(m1)
 Inctemp
 ```{r}
 # Fit the model
-t2 <- lm(log(BiteForce) ~ log(Inctemp) * Genotype, data = pog)
+t2 <- lm(log(BiteForce) ~ log(IncTemp) * Genotype, data = pog)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m2)
-tidy(anova(m2))
-summary(m2)
+autoplot(t2)
+tidy(anova(t2))
+summary(t2)
 
-#output <- write_output(t2, "log(Bite Force)", "log(Inctemp)", 2)
+#output <- write_output(t2, "log(Bite Force)", "log(IncTemp)", 2)
 ```
 
 
