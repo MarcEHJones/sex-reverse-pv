@@ -44,7 +44,7 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)")
 
-ggsave(here("figures/svl-bf.png"))
+#ggsave(here("figures/svl-bf.png"))
 ```
 
 
@@ -61,10 +61,10 @@ ggplot(pog, aes(x = log(SVL), y = log(BFnolever),
   #theme(legend.title = element_blank()) +
   ylim(0, 5)+
   xlim(4, 5.5) +
-  ylab("log(Bite Force) (N)") +
+  ylab("log(Bite Force no lever) (N)") +
   xlab("log(SVL) (mm)")
 
-#ggsave(here("figures/svl-bfnolever.png"))
+ggsave(here("figures/svl-bfnolever.png"))
 ```
 
 
@@ -86,7 +86,7 @@ ggplot(pog, aes(x = log(Mass), y = log(BiteForce),
   ylab("log(Bite Force) (N)") +
   xlab("log(Mass) (g)")
 
-ggsave(here("figures/mass-bf.png"))
+#ggsave(here("figures/mass-bf.png"))
 ```
 
 
@@ -108,7 +108,7 @@ ggplot(pog, aes(x = log(SVL), y = log(Mass),
   ylab("log(Mass) (g)") +
   xlab("log(SVL) (mm)")
 
-ggsave(here("figures/svl-mass.png"))
+#ggsave(here("figures/svl-mass.png"))
 ```
 
 
@@ -119,13 +119,11 @@ This code creates a plot of BF vs log(SVL) colour coded according to temperature
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Temp, fill = Temp)) +
-  geom_point(alpha = 0.8, na.rm = TRUE) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
-  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+                colour = Temp)) +
+  geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
+  scale_colour_gradientn(name = "Temperature (°C)", colours = heat.colors(10)) +
   theme_bw(base_size = 14) +
-  #theme(legend.title = element_blank()) +
   ylim(0, 5)+
   xlim(4, 5.5) +
   ylab("log(Bite Force) (N)") +
@@ -141,13 +139,11 @@ This code creates a plot of BF vs log(SVL) colour coded according to temperature
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Temp, fill = Temp, shape = Genotype)) +
-  geom_point(alpha = 0.8, na.rm = TRUE) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
-  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+                colour = Temp, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
+  scale_colour_gradientn(name = "Temperature (°C)", colours = heat.colors(10)) +
   theme_bw(base_size = 14) +
-  #theme(legend.title = element_blank()) +
   ylim(0, 5)+
   xlim(4, 5.5) +
   ylab("log(Bite Force) (N)") +
