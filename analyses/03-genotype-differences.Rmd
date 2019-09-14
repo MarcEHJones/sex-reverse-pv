@@ -90,7 +90,8 @@ summary(m1)
 output <- write_output(m1, "log(Mass)", 1)
 ```
 
-SVL
+Snout-vent-length
+(SVL)
 ```{r}
 # Fit the model
 m2 <- lm(log(SVL) ~ Genotype, data = pogA)
@@ -102,7 +103,7 @@ summary(m2)
 output <- write_output(m2, "log(SVL)", 2)
 ```
 
-Bite Force
+Bite Force (with a lever correction). Greatest value from four trials (B4 in original spreadsheet). 
 ```{r}
 # Fit the model
 m3 <- lm(log(BiteForce) ~ Genotype, data = pogA)
@@ -114,7 +115,7 @@ tidy(summary(m3))
 output <- write_output(m3, "log(Bite Force)", 3)
 ```
 
-Bite Force no lever
+Bite Force without a lever correction
 ```{r}
 # Fit the model
 m4 <- lm(log(BFnolever) ~ Genotype, data = pogA)
@@ -126,7 +127,8 @@ tidy(summary(m4))
 output <- write_output(m4, "log(Bite Force nl)", 4)
 ```
 
-HLroret
+Head length directly from the tip of the rostrum to the posterior end of the retroarticular process 
+(HLroret and later HLrr)
 ```{r}
 # Fit the model
 m5 <- lm(log(HLroret) ~ Genotype, data = pogA)
@@ -138,7 +140,8 @@ tidy(summary(m5))
 output <- write_output(m5, "log(HLroret)", 5)
 ```
 
-HLroqu
+Head length from the tip of the rostrum to the posteroventral corner of the tympanum (approximately the position of the quadrate-articular jaw joint) (HLrq), 
+(HLroqu and in the manuscript HLrq)
 ```{r}
 # Fit the model
 m6 <- lm(log(HLroqu) ~ Genotype, data = pogA)
@@ -150,7 +153,8 @@ tidy(summary(m6))
 output <- write_output(m6, "log(HLroqu)", 6)
 ```
 
-HWqu
+Head width at the base of the tympanum 
+(HWqu)
 ```{r}
 # Fit the model
 m7 <- lm(log(HWqu) ~ Genotype, data = pogA)
@@ -162,7 +166,8 @@ tidy(summary(m7))
 output <- write_output(m7, "log(HWqu)", 7)
 ```
 
-HWmt
+Head width at the midpoint of the temporal region 
+(HWmt)
 ```{r}
 # Fit the model
 m8 <- lm(log(HWmt) ~ Genotype, data = pogA)
@@ -174,7 +179,8 @@ tidy(summary(m8))
 output <- write_output(m8, "log(HWmt)", 8)
 ```
 
-HDmt
+Head depth at the midpoint of the temporal region 
+(HDmt)
 ```{r}
 # Fit the model
 m9 <- lm(log(HDmt) ~ Genotype, data = pogA)
@@ -186,7 +192,8 @@ tidy(summary(m9))
 output <- write_output(m9, "log(HDmt)", 9)
 ```
 
-Temp
+Temperature measured using a temperature gun between trial 1 and trial 2
+(Temp)
 ```{r}
 # Fit the model
 m10 <- lm(log(Temp) ~ Genotype, data = pogA)
@@ -198,7 +205,8 @@ summary(m10)
 output <- write_output(m10, "log(Temp)", 10)
 ```
 
-IncTemp
+Egg incubation temperature
+(IncTemp)
 ```{r}
 # Fit the model
 m11 <- lm(log(IncTemp) ~ Genotype, data = pogA)
