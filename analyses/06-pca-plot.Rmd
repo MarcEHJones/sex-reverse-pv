@@ -241,7 +241,8 @@ Apc12 <-
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) + 
+  #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.22%)", y = "PC2 (31.86%)") +
   theme(legend.position = "none")
@@ -253,6 +254,7 @@ Apc13 <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.22%)", y = "PC3 (21.36%)") +
   theme(legend.position = "none")
@@ -264,13 +266,14 @@ Apc23 <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (31.86%)", y = "PC3 (21.36%)")
 
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, filename = here("figures/pca-plots.png"))
+ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
 ```
 
 
