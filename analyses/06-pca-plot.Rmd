@@ -47,7 +47,7 @@ pog <-
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
 ```
 
-PCA
+PCA for all animals (including juveniles) (n = 91).
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 #First process the data so we can use it...
@@ -65,13 +65,13 @@ pca_head_ds <- data.frame(pca_head$scores, ID = pog$ID)
 pog2 <- left_join(pog, pca_head_ds, by = "ID")
 ```
 
-PCA outputs
+PCA outputs for all animals (including juveniles) (n = 91).
 ```{r}
 loadings(pca_head)
 summary(pca_head)
 ```
 
-Plot PC plot with convex hulls
+Plot PC plot with convex hulls for all animals (including juveniles) (n = 91).
 ```{r, echo = FALSE}
 pc12 <-
   ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
@@ -81,7 +81,7 @@ pc12 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC2 (26.7%)") +
+  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
 
 pc13 <-
@@ -103,7 +103,7 @@ pc23 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.7%)", y = "PC3 (21.83%)")
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
 
 all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
@@ -115,7 +115,7 @@ ggsave(all, filename = here("figures/pca-plots.png"))
 
 
 
-Plot PC plot with convex hulls and scaled points according to bite force: 
+Plot PC plot with convex hulls and scaled points according to bite force for all animals (including juveniles) (n = 91).: 
 ```{r, echo = FALSE}
 pc12b <-
   ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
@@ -125,7 +125,7 @@ pc12b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC2 (26.7%)") +
+  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
 
 pc13b <-
@@ -147,12 +147,131 @@ pc23b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.7%)", y = "PC3 (21.83%)")
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
 
 all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
 all
 
 ggsave(all, filename = here("figures/pca-plots-with_BF.png"))
 ```
+
+
+Plot PC plot with convex hulls and scaled points according to SVL for all animals (including juveniles) (n = 91).: 
+```{r, echo = FALSE}
+pc12b <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(aes(size = BiteForce), shape = 19 , alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
+  theme(legend.position = "none")
+
+pc13b <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(aes(size = BiteForce), shape = 19 , alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (33.97%)", y = "PC3 (21.83%)") +
+  theme(legend.position = "none")
+
+pc23b <-
+  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(aes(size = BiteForce), shape = 19 , alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
+
+all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
+all
+
+#ggsave(all, filename = here("figures/pca-plots-withSVL.png"))
+```
+
+
+Read in the dataset, and create a dataset with only adults (n = 39).
+```{r}
+pog <- read_csv(here("data/pogona-data.csv"))
+
+pogA <- 
+  pog %>%
+  filter(Age == "Adult")
+```
+
+
+PCA for adults
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+#First process the data so we can use it...
+
+# Perform a principal components analysis on log shape variables
+pca_head_adults <- princomp(as.matrix(select(pogA, LSR_HLroret:LSR_HDmt)),
+                     scores = TRUE, cor = TRUE)
+
+# Recombine this with the full dataset
+# First make a dataset of just the PC scores and label the rows with ID
+# taken from the dataset as these are in the same order
+pca_head_ds_adults <- data.frame(pca_head$scores, ID = pog$ID)
+
+# Next join this on "ID" to the original data
+pog3 <- left_join(pog, pca_head_ds_adults, by = "ID")
+```
+
+PCA outputs for adults 
+```{r}
+loadings(pca_head_adults)
+summary(pca_head_adults)
+```
+
+
+
+Plot PC plot with convex hulls for adults
+```{r, echo = FALSE}
+pc12 <-
+  ggplot(pog3, aes(x = Comp.1, y = Comp.2, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (36.22%)", y = "PC2 (31.86%)") +
+  theme(legend.position = "none")
+
+pc13 <-
+  ggplot(pog3, aes(x = Comp.1, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (36.22%)", y = "PC3 (21.36%)") +
+  theme(legend.position = "none")
+
+pc23 <-
+  ggplot(pog3, aes(x = Comp.2, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (31.86%)", y = "PC3 (21.36%)")
+
+all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
+all
+
+#ggsave(all, filename = here("figures/pca-plots.png"))
+```
+
 
 
