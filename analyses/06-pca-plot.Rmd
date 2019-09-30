@@ -108,7 +108,7 @@ pc23 <-
 all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, filename = here("figures/pca-plots.png"))
+ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots.png"))
 ```
 
 
@@ -273,7 +273,7 @@ Apc23 <-
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
 ```
 
 
@@ -315,7 +315,7 @@ Apc23b <-
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, filename = here("figures/pca-plots-with_BF.png"))
+#ggsave(all, filename = here("figures/pca-plots-Adults-with_BF.png"))
 ```
 Plot PC plot with convex hulls and scaled points according to SVL for adults (n = 39): 
 ```{r, echo = FALSE}
@@ -354,5 +354,5 @@ Apc23b <-
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, filename = here("figures/pca-plots-with_BF.png"))
+#ggsave(all, filename = here("figures/pca-plots-Adults-with_BF.png"))
 ```
