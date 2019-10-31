@@ -17,7 +17,7 @@ Read in the dataset. This should result in 154 individuals. 91 of these are capt
 
 ```{r}
 
-pog_all <- read_csv(here("raw-data/Pog32.csv"), na = c("na")) 
+pog_all <- read_csv(here("raw-data/Pog33.csv"), na = c("na")) 
 # NAs are na in data, convert to NA
 # n = 154
 
