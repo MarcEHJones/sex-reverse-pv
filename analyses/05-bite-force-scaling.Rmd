@@ -26,7 +26,7 @@ pog <-
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
 ```
 
-This creates a plot of BF vs log(SVL)
+This creates a plot of log(BF) vs log(SVL)
 (figure 1 in the draft but figure 3 in the new version)
 
 ```{r, message = FALSE}
@@ -47,7 +47,26 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 #ggsave(here("figures/svl-bf.png"))
 ```
 
+This creates a plot of BF vs SVL (non-log for reference)
+(figure 1 in the draft but figure 3 in the new version)
 
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = SVL, y = BiteForce, 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  #ylim(0, 5)+
+  #xlim(4, 5.5) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/NotLOG-svl-bf.png"))
+```
 
 ```{r, message = FALSE}
 # All individuals
@@ -68,7 +87,7 @@ ggsave(here("figures/svl-bfnolever.png"))
 ```
 
 
-This creates a plot of BF vs log(Mass)
+This creates a plot of log(BF) vs log(Mass)
 
 
 ```{r, message = FALSE}
@@ -113,7 +132,7 @@ ggplot(pog, aes(x = log(SVL), y = log(Mass),
 
 
 
-This code creates a plot of BF vs log(SVL) colour coded according to temperature.
+This code creates a plot of log(BF) vs log(SVL) colour coded according to temperature.
 
 
 ```{r, message = FALSE}
