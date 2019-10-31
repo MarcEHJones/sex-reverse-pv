@@ -107,7 +107,7 @@ ggplot(pog, aes(x = log(Mass), y = log(BiteForce),
   xlab("log(Mass) (g)")
 
 #ggsave(here("figures/TransD-svl-bf.png"))
-`````
+```
 
 
 
@@ -129,7 +129,7 @@ ggplot(pog, aes(x = log(HWqu), y = log(BiteForce),
   xlab("log(Head width at the quadrates) (mm)")
 
 #ggsave(here("figures/TransD-svl-bf.png"))
-`````
+```
 
 
 
