@@ -23,33 +23,23 @@ se <- function(x){
 }
 ```
 
-Read in the dataset, and create a dataset with only adults
+Read in the dataset, and create a dataset with only adults and only males and females
 ```{r}
 pog <- read_csv(here("data/pogona-data.csv"))
 
 pogA <- 
   pog %>%
-  filter(Age == "Adult")
+  filter(Age == "Adult") %>%
+  filter(Genotype != "ZZF")
 ```
 
-Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+Fit ANOVAs to look at differences in size, head shape and bite force in males and females.
 
+Set up an empty output file
 ```{r}
-pogA <-
-  pogA %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
-```
-
-Fit ANOVAs to look at differences in size, head shape and bite force in the three genotypes.
-
-First to make the models easier to interpret, relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
-
-Next set up an empty output file
-```{r}
-output <- data.frame(array(dim = c(11, 15)))
+output <- data.frame(array(dim = c(11, 11)))
 names(output) <- c("response", "df1", "df2", "F", "p", 
-                  "mean_ZZF", "se_ZZF",
-                  "meandiff_ZWF", "se_ZWF", "t_ZWF", "p_ZWF",
+                  "mean_ZWF", "se_ZWF",
                   "meandiff_ZZM", "se_ZZM", "t_ZZM", "p_ZZM")
 
 # Short function to help write output files
@@ -63,16 +53,12 @@ write_output <- function(model, response, n){
     output[n, "df2"] <- x$df[2]
     output[n, "F"] <- x$statistic[1]
     output[n, "p"] <- x$p.value[1]
-    output[n, "mean_ZZF"] <- y$coefficients[1]
-    output[n, "se_ZZF"] <- y$coefficients[4]
-    output[n, "meandiff_ZWF"] <- y$coefficients[2]
-    output[n, "se_ZWF"] <- y$coefficients[5]
-    output[n, "t_ZWF"] <- y$coefficients[8]
-    output[n, "p_ZWF"] <- y$coefficients[11]
-    output[n, "meandiff_ZZM"] <- y$coefficients[3]
-    output[n, "se_ZZM"] <- y$coefficients[5]
-    output[n, "t_ZZM"] <- y$coefficients[9]
-    output[n, "p_ZZM"] <- y$coefficients[12]
+    output[n, "mean_ZWF"] <- y$coefficients[1]
+    output[n, "se_ZWF"] <- y$coefficients[3]
+    output[n, "meandiff_ZZM"] <- y$coefficients[2]
+    output[n, "se_ZZM"] <- y$coefficients[4]
+    output[n, "t_ZZM"] <- y$coefficients[6]
+    output[n, "p_ZZM"] <- y$coefficients[8]
     
     return(output)
 }
@@ -90,8 +76,7 @@ summary(m1)
 output <- write_output(m1, "log(Mass)", 1)
 ```
 
-Snout-vent-length
-(SVL)
+SVL
 ```{r}
 # Fit the model
 m2 <- lm(log(SVL) ~ Genotype, data = pogA)
@@ -103,7 +88,7 @@ summary(m2)
 output <- write_output(m2, "log(SVL)", 2)
 ```
 
-Bite Force (with a lever correction). Greatest value from four trials (B4 in original spreadsheet). 
+Bite Force
 ```{r}
 # Fit the model
 m3 <- lm(log(BiteForce) ~ Genotype, data = pogA)
@@ -115,7 +100,7 @@ tidy(summary(m3))
 output <- write_output(m3, "log(Bite Force)", 3)
 ```
 
-Bite Force without a lever correction
+Bite Force no lever
 ```{r}
 # Fit the model
 m4 <- lm(log(BFnolever) ~ Genotype, data = pogA)
@@ -127,8 +112,7 @@ tidy(summary(m4))
 output <- write_output(m4, "log(Bite Force nl)", 4)
 ```
 
-Head length directly from the tip of the rostrum to the posterior end of the retroarticular process 
-(HLroret and later HLrr)
+HLroret
 ```{r}
 # Fit the model
 m5 <- lm(log(HLroret) ~ Genotype, data = pogA)
@@ -140,8 +124,7 @@ tidy(summary(m5))
 output <- write_output(m5, "log(HLroret)", 5)
 ```
 
-Head length from the tip of the rostrum to the posteroventral corner of the tympanum (approximately the position of the quadrate-articular jaw joint) (HLrq), 
-(HLroqu and in the manuscript HLrq)
+HLroqu
 ```{r}
 # Fit the model
 m6 <- lm(log(HLroqu) ~ Genotype, data = pogA)
@@ -153,8 +136,7 @@ tidy(summary(m6))
 output <- write_output(m6, "log(HLroqu)", 6)
 ```
 
-Head width at the base of the tympanum 
-(HWqu)
+HWqu
 ```{r}
 # Fit the model
 m7 <- lm(log(HWqu) ~ Genotype, data = pogA)
@@ -166,8 +148,7 @@ tidy(summary(m7))
 output <- write_output(m7, "log(HWqu)", 7)
 ```
 
-Head width at the midpoint of the temporal region 
-(HWmt)
+HWmt
 ```{r}
 # Fit the model
 m8 <- lm(log(HWmt) ~ Genotype, data = pogA)
@@ -179,8 +160,7 @@ tidy(summary(m8))
 output <- write_output(m8, "log(HWmt)", 8)
 ```
 
-Head depth at the midpoint of the temporal region 
-(HDmt)
+HDmt
 ```{r}
 # Fit the model
 m9 <- lm(log(HDmt) ~ Genotype, data = pogA)
@@ -192,8 +172,7 @@ tidy(summary(m9))
 output <- write_output(m9, "log(HDmt)", 9)
 ```
 
-Temperature measured using a temperature gun between trial 1 and trial 2
-(Temp)
+Temp
 ```{r}
 # Fit the model
 m10 <- lm(log(Temp) ~ Genotype, data = pogA)
@@ -205,8 +184,7 @@ summary(m10)
 output <- write_output(m10, "log(Temp)", 10)
 ```
 
-Egg incubation temperature
-(IncTemp)
+IncTemp
 ```{r}
 # Fit the model
 m11 <- lm(log(IncTemp) ~ Genotype, data = pogA)
@@ -220,5 +198,5 @@ output <- write_output(m11, "log(IncTemp)", 11)
 
 Write all outputs to file
 ```{r}
-write_csv(output, path = here("outputs/genotype-anova-results.csv"))
+write_csv(output, path = here("outputs/genotype-anova-results-malefemale.csv"))
 ```
