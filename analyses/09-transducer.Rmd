@@ -68,8 +68,8 @@ ggplot(pog, aes(x = Mass, y = BiteForce,
 #ggsave(here("figures/NotLOG-Mass-bf.png"))
 ```
 
-This creates a plot of BF vs log(SVL) colour coded by trans
 
+This creates a plot of log(BF) vs log(SVL) colour coded by trans
 
 ```{r, message = FALSE}
 # All individuals
@@ -89,7 +89,7 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 #ggsave(here("figures/TransD-svl-bf.png"))
 ```
 
-
+This creates a plot of log(BF) vs log(Mass) colour coded by trans
 
 ```{r, message = FALSE}
 # All individuals
@@ -108,4 +108,133 @@ ggplot(pog, aes(x = log(Mass), y = log(BiteForce),
 
 #ggsave(here("figures/TransD-svl-bf.png"))
 `````
+
+
+
+This creates a plot of log(BF) vs log(Hwqt) colour coded by trans
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(HWqu), y = log(BiteForce), 
+                colour = Transd, fill = Transd, shape = Transd)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(1, 5.5) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(Head width at the quadrates) (mm)")
+
+#ggsave(here("figures/TransD-svl-bf.png"))
+`````
+
+
+
+~~~~~~~~~~ same plots but without lever corrrection ~~~~~~~~~
+
+
+Basic plot of bite force against SVL. 
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = SVL, y = BFnolever, 
+                colour = Transd, fill = Transd, shape = Transd)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylab("Bite force (N), no lever correction") +
+  xlab("SVL (mm)")
+
+#ggsave(here("figures/NotLOG_svl-bf.png"))
+```
+
+
+Basic plot of bite force against Mass. 
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = Mass, y = BFnolever, 
+                colour = Transd, fill = Transd, shape = Transd)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylab("Bite force (N), no lever correction") +
+  xlab("Mass (g)")
+
+#ggsave(here("figures/NotLOG-Mass-bf.png"))
+```
+
+
+This creates a plot of log(BF) vs log(SVL) colour coded by trans
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(BFnolever), 
+                colour = Transd, fill = Transd, shape = Transd)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("Bite force (N), no lever correction") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/TransD-svl-bf.png"))
+```
+
+This creates a plot of log(BF) vs log(Mass) colour coded by trans
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(Mass), y = log(BFnolever), 
+                colour = Transd, fill = Transd, shape = Transd)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(1, 5.5) +
+  ylab("Bite force (N), no lever correction") +
+  xlab("log(Mass) (g)")
+
+#ggsave(here("figures/TransD-svl-bf.png"))
+`````
+
+
+
+This creates a plot of log(BF) vs log(Hwqt) colour coded by trans
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(HWqu), y = log(BFnolever), 
+                colour = Transd, fill = Transd, shape = Transd)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(1, 5.5) +
+  ylab("Bite force (N), no lever correction") +
+  xlab("log(Head width at the quadrates) (mm)")
+
+#ggsave(here("figures/TransD-svl-bf.png"))
+`````
+
+
 
