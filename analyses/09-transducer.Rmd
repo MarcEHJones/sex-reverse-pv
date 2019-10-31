@@ -49,6 +49,23 @@ ggplot(pog, aes(x = SVL, y = BiteForce,
 #ggsave(here("figures/NotLOG_svl-bf.png"))
 ```
 
+Plot to demonstrate age and transducer.
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = SVL, y = BiteForce, 
+                colour = Age, fill = Age, shape = Transd)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylab("Bite Force (N)") +
+  xlab("SVL (mm)")
+
+#ggsave(here("figures/NotLOG_svl-bf.png"))
+```
 
 Basic plot of bite force against Mass. 
 
