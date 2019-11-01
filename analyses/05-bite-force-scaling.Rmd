@@ -44,7 +44,8 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)")
 
-#ggsave(here("figures/svl-bf.png"))
+
+ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-.png"))
 ```
 
 This creates a plot of BF vs SVL (non-log for reference)
