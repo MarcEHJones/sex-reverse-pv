@@ -45,7 +45,7 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   xlab("log(SVL) (mm)")
 
 
-ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-.png"))
+#ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-.png"))
 ```
 
 This creates a plot of BF vs SVL (non-log for reference)
@@ -91,6 +91,26 @@ ggsave(here("figures/svl-bfnolever.png"))
 This creates a plot of log(BF) vs log(Mass)
 
 
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = Mass, y = BiteForce, 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  #ylim(0, 5)+
+  #xlim(4, 6) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(Mass) (g)")
+
+#ggsave(here("figures/mass-bf.png"))
+```
+
+
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(Mass), y = log(BiteForce), 
@@ -101,12 +121,12 @@ ggplot(pog, aes(x = log(Mass), y = log(BiteForce),
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   #theme(legend.title = element_blank()) +
-  ylim(0, 5)+
-  xlim(4, 6) +
+  ylim(1, 5)+
+  xlim(1, 6) +
   ylab("log(Bite Force) (N)") +
   xlab("log(Mass) (g)")
 
-#ggsave(here("figures/mass-bf.png"))
+ggsave(here("figures/LOG-mass-bf.png"))
 ```
 
 
