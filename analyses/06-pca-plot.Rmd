@@ -71,6 +71,9 @@ loadings(pca_head)
 summary(pca_head)
 ```
 
+
+FIGURE SI 4
+
 Plot PC plot with convex hulls for all animals (including juveniles) (n = 91).
 ```{r, echo = FALSE}
 pc12 <-
@@ -108,7 +111,7 @@ pc23 <-
 all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots.png"))
+ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL.png"))
 ```
 
 
@@ -152,7 +155,7 @@ pc23b <-
 all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, filename = here("figures/pca-plots-with_BF.png"))
+#ggsave(all, filename = here("figures/pca-plots-ALL-with_BF.png"))
 ```
 
 
@@ -193,7 +196,7 @@ pc23b <-
 all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, filename = here("figures/pca-plots-withSVL.png"))
+#ggsave(all, height = 12 , width = 7, filename = here("figures/pca-plots-withSVL.png"))
 ```
 
 
@@ -231,7 +234,7 @@ loadings(pca_head_adults)
 summary(pca_head_adults)
 ```
 
-
+FIGURE SI 1
 
 Plot PC plot with convex hulls for adults (n = 39):
 ```{r, echo = FALSE}
@@ -273,10 +276,11 @@ Apc23 <-
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
+ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
 ```
 
 
+FIGURE SI 2
 
 Plot PC plot with convex hulls and scaled points according to bite force for adults (n = 39): 
 ```{r, echo = FALSE}
@@ -288,7 +292,7 @@ Apc12b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
+  labs(x = "PC1 (36.22%)", y = "PC2 (31.86%)") +
   theme(legend.position = "none")
 
 Apc13b <-
@@ -299,7 +303,7 @@ Apc13b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC3 (21.83%)") +
+  labs(x = "PC1 (36.22%)", y = "PC3 (21.36%)") +
   theme(legend.position = "none")
 
 Apc23b <-
@@ -310,13 +314,16 @@ Apc23b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
+  labs(x = "PC2 (31.86%)", y = "PC3 (21.36%)")
 
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, filename = here("figures/pca-plots-Adults-with_BF.png"))
+ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with_BF.png"))
 ```
+
+FIGURE SI 3
+
 Plot PC plot with convex hulls and scaled points according to SVL for adults (n = 39): 
 ```{r, echo = FALSE}
 Apc12b <-
@@ -327,7 +334,7 @@ Apc12b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
+  labs(x = "PC1 (36.22%)", y = "PC2 (31.86%)") +
   theme(legend.position = "none")
 
 Apc13b <-
@@ -338,7 +345,7 @@ Apc13b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC3 (21.83%)") +
+  labs(x = "PC1 (36.22%)", y = "PC3 (21.36%)") +
   theme(legend.position = "none")
 
 Apc23b <-
@@ -349,10 +356,10 @@ Apc23b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
+  labs(x = "PC2 (31.86%)", y = "PC3 (21.36%)")
 
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, filename = here("figures/pca-plots-Adults-with_BF.png"))
+ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with-SVL.png"))
 ```
