@@ -78,7 +78,7 @@ write_csv(pogsumA, path = here("outputs/morphometrics-results.csv"))
 ```
 
 3. Make figures showing the distributions of variables in relation to genotype 
-(Figure 3 in the draft and Figure 1 in the new version)
+(Figure 1)
 
 ```{r, warning = FALSE}
 bfplot <-
@@ -151,8 +151,7 @@ svlplot <-
 ```
 
 
-4. And for the head shape 
-(supplementary in the draft? Figure 2 is new version)
+4. And for the head shape (Figure 2)
 
 ```{r, warning = FALSE}
 HLroretplot <-
@@ -242,8 +241,7 @@ HDmtplot <-
 #ggsave(here("figures/genotype-means-headvars.png"), height = 7)
 ```
 
-5. Temperature table 
-(supplimentary in the new version?)
+5. Temperature table (supplementary)
 
 ```{r, warning = FALSE}
 
@@ -260,11 +258,9 @@ kable(pogtempsum)
 
 ```
 
-6. Temperature plots
-(supplimentary in the new version?)
+6. Temperature plots (supplementary)
 
 ```{r, warning = FALSE}
-
 tempplot <-
   ggplot(pogA, aes(x = Genotype, y = Temp, 
                 colour = Genotype, fill = Genotype)) +
@@ -303,7 +299,3 @@ inctempplot <-
 #ggsave(here("figures/genotype-means-temp-inctemp.png"), height = 5)
 
 ```
-
-
-
-
