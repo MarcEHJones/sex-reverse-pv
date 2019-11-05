@@ -118,7 +118,7 @@ all
 
 
 
-Plot PC plot with convex hulls and scaled points according to bite force for all animals (including juveniles) (n = 91).: 
+Plot PC plot with convex hulls and scaled points according to bite force for all animals (including juveniles) (n = 91): 
 ```{r, echo = FALSE}
 pc12b <-
   ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
@@ -180,7 +180,7 @@ pc13b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (34.10%)", y = "PC3 (21.83%)") +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
 
 pc23b <-
@@ -191,7 +191,7 @@ pc23b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
 
 all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
 all
@@ -200,10 +200,8 @@ all
 ```
 
 
-Read in the dataset, and create a dataset with only adults (n = 39).
+Create a dataset with only adults (n = 39).
 ```{r}
-pog <- read_csv(here("data/pogona-data.csv"))
-
 pogA <- 
   pog %>%
   filter(Age == "Adult")
@@ -247,7 +245,7 @@ Apc12 <-
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) + 
   #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (36.22%)", y = "PC2 (31.86%)") +
+  labs(x = "PC1 (36.56%)", y = "PC2 (31.69%)") +
   theme(legend.position = "none")
 
 Apc13 <-
@@ -259,7 +257,7 @@ Apc13 <-
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (36.22%)", y = "PC3 (21.36%)") +
+  labs(x = "PC1 (36.56%)", y = "PC3 (21.19%)") +
   theme(legend.position = "none")
 
 Apc23 <-
@@ -271,12 +269,12 @@ Apc23 <-
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (31.86%)", y = "PC3 (21.36%)")
+  labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
 
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
 ```
 
 
@@ -292,7 +290,7 @@ Apc12b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (36.22%)", y = "PC2 (31.86%)") +
+  labs(x = "PC1 (36.56%)", y = "PC2 (31.69%)") +
   theme(legend.position = "none")
 
 Apc13b <-
@@ -303,7 +301,7 @@ Apc13b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (36.22%)", y = "PC3 (21.36%)") +
+  labs(x = "PC1 (36.69%)", y = "PC3 (21.19%)") +
   theme(legend.position = "none")
 
 Apc23b <-
@@ -314,12 +312,12 @@ Apc23b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (31.86%)", y = "PC3 (21.36%)")
+  labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
 
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with_BF.png"))
+#ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with_BF.png"))
 ```
 
 FIGURE SI 3
@@ -334,7 +332,7 @@ Apc12b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (36.22%)", y = "PC2 (31.86%)") +
+  labs(x = "PC1 (36.69%)", y = "PC2 (31.69%)") +
   theme(legend.position = "none")
 
 Apc13b <-
@@ -345,7 +343,7 @@ Apc13b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (36.22%)", y = "PC3 (21.36%)") +
+  labs(x = "PC1 (36.69%)", y = "PC3 (21.19%)") +
   theme(legend.position = "none")
 
 Apc23b <-
@@ -356,10 +354,10 @@ Apc23b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (31.86%)", y = "PC3 (21.36%)")
+  labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
 
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with-SVL.png"))
+#ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with-SVL.png"))
 ```
