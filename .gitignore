@@ -1,5 +1,5 @@
 # Do not track sensitive raw data
-*/raw-data
+/raw-data
 
 .DS_Store
 .Ruserdata
