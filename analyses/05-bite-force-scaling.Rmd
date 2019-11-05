@@ -27,7 +27,7 @@ pog <-
 ```
 
 This creates a plot of log(BF) vs log(SVL)
-(figure 1 in the draft but figure 3 in the new version)
+(Figure 3)
 
 ```{r, message = FALSE}
 # All individuals
@@ -45,11 +45,10 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   xlab("log(SVL) (mm)")
 
 
-#ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-.png"))
+#ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf.png"))
 ```
 
 This creates a plot of BF vs SVL (non-log for reference)
-(figure 1 in the draft but figure 3 in the new version)
 
 ```{r, message = FALSE}
 # All individuals
@@ -69,6 +68,8 @@ ggplot(pog, aes(x = SVL, y = BiteForce,
 #ggsave(here("figures/NotLOG-svl-bf.png"))
 ```
 
+log(SVL) and log(bite force no lever)
+
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BFnolever), 
@@ -84,13 +85,11 @@ ggplot(pog, aes(x = log(SVL), y = log(BFnolever),
   ylab("log(Bite Force no lever) (N)") +
   xlab("log(SVL) (mm)")
 
-ggsave(here("figures/svl-bfnolever.png"))
+#ggsave(here("figures/svl-bfnolever.png"))
 ```
 
 
 This creates a plot of log(BF) vs log(Mass)
-
-
 
 ```{r, message = FALSE}
 # All individuals
@@ -126,7 +125,7 @@ ggplot(pog, aes(x = log(Mass), y = log(BiteForce),
   ylab("log(Bite Force) (N)") +
   xlab("log(Mass) (g)")
 
-ggsave(here("figures/LOG-mass-bf.png"))
+#ggsave(here("figures/LOG-mass-bf.png"))
 ```
 
 
@@ -191,9 +190,6 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 
 #ggsave(here("figures/temp-genotype-bf.png"))
 ```
-
-
-
 
 Next set up an empty output file
 ```{r}
