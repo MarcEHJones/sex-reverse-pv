@@ -84,7 +84,7 @@ pc12 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
+  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
 
 pc13 <-
@@ -95,7 +95,7 @@ pc13 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC3 (21.83%)") +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
 
 pc23 <-
@@ -106,12 +106,12 @@ pc23 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
 
 all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL.png"))
 ```
 
 
@@ -128,7 +128,7 @@ pc12b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
+  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
 
 pc13b <-
@@ -139,7 +139,7 @@ pc13b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC3 (21.83%)") +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
 
 pc23b <-
@@ -150,7 +150,7 @@ pc23b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.73%)", y = "PC3 (21.83%)")
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
 
 all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
 all
@@ -169,7 +169,7 @@ pc12b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC2 (26.73%)") +
+  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
 
 pc13b <-
@@ -180,7 +180,7 @@ pc13b <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
-  labs(x = "PC1 (33.97%)", y = "PC3 (21.83%)") +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.83%)") +
   theme(legend.position = "none")
 
 pc23b <-
