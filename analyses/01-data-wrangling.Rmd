@@ -1,5 +1,5 @@
 ---
-title: "Data wrangling"
+title: "Data wrangling (not needed to reproduce analyses)"
 output: html_document
 ---
 
@@ -12,6 +12,8 @@ library(tidyverse)
 library(knitr)
 library(here)
 ```
+
+>This script requires the raw data. However, not all of this is published, nor does it all completely belong to me, so I have not shared it in this repo. The output of this script contains all the data required to reproduce the analyses in the paper. This script remains in the repo for legacy purposes.
 
 Read in the dataset. This should result in 154 individuals. 91 of these are captive animals that can be used for the present study. 
 
