@@ -1,4 +1,4 @@
-# Sex reverse paper
+# Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons  
 
 Author(s): Marc EH Jones and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)
 
