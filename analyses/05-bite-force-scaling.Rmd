@@ -47,6 +47,32 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 
 #ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf.png"))
 ```
+
+
+This creates a plot of log(BF) vs log(SVL)
+(Figure 3 in colour) with differnt symbols
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+                colour = Genotype, fill = Genotype,size = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 16, 22)) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_size_manual(values=c(1.2,1.2,1.2))+
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(SVL) (mm)")
+
+
+#ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-shape-2.png"))
+```
+
 This creates a plot of log(BF) vs log(SVL)
 (Figure 3 in grayscale without the lines)
 
