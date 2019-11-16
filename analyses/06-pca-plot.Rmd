@@ -14,11 +14,12 @@ library(here)
 library(ggpubr) # for fancy multi-panel plots
 
 #need to install from GitHub 
+#install.packages("devtools")
 #install_github("cmartin/ggConvexHull")
 #install_github("ggConvexHull")
-devtools::install_github("cmartin/ggConvexHull")
-
+#devtools::install_github("cmartin/ggConvexHull")
 # need to install from GitHub
+
 library(ggConvexHull)  
 
 library(ggfortify)
