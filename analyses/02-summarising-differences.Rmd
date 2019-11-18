@@ -17,7 +17,13 @@ library(knitr)
 library(broom)
 library(ggfortify)
 library(here)
-library(patchwork) #install from github
+#library(patchwork) #install from github
+
+# cut and paste into console
+#install.packages("devtools")
+#library(devtools)
+#install_github("thomasp85/patchwork")
+
 ```
 
 Write a quick standard error function
@@ -45,6 +51,37 @@ pogA <-
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
 ```
 
+
+Sample composition
+
+
+Plot captive vs wild bite force overall, and see how the distributions vary. 
+```{r, echo = FALSE}
+  ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(SVL), 
+                                   colour = Genotype, fill = Genotype)) +
+  geom_histogram(alpha = 0.2, bins = 20) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "right", legend.title = element_blank(),
+        strip.background = element_rect(fill = "white")) +
+  facet_wrap(~ Genotype)
+```
+
+
+Sample composition
+
+
+Plot captive vs wild bite force overall, and see how the distributions vary. 
+```{r, echo = FALSE}
+  ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(Mass), 
+                                   colour = Genotype, fill = Genotype)) +
+  geom_histogram(alpha = 0.2, bins = 20) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "right", legend.title = element_blank(),
+        strip.background = element_rect(fill = "white")) #+
+  #facet_wrap(~ Genotype)
+```
 
 1. What is the range of bite forces?
 
