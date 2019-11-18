@@ -52,10 +52,8 @@ pogA <-
 ```
 
 
-Sample composition
+Sample composition by SVL.
 
-
-Plot captive vs wild bite force overall, and see how the distributions vary. 
 ```{r, echo = FALSE}
   ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(SVL), 
                                    colour = Genotype, fill = Genotype)) +
@@ -68,10 +66,8 @@ Plot captive vs wild bite force overall, and see how the distributions vary.
 ```
 
 
-Sample composition
+Sample composition by Mass.
 
-
-Plot captive vs wild bite force overall, and see how the distributions vary. 
 ```{r, echo = FALSE}
   ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(Mass), 
                                    colour = Genotype, fill = Genotype)) +
