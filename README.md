@@ -1,6 +1,6 @@
 # Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons  
 
-Author(s): Marc EH Jones and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)
+Author(s): .[MarcEHJones].(mailto:marc.jones@ucl.ac.uk) and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)
 
 This repository contains all the code and some data used in the [paper - link will appear here](xxx). 
 
