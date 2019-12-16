@@ -14,6 +14,7 @@ library(knitr)
 library(broom)
 library(ggfortify)
 library(here)
+library(patchwork)
 ```
 
 Read in the dataset, relevel the genotype variable so everything is compared to ZZf as that's the key comparison.
@@ -103,7 +104,8 @@ This creates a plot of log(BF) vs log(SVL)
 
 ```{r, message = FALSE}
 # All individuals
-ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+log_plot<-
+  ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
                 colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE) +
   geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
@@ -116,18 +118,18 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   ylim(0, 5)+
   xlim(4, 5.5) +
   ylab("log(Bite Force) (N)") +
-  xlab("log(SVL) (mm)")
+  xlab("log(SVL) (mm)") +
+  labs(tag = "A")
 
-
+log_plot
 #ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-greyscale.png"))
 ```
 
-
-
-This creates a plot of BF vs SVL (non-log for reference)
+This creates a non logged plot of BF vs SVL
 
 ```{r, message = FALSE}
 # All individuals
+nl_plot <- 
 ggplot(pog, aes(x = SVL, y = BiteForce, 
                 colour = Genotype, fill = Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE) +
@@ -138,11 +140,22 @@ ggplot(pog, aes(x = SVL, y = BiteForce,
   #theme(legend.title = element_blank()) +
   #ylim(0, 5)+
   #xlim(4, 5.5) +
-  ylab("log(Bite Force) (N)") +
-  xlab("log(SVL) (mm)")
+  ylab("Bite Force) (N)") +
+  xlab("log(SVL) (mm)") +
+  labs(tag = "B")
 
+nl_plot
 #ggsave(here("figures/NotLOG-svl-bf.png"))
 ```
+
+New combined plot
+```{r}
+log_plot + nl_plot
+
+#ggsave(here("figures/figure3_new.png"))
+```
+
+
 
 log(SVL) and log(bite force no lever)
 
