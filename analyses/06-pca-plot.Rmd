@@ -165,7 +165,7 @@ Plot PC plot with convex hulls and scaled points according to SVL for all animal
 pc12b <-
   ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
                  colour = Genotype, fill = Genotype)) +
-  geom_point(aes(size = BiteForce), shape = 19 , alpha = 0.8) +
+  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
@@ -176,7 +176,7 @@ pc12b <-
 pc13b <-
   ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
                  colour = Genotype, fill = Genotype)) +
-  geom_point(aes(size = BiteForce), shape = 19 , alpha = 0.8) +
+  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
@@ -187,7 +187,7 @@ pc13b <-
 pc23b <-
   ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
                  colour = Genotype, fill = Genotype)) +
-  geom_point(aes(size = BiteForce), shape = 19 , alpha = 0.8) +
+  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
