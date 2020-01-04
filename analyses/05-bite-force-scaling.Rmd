@@ -40,10 +40,11 @@ This creates a plot of log(BF) vs log(SVL)
 # All individuals
 log_plot<-
   ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Genotype, fill = Genotype)) +
+                colour = Genotype, shape = Genotype, fill = Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE) +
   geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   #theme(legend.title = element_blank()) +
@@ -161,7 +162,7 @@ New combined BF vs LOG SVL and non LOG SVL black and white plot for publication.
 ```{r}
 log_plot_bw / nl_plot_bw
 
-ggsave(here("figures/figure3_new_twopanel_bw.png"))
+#ggsave(here("figures/figure3_new_twopanel_bw.png"))
 ```
 
 
@@ -289,6 +290,53 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 #ggsave(here("figures/temp-genotype-bf.png"))
 ```
 
+
+
+
+This code creates a plot of BF vs headlength (rostrum-tympanum).
+
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = HLroqu, y = BiteForce, 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 100)+
+  xlim(10, 60) +
+  ylab("Bite Force (N)") +
+  xlab("Head length (mm)") +
+  labs(tag = "B") +
+  theme(plot.tag = element_text(size = 12, face = "bold"),
+        axis.title = element_text(size = 12))
+
+```
+
+
+This code creates a plot of BF vs headlength (rostrum-tympanum).
+
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = HLroret, y = BiteForce, 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 100)+
+  xlim(10, 60) +
+  ylab("Bite Force (N)") +
+  xlab("Head length (mm)") +
+  labs(tag = "B") +
+  theme(plot.tag = element_text(size = 12, face = "bold"),
+        axis.title = element_text(size = 12))
+
+```
 
 End of plots
 
