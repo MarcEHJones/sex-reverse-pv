@@ -21,6 +21,12 @@ library(here)
 # library(devtools)
 # install_github("thomasp85/patchwork")
 
+
+# cut and paste into console
+# install.packages("devtools")
+# library(devtools)
+# install_github("thomasp85/patchwork")
+
 ```
 
 Read in the dataset, relevel the genotype variable so everything is compared to ZZf as that's the key comparison.
@@ -68,6 +74,9 @@ This creates a plot of log(BF) vs log(SVL)
 
 ```{r, message = FALSE}
 # All individuals
+
+nl_plot_bw <-
+
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
                 colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE) +
@@ -83,6 +92,7 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)")
 
+nl_plot_bw
 
 #ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-greyscale-noline.png"))
 ```
@@ -93,7 +103,11 @@ This creates a plot of log(BF) vs log(SVL)
 
 ```{r, message = FALSE}
 # All individuals
-  ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+ 
+
+log_plot_bw <-
+
+ ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
                 colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE) +
   geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
@@ -107,6 +121,10 @@ This creates a plot of log(BF) vs log(SVL)
   xlim(4, 5.5) +
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)") 
+
+log_plot_bw
+
+
 #ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-greyscale.png"))
 ```
 
@@ -135,10 +153,19 @@ nl_plot
 ```
 
 
-New combined Bf vs SVL  LOG non LOG plot for publication.
+New combined BF vs LOG SVL and non LOG SVL colour plot for publication.
 
 ```{r}
 log_plot / nl_plot
+
+#ggsave(here("figures/figure3_new_twopanel.png"))
+```
+
+
+New combined BF vs LOG SVL and non LOG SVL black and white plot for publication.
+
+```{r}
+log_plot_bw / nl_plot_bw
 
 #ggsave(here("figures/figure3_new_twopanel.png"))
 ```
