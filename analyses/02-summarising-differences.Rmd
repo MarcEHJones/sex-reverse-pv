@@ -20,9 +20,9 @@ library(here)
 #library(patchwork) #install from github
 
 # cut and paste into console
-#install.packages("devtools")
-#library(devtools)
-#install_github("thomasp85/patchwork")
+# install.packages("devtools")
+# library(devtools)
+# install_github("thomasp85/patchwork")
 
 ```
 
@@ -52,13 +52,14 @@ pogA <-
 ```
 
 
-Sample composition by SVL.
+Sample composition by LOG SVL.
 
 ```{r, echo = FALSE}
   ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(SVL), 
                                    colour = Genotype, fill = Genotype)) +
   geom_histogram(alpha = 0.2, bins = 20) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   theme(legend.position = "right", legend.title = element_blank(),
         strip.background = element_rect(fill = "white")) +
