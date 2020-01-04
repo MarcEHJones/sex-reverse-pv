@@ -14,7 +14,13 @@ library(knitr)
 library(broom)
 library(ggfortify)
 library(here)
-library(patchwork)
+#library(patchwork) #install from github
+
+# cut and paste into console
+# install.packages("devtools")
+# library(devtools)
+# install_github("thomasp85/patchwork")
+
 ```
 
 Read in the dataset, relevel the genotype variable so everything is compared to ZZf as that's the key comparison.
@@ -128,7 +134,9 @@ nl_plot
 #ggsave(here("figures/NotLOG-svl-bf.png"))
 ```
 
-New combined plot
+
+New combined Bf vs SVL  LOG non LOG plot for publication.
+
 ```{r}
 log_plot / nl_plot
 
