@@ -167,7 +167,7 @@ New combined BF vs LOG SVL and non LOG SVL black and white plot for publication.
 ```{r}
 log_plot_bw / nl_plot_bw
 
-#ggsave(here("figures/figure3_new_twopanel.png"))
+ggsave(here("figures/figure3_new_twopanel_bw.png"))
 ```
 
 
@@ -295,7 +295,12 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 #ggsave(here("figures/temp-genotype-bf.png"))
 ```
 
-Next set up an empty output file
+
+End of plots
+
+Data summary table
+
+Set up an empty output file
 ```{r}
 output <- data.frame(array(dim = c(14, 20)))
 names(output) <- c("response", "predictor", "df", 
