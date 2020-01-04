@@ -14,18 +14,12 @@ library(knitr)
 library(broom)
 library(ggfortify)
 library(here)
-#library(patchwork) #install from github
 
-# cut and paste into console
-# install.packages("devtools")
-# library(devtools)
-# install_github("thomasp85/patchwork")
+# 
+library(devtools) #after install from github by cutting and paste install.packages("devtools") into console
 
-
-# cut and paste into console
-# install.packages("devtools")
-# library(devtools)
-# install_github("thomasp85/patchwork")
+# 
+library(patchwork) #after install from github by cutting and pasting install_github("thomasp85/patchwork") into console
 
 ```
 
