@@ -129,9 +129,10 @@ This creates a non logged plot of BF vs SVL
 # All individuals
 nl_plot <- 
 ggplot(pog, aes(x = SVL, y = BiteForce, 
-                colour = Genotype, fill = Genotype)) +
+                colour = Genotype, shape = Genotype, fill = Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   #theme(legend.title = element_blank()) +
