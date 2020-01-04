@@ -70,7 +70,7 @@ Sample composition by SVL.
 
 ```{r, echo = FALSE}
   ggplot(pog[!is.na(pog$Genotype), ], aes(x = SVL, 
-                                   colour = Genotype, fill = Genotype) +
+                                   colour = Genotype, fill = Genotype)) +
   geom_histogram(alpha = 0.2, bins = 20) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
@@ -81,8 +81,7 @@ Sample composition by SVL.
 ```
 
 
-
-Sample composition by Mass.
+Sample composition by LOG Mass.
 
 ```{r, echo = FALSE}
   ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(Mass), 
@@ -92,8 +91,23 @@ Sample composition by Mass.
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   theme(legend.position = "right", legend.title = element_blank(),
-        strip.background = element_rect(fill = "white")) #+
-  #facet_wrap(~ Genotype)
+        strip.background = element_rect(fill = "white")) +
+  facet_wrap(~ Genotype)
+```
+
+
+Sample composition by Mass.
+
+```{r, echo = FALSE}
+  ggplot(pog[!is.na(pog$Genotype), ], aes(x = Mass, 
+                                   colour = Genotype, fill = Genotype)) +
+  geom_histogram(alpha = 0.2, bins = 20) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "right", legend.title = element_blank(),
+        strip.background = element_rect(fill = "white")) +
+  facet_wrap(~ Genotype)
 ```
 
 1. What is the range of bite forces?
