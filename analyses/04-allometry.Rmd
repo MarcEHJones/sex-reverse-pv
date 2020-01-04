@@ -76,7 +76,7 @@ output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
                       summary(modelM)$adj.r.squared,
                       summary(modelSRF)$adj.r.squared)
 
-write_csv(output, path = here("outputs/allometry-results-SVL.csv"))
+#write_csv(output, path = here("outputs/allometry-results-SVL.csv"))
 ```
 
 
@@ -118,6 +118,6 @@ output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
                       summary(modelM)$adj.r.squared,
                       summary(modelSRF)$adj.r.squared)
 
-write_csv(output, path = here("outputs/allometry-results-Mass.csv"))
+#write_csv(output, path = here("outputs/allometry-results-Mass.csv"))
 ```
 ```
