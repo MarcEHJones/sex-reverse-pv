@@ -558,6 +558,9 @@ output <- write_output(m14, "log(Bite Force nl)", "log(HDmt)", 14)
 ```
 
 Write all outputs to file
+
+Table 4
+
 ```{r}
 write_csv(output, path = here("outputs/bite-force-scaling-results.csv"))
 ```
