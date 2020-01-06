@@ -146,8 +146,10 @@ pc12 <-
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-    scale_shape_manual(values=c(23, 21, 22)) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
@@ -158,8 +160,10 @@ pc13 <-
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-    scale_shape_manual(values=c(23, 21, 22)) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
@@ -170,7 +174,9 @@ pc23 <-
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-    scale_shape_manual(values=c(23, 21, 22)) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
@@ -183,9 +189,66 @@ all
 
 #ggsave(all, filename = here("figures/pca-plots-ALL-shapes.png"))
 
-ggsave(all, filename = here("figures/pca-plots-ALL-shapes.png"))
+ggsave(all, filename = here("figures/pca-plots-ALL-shapes3.png"))
 ```
 
+
+
+
+Plot PC plot with convex hulls for adults and juveniles (n = 91).
+
+```{r, echo = FALSE}
+pc12 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
+                 colour = Age, fill = Age, shape = Age)) +
+  geom_point(aes(size = SVL), alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "purple")) +
+  scale_shape_manual(values=c(23, 21)) +
+  scale_fill_manual(values = c("orange1", "purple")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
+  theme(legend.position = "none")
+
+pc13 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
+                 colour = Age, fill = Age, shape = Age)) +
+ geom_point(aes(size = SVL), alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "purple")) +
+  scale_shape_manual(values=c(23, 21)) +
+  scale_fill_manual(values = c("orange1", "purple")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
+  theme(legend.position = "none")
+
+pc23 <-
+  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
+                 colour = Age, fill = Age, shape = Age)) +
+  geom_point(aes(size = SVL), alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "purple")) +
+  scale_shape_manual(values=c(23, 21)) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
+  scale_fill_manual(values = c("orange1", "purple")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
+
+all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
+all
+
+#all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
+#all
+
+ggsave(all, filename = here("figures/pca-plots-ALL-shapes-adultsjuveniles.png"))
+
+
+```
 
 
 
@@ -199,6 +262,8 @@ pc12b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
@@ -210,6 +275,8 @@ pc13b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
@@ -221,6 +288,8 @@ pc23b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
 
@@ -240,6 +309,8 @@ pc12b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
@@ -251,6 +322,8 @@ pc13b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
@@ -261,6 +334,8 @@ pc23b <-
   geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
@@ -465,7 +540,8 @@ Apc12 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) + 
-  #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.56%)", y = "PC2 (31.69%)") +
   theme(legend.position = "none")
@@ -478,7 +554,8 @@ Apc13 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.56%)", y = "PC3 (21.19%)") +
   theme(legend.position = "none")
@@ -491,9 +568,13 @@ Apc23 <-
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
+
+Apc12
+
 
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
@@ -556,6 +637,8 @@ Apc12b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.69%)", y = "PC2 (31.69%)") +
   theme(legend.position = "none")
@@ -567,6 +650,8 @@ Apc13b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.69%)", y = "PC3 (21.19%)") +
   theme(legend.position = "none")
@@ -578,6 +663,8 @@ Apc23b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4, 4) +
+  ylim (-4, 4) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
 
