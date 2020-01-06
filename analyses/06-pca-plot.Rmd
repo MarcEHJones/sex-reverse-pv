@@ -72,6 +72,63 @@ loadings(pca_head)
 summary(pca_head)
 ```
 
+Loadings diagram
+
+```{r}
+#princomp(pca_head, cor = TRUE) 
+
+mydata <- data.frame(unclass(loadings(pca_head)))
+mydata <- mutate(mydata, variable = rownames(mydata))
+
+pc1 <- 
+ggplot(mydata, aes(x = Comp.1, y = variable)) +
+  xlim(-0.9, 0.9) +
+  geom_segment(aes(x = 0, xend = Comp.1, yend = variable),
+               arrow = arrow(length = unit(1/2, "picas")),
+               color = "black") +
+  geom_vline(aes(xintercept = 0), linetype  = "dotted") +
+  ggtitle("PC1") +
+  labs(x = "", y = " ") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+  
+ 
+pc2 <- 
+  ggplot(mydata, aes(x = Comp.2, y = variable)) +
+  xlim(-0.9, 0.9) +
+  geom_segment(aes(x = 0, xend = Comp.2, yend = variable),
+               arrow = arrow(length = unit(1/2, "picas")),
+               color = "black") +
+  geom_vline(aes(xintercept = 0), linetype  = "dotted") +
+  ggtitle("PC2") +
+  labs(x = "", y = " ") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+  
+ 
+pc3 <- 
+  ggplot(mydata, aes(x = Comp.3, y = variable)) +
+  xlim(-0.9, 0.9) +
+  geom_segment(aes(x = 0, xend = Comp.3, yend = variable),
+               arrow = arrow(length = unit(1/2, "picas")),
+               color = "black") +
+  geom_vline(aes(xintercept = 0), linetype  = "dotted") +
+  ggtitle("PC3") +
+  labs(x = "", y = " ") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+  
+loadingsall <- ggarrange(pc1, pc2, pc3, height = 10 , width = 7, common.legend = TRUE, legend = "top")
+
+loadingsall
+
+#ggsave(loadingsall, filename = here("figures/pca-plots-ALL.png"))  
+ 
+
+
+```
+  
 
 FIGURE SI 4
 
