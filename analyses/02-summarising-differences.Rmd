@@ -305,6 +305,77 @@ HDmtplot <-
 #ggsave(here("figures/genotype-means-headvars.png"), height = 7)
 ```
 
+Relative head width - scatterplot
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(HWqu), 
+                colour =  Genotype, fill = Genotype, shape =  Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(2, 4.5)+
+  xlim(3.5, 6) +
+  ylab("log(HWqu) (mm)") +
+  xlab("LOG(SVL) (mm)")
+
+
+```
+
+
+Relative head width - scatterplot
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(HLroret), y = log(HWqu), 
+                colour =  Genotype, fill = Genotype, shape =  Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(2, 4.5)+
+  xlim(2.5, 4.5) +
+  ylab("log(HWqu) (mm)") +
+  xlab("log(HLroret) (mm)")
+
+
+```
+
+
+Relative head width
+
+```{r, warning = FALSE}
+
+RelHeadwidth <-
+  ggplot(pogA, aes(x = Genotype, y = (HLroret/HWqu), 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = HLroret_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = HLroret_mean,
+                                    ymin = HLroret_mean - HLroret_SE,
+                                    ymax = HLroret_mean + HLroret_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(40, 70) +
+  ylab("HLroret (mm)")
+
+
+RelHeadwidth
+
+```
+
+
+
+
+
 5. Temperature table (supplementary)
 
 ```{r, warning = FALSE}
