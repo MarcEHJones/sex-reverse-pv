@@ -120,9 +120,9 @@ pc3 <-
 
 
 # provide three seperate panels for the pc loadings
- ggsave(pc1, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc1.png"))  
- ggsave(pc2, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc2.png"))  
- ggsave(pc3, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc3.png"))  
+# ggsave(pc1, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc1.png"))  
+# ggsave(pc2, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc2.png"))  
+# ggsave(pc3, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc3.png"))  
 
 # provide combined panel  
 # loadingsall <- ggarrange(pc1, pc2, pc3, height = 7 , width = 7, common.legend = TRUE, #legend = "top", ncol = 1, nrow = 3)
@@ -175,10 +175,15 @@ pc23 <-
   theme_bw(base_size = 14) +
   labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
 
-all <- ggarrange(pc12, pc13, pc23, height = 7 , width = 7, common.legend = TRUE, legend = "top")
+all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL.png"))
+#all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
+#all
+
+#ggsave(all, filename = here("figures/pca-plots-ALL-shapes.png"))
+
+ggsave(all, filename = here("figures/pca-plots-ALL-shapes.png"))
 ```
 
 
@@ -454,10 +459,11 @@ Plot PC plot with convex hulls for adults (n = 39):
 ```{r, echo = FALSE}
 Apc12 <-
   ggplot(pog3, aes(x = Comp.1, y = Comp.2, 
-                 colour = Genotype, fill = Genotype)) +
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) + 
   #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
@@ -466,10 +472,11 @@ Apc12 <-
 
 Apc13 <-
   ggplot(pog3, aes(x = Comp.1, y = Comp.3, 
-                 colour = Genotype, fill = Genotype)) +
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
@@ -478,10 +485,11 @@ Apc13 <-
 
 Apc23 <-
   ggplot(pog3, aes(x = Comp.2, y = Comp.3, 
-                 colour = Genotype, fill = Genotype)) +
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   #coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   theme_bw(base_size = 14) +
@@ -490,7 +498,7 @@ Apc23 <-
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes.png"))
 ```
 
 
