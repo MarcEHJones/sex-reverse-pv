@@ -80,24 +80,28 @@ Loadings diagram
 mydata <- data.frame(unclass(loadings(pca_head)))
 mydata <- mutate(mydata, variable = rownames(mydata))
 
+
+library(grid)
+
 pc1 <- 
 ggplot(mydata, aes(x = Comp.1, y = variable)) +
   xlim(-0.75, 0.75) +
   geom_segment(aes(x = 0, xend = Comp.1, yend = variable),
-               arrow = arrow(length = unit(1/2, "picas")),
+               arrow = arrow(length = unit(1/2, "picas"), type='closed'),
                color = "black") +
-  geom_vline(aes(xintercept = 0), linetype  = "dotted") +
+  geom_vline(aes(xintercept = 0), linetype  = "solid") +
   ggtitle("PC1") +
   labs(x = "", y = " ") +
-  theme_bw(base_size = 10)
+  theme_bw (base_size = 10) 
+ 
  
 pc2 <- 
   ggplot(mydata, aes(x = Comp.2, y = variable)) +
   xlim(-0.75, 0.75) +
   geom_segment(aes(x = 0, xend = Comp.2, yend = variable),
-               arrow = arrow(length = unit(1/2, "picas")),
+               arrow = arrow(length = unit(1/2, "picas"), type='closed'),
                color = "black") +
-  geom_vline(aes(xintercept = 0), linetype  = "dotted") +
+  geom_vline(aes(xintercept = 0), linetype  = "solid") +
   ggtitle("PC2") +
   labs(x = "", y = " ") +
   theme_bw(base_size = 10)
@@ -107,20 +111,20 @@ pc3 <-
   ggplot(mydata, aes(x = Comp.3, y = variable)) +
   xlim(-0.75, 0.75) +
   geom_segment(aes(x = 0, xend = Comp.3, yend = variable),
-               arrow = arrow(length = unit(1/2, "picas")),
+               arrow = arrow(length = unit(1/2, "picas"), type='closed'),
                color = "black") +
-  geom_vline(aes(xintercept = 0), linetype  = "dotted") +
+  geom_vline(aes(xintercept = 0), linetype  = "solid") +
   ggtitle("PC3") +
   labs(x = "", y = " ") +
   theme_bw(base_size = 10)
 
   
-loadingsall <- ggarrange(pc1, pc2, pc3, height = 2 , width = 12, common.legend = TRUE, legend = "top", ncol = 1, nrow = 3)
+loadingsall <- ggarrange(pc1, pc2, pc3, height = 7 , width = 7, common.legend = TRUE, legend = "top", ncol = 1, nrow = 3)
 
 loadingsall
 
 #doesn't work. not sure why
-#ggsave(loadingsall, filename = here("figures/loadings-pca-plots-ALL.png"))  
+ggsave(loadingsall, filename = here("figures/loadings-pca-plots-ALL.png"))  
  
 
 
