@@ -59,10 +59,12 @@ This code creates a plot of BF vs log(SVL) colour coded according to temperature
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Temp, shape = Genotype)) +
+                colour = Temp, fill = Temp, shape = Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
   #geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
   scale_colour_gradientn(name = "Temperature (°C)", colours = heat.colors(10)) +
+  scale_fill_gradientn(name = "Temperature (°C)", colours = heat.colors(10)) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   theme_bw(base_size = 14) +
   ylim(0, 5)+
   xlim(4, 5.5) +
@@ -73,16 +75,21 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 ```
 
 
+
+
+
 This code creates a plot of BF vs log(SVL) colour coded according to inclubation temperature divided by genotype.
 
 
 ```{r, message = FALSE}
 # All individuals
 ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = IncTemp, shape = Genotype)) +
+                colour = IncTemp, fill = IncTemp, shape = Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
   #geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
   scale_colour_gradientn(name = "Incubation Temp (°C)", colours = heat.colors(10)) +
+  scale_fill_gradientn(name = "Incubation Temp (°C)", colours = heat.colors(10)) +
+  scale_shape_manual(values=c(23, 21, 22)) +
   theme_bw(base_size = 14) +
   ylim(0, 5)+
   xlim(4, 5.5) +
