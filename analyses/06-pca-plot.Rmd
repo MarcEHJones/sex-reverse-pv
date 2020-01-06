@@ -384,12 +384,13 @@ loadings(pca_head_adults)
 summary(pca_head_adults)
 ```
 
+loading panels for adults
 
 ```{r}
 #princomp(pca_head, cor = TRUE) 
 
 mydata2 <- data.frame(unclass(loadings(pca_head_adults)))
-mydata2 <- mutate(mydata, variable = rownames(mydata2))
+mydata2 <- mutate(mydata2, variable = rownames(mydata2))
 
 
 library(grid)
@@ -431,17 +432,17 @@ pc3ad <-
 
 
 # provide three seperate panels for the pc loadings
-ggsave(pc1ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc1.png"))  
-ggsave(pc2ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc2.png"))  
-ggsave(pc3ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc3.png"))  
+# ggsave(pc1ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc1.png"))  
+# ggsave(pc2ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc2.png"))  
+# ggsave(pc3ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc3.png"))  
 
 
 # provide combined panel  
-# loadingsall <- ggarrange(pc1, pc2, pc3, height = 7 , width = 7, common.legend = TRUE, #legend = "top", ncol = 1, nrow = 3)
-# loadingsall
+# loadingsadults <- ggarrange(pc1, pc2, pc3, height = 7 , width = 7, common.legend = TRUE, #legend = "top", ncol = 1, nrow = 3)
+# loadingsadults
 
 #doesn't work. not sure why
-#ggsave(loadingsall, height = 2 , width = 7, filename = here("figures/loadings-pca-plots-ALL.png"))  
+#ggsave(loadingsall, height = 2 , width = 7, filename = here("figures/loadings-pca-plots-Adults.png"))  
  
 
 
