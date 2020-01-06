@@ -92,7 +92,7 @@ ggplot(mydata, aes(x = Comp.1, y = variable)) +
   geom_vline(aes(xintercept = 0), linetype  = "solid") +
   ggtitle("PC1") +
   labs(x = "", y = " ") +
-  theme_bw (base_size = 10) 
+  theme_bw (base_size = 8) 
  
  
 pc2 <- 
@@ -104,7 +104,7 @@ pc2 <-
   geom_vline(aes(xintercept = 0), linetype  = "solid") +
   ggtitle("PC2") +
   labs(x = "", y = " ") +
-  theme_bw(base_size = 10)
+  theme_bw(base_size = 8)
   
  
 pc3 <- 
@@ -116,15 +116,23 @@ pc3 <-
   geom_vline(aes(xintercept = 0), linetype  = "solid") +
   ggtitle("PC3") +
   labs(x = "", y = " ") +
-  theme_bw(base_size = 10)
+  theme_bw(base_size = 8)
+
+
+
+ggsave(pc1, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc1.png"))  
+
+ggsave(pc2, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc2.png"))  
+
+ggsave(pc3, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc3.png"))  
 
   
-loadingsall <- ggarrange(pc1, pc2, pc3, height = 7 , width = 7, common.legend = TRUE, legend = "top", ncol = 1, nrow = 3)
+#loadingsall <- ggarrange(pc1, pc2, pc3, height = 7 , width = 7, common.legend = TRUE, #legend = "top", ncol = 1, nrow = 3)
 
 loadingsall
 
 #doesn't work. not sure why
-ggsave(loadingsall, filename = here("figures/loadings-pca-plots-ALL.png"))  
+#ggsave(loadingsall, height = 2 , width = 7, filename = here("figures/loadings-pca-plots-ALL.png"))  
  
 
 
