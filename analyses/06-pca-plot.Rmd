@@ -189,7 +189,7 @@ all
 
 #ggsave(all, filename = here("figures/pca-plots-ALL-shapes.png"))
 
-ggsave(all, filename = here("figures/pca-plots-ALL-shapes3.png"))
+#ggsave(all, filename = here("figures/pca-plots-ALL-shapes3.png"))
 ```
 
 
