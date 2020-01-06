@@ -72,7 +72,7 @@ loadings(pca_head)
 summary(pca_head)
 ```
 
-Loadings diagram
+Loadings diagram for full sample (n = 91)
 
 ```{r}
 #princomp(pca_head, cor = TRUE) 
