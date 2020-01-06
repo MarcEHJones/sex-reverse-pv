@@ -240,7 +240,13 @@ all
 #ggsave(all, height = 12 , width = 7, filename = here("figures/pca-plots-withHWqu.png"))
 ```
 
+
+
+
+~~ ADULTS ONLY ~~
+
 Create a dataset with only adults (n = 39).
+
 ```{r}
 pogA <- 
   pog %>%
