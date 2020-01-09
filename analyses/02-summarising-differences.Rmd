@@ -154,7 +154,7 @@ write_csv(pogsumA, path = here("outputs/morphometrics-results.csv"))
 ```
 
 3. Make figures showing the distributions of variables in relation to genotype 
-(Figure 1)
+(Figure 2)
 
 ```{r, warning = FALSE}
 bfplot <-
@@ -227,7 +227,7 @@ svlplot <-
 ```
 
 
-4. And for the head shape (Figure 2)
+4. And for the head shape (Figure 3)
 
 ```{r, warning = FALSE}
 HLroretplot <-
@@ -316,6 +316,9 @@ HDmtplot <-
 
 #ggsave(here("figures/genotype-means-headvars.png"), height = 7)
 ```
+
+5. Plots to explore the data.
+
 
 Relative head width - scatterplot
 
