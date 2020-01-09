@@ -110,7 +110,7 @@ Sample composition by Mass.
   facet_wrap(~ Genotype)
 ```
 
-1. What is the range of bite forces?
+1a. What is the range of bite forces?
 
 ```{r}
 bf <-
@@ -119,6 +119,18 @@ bf <-
             max(BiteForce))
 
 kable(bf)
+```
+
+
+1b. What is the range of SVL?
+
+```{r}
+SVL <-
+  pog %>%
+  summarise(min(SVL), 
+            max(SVL))
+
+kable(SVL)
 ```
 
 
