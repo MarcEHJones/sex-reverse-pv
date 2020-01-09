@@ -155,7 +155,7 @@ New combined BF vs LOG SVL and non LOG SVL colour plot for publication.
 ```{r}
 log_plot / nl_plot
 
-ggsave(height = 8 , width = 7, here("figures/figure3_new_twopanel2.png"))
+ggsave(height = 8 , width = 7, here("figures/figure4_new_twopanel2.png"))
 ```
 
 
