@@ -31,8 +31,69 @@ pog <-
 
 
 
-This code creates a plot of BF vs log(SVL) colour coded according to temperature.
+1. Temperature table (Table S5)
 
+```{r, warning = FALSE}
+
+pogtempsum <- 
+  pogA %>%
+  group_by(Genotype) %>%
+  summarize_at(vars(IncTemp, Temp), 
+               list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
+  mutate_if(is.numeric, round, digits = 2)
+
+kable(pogtempsum)
+
+#write_csv(pogtempsum, path = here("outputs/temperature.csv"))
+
+```
+
+2. Temperature plots 
+(Figure S6)
+
+```{r, warning = FALSE}
+tempplot <-
+  ggplot(pogA, aes(x = Genotype, y = Temp, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from pogtempsum
+  geom_point(data = pogtempsum, aes(y = Temp_mean), size = 2) +
+  geom_errorbar(data = pogtempsum, aes(y = Temp_mean,
+                                    ymin = Temp_mean - Temp_SE,
+                                    ymax = Temp_mean + Temp_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(20, 40) +
+  ylab(expression('Temperature (°C)'))
+
+inctempplot <-
+  ggplot(pogA, aes(x = Genotype, y = IncTemp, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from ppogtempsum
+  geom_point(data = pogtempsum, aes(y = IncTemp_mean), size = 2) +
+  geom_errorbar(data = pogtempsum, aes(y = IncTemp_mean,
+                                    ymin = IncTemp_mean - IncTemp_SE,
+                                    ymax = IncTemp_mean + IncTemp_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(20, 40) +
+  ylab(expression('Incubation temperature (°C)'))
+
+
+(tempplot + inctempplot)
+
+#ggsave(here("figures/genotype-means-temp-inctemp.png"), height = 5)
+
+```
+
+3. 
+This code creates a plot of BF vs log(SVL) colour coded according to temperature.
+Draft of Figure S7.
 
 ```{r, message = FALSE}
 # All individuals
@@ -52,9 +113,8 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 #ggsave(here("figures/temp-bf.png"))
 ```
 
-
-This code creates a plot of BF vs log(SVL) colour coded according to temperature divided by genotype.
-
+4.
+This code creates a plot of BF vs log(SVL) colour coded according to temperature divided by genotype. Actual Figure S7.
 
 ```{r, message = FALSE}
 # All individuals
@@ -76,9 +136,9 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 
 
 
-
-
+5.
 This code creates a plot of BF vs log(SVL) colour coded according to inclubation temperature divided by genotype.
+Actual Figure S8.
 
 
 ```{r, message = FALSE}
@@ -100,7 +160,10 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 ```
 
 
-Next set up an empty output file
+6.
+Summary statistics.
+
+Set up an empty output file
 ```{r}
 output <- data.frame(array(dim = c(2, 20)))
 names(output) <- c("response", "predictor", "df", 
