@@ -226,6 +226,91 @@ svlplot <-
 #ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
 ```
 
+black and white version
+
+```{r, warning = FALSE}
+bfplot <-
+  ggplot(pogA, aes(x = Genotype, y = BiteForce, 
+                colour = Genotype, fill = Genotype,  shape = Genotype)) +
+  geom_jitter(alpha = 0.6, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = BiteForce_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = BiteForce_mean,
+                                    ymin = BiteForce_mean - BiteForce_SE,
+                                    ymax = BiteForce_mean + BiteForce_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(0, 100) +
+  ylab("Bite Force (N)")
+
+
+  
+bfnoleverplot <-
+  ggplot(pogA, aes(x = Genotype, y = BFnolever, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.6, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = BFnolever_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = BFnolever_mean,
+                                    ymin = BFnolever_mean - BFnolever_SE,
+                                    ymax = BFnolever_mean + BFnolever_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(0, 150) +
+  ylab("Bite Force no lever (N)")
+
+massplot <-
+  ggplot(pogA, aes(x = Genotype, y = Mass, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.6, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = Mass_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = Mass_mean,
+                                    ymin = Mass_mean - Mass_SE,
+                                    ymax = Mass_mean + Mass_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(100, 400) +
+  ylab("Mass (g)")
+
+svlplot <-
+  ggplot(pogA, aes(x = Genotype, y = SVL, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.6, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = SVL_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = SVL_mean,
+                                    ymin = SVL_mean - SVL_SE,
+                                    ymax = SVL_mean + SVL_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(100, 250) +
+  ylab("SVL (mm)")
+
+(bfplot + bfnoleverplot) / (massplot + svlplot)
+
+ggsave(here("figures/genotype-means-bfmasssvl-bw-j.png"), height = 5)
+```
+
 
 4. And for the head shape (Figure 3)
 
