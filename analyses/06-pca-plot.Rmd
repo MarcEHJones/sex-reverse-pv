@@ -194,6 +194,62 @@ all
 
 
 
+Black and white version
+
+
+Plot PC plot with convex hulls for all animals (including juveniles) (n = 91).
+```{r, echo = FALSE}
+pc12 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
+  theme(legend.position = "none")
+
+pc13 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
+  theme(legend.position = "none")
+
+pc23 <-
+  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
+
+all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
+all
+
+#all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
+#all
+
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes3-bw.png"))
+```
+
 
 Plot PC plot with convex hulls for adults and juveniles (n = 91).
 
@@ -355,6 +411,8 @@ pc12b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
@@ -366,6 +424,8 @@ pc13b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
@@ -377,6 +437,8 @@ pc23b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
 
@@ -397,6 +459,8 @@ pc12b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
   theme(legend.position = "none")
@@ -408,6 +472,8 @@ pc13b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
   theme(legend.position = "none")
@@ -419,6 +485,8 @@ pc23b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
 
@@ -593,7 +661,7 @@ Black and white version
 Apc12 <-
   ggplot(pog3, aes(x = Comp.1, y = Comp.2, 
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_point(alpha = 0.8) +
+  geom_point(size = 2, alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
   scale_shape_manual(values=c(23, 21, 22)) +
@@ -607,7 +675,7 @@ Apc12 <-
 Apc13 <-
   ggplot(pog3, aes(x = Comp.1, y = Comp.3, 
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_point(alpha = 0.8) +
+  geom_point(size = 2, alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
   scale_shape_manual(values=c(23, 21, 22)) +
@@ -621,7 +689,7 @@ Apc13 <-
 Apc23 <-
   ggplot(pog3, aes(x = Comp.2, y = Comp.3, 
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_point(alpha = 0.8) +
+  geom_point(size = 2, alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
   scale_shape_manual(values=c(23, 21, 22)) +
@@ -637,7 +705,7 @@ Apc12
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes3-bw.png"))
+ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes4-bw.png"))
 ```
 
 
