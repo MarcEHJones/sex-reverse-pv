@@ -399,7 +399,7 @@ pc23b <-
 all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, height = 12 , width = 7, filename = here("figures/pca-plots-withSVL.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-withSVL.png"))
 ```
 
 Plot PC plot with convex hulls and scaled points according to HDqu for all animals (including juveniles) (n = 91).: 
