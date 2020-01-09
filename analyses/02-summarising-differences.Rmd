@@ -320,7 +320,8 @@ HDmtplot <-
 5. Plots to explore the data.
 
 
-Relative head width - scatterplot
+Head width at the back relative to SVL:
+log(SVL) vs log(HWqu) 
 
 ```{r, message = FALSE}
 # All individuals
@@ -341,7 +342,8 @@ ggplot(pog, aes(x = log(SVL), y = log(HWqu),
 ```
 
 
-Relative head width - scatterplot
+Head width at the back relative to head length:
+log(HLroret) vs log(HWqu) 
 
 ```{r, message = FALSE}
 # All individuals
@@ -360,34 +362,6 @@ ggplot(pog, aes(x = log(HLroret), y = log(HWqu),
 
 
 ```
-
-
-Relative head width
-
-```{r, warning = FALSE}
-
-RelHeadwidth <-
-  ggplot(pogA, aes(x = Genotype, y = (HLroret/HWqu), 
-                colour = Genotype, fill = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = HLroret_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = HLroret_mean,
-                                    ymin = HLroret_mean - HLroret_SE,
-                                    ymax = HLroret_mean + HLroret_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "none") +
-  ylim(40, 70) +
-  ylab("HLroret (mm)")
-
-
-RelHeadwidth
-
-```
-
-
 
 
 
