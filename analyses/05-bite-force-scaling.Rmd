@@ -34,7 +34,7 @@ pog <-
 ```
 
 This creates a plot of log(BF) vs log(SVL)
-(Figure 3 in colour)
+(Figure 4a in colour)
 
 ```{r, message = FALSE}
 # All individuals
@@ -65,7 +65,7 @@ log_plot
 
 
 This creates a plot of log(BF) vs log(SVL)
-(Figure 3 in grayscale without the lines)
+(Figure 4a in grayscale without the lines)
 
 ```{r, message = FALSE}
 # All individuals
@@ -105,7 +105,7 @@ log_plot_bw <-
  ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
                 colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
   geom_point(alpha = 0.8, na.rm = TRUE) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.15) +
   scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
   scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("grey30", "grey70", "black")) +
@@ -123,7 +123,8 @@ log_plot_bw
 #ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-greyscale.png"))
 ```
 
-This creates a non logged plot of BF vs SVL
+
+This creates a non logged plot of BF vs SVL (Figure 4b)
 
 ```{r, message = FALSE}
 # All individuals
@@ -154,7 +155,7 @@ New combined BF vs LOG SVL and non LOG SVL colour plot for publication.
 ```{r}
 log_plot / nl_plot
 
-#ggsave(here("figures/figure3_new_twopanel.png"))
+ggsave(height = 8 , width = 7, here("figures/figure3_new_twopanel2.png"))
 ```
 
 
@@ -163,8 +164,14 @@ New combined BF vs LOG SVL and non LOG SVL black and white plot for publication.
 ```{r}
 log_plot_bw / nl_plot_bw
 
-#ggsave(here("figures/figure3_new_twopanel_bw.png"))
+
+ggsave(height = 8 , width = 7, here("figures/figure4_twopanel_bw.png"))
+
 ```
+
+
+
+Exploratory plots
 
 
 
@@ -249,48 +256,6 @@ ggplot(pog, aes(x = log(SVL), y = log(Mass),
 
 #ggsave(here("figures/svl-mass.png"))
 ```
-
-
-
-This code creates a plot of log(BF) vs log(SVL) colour coded according to temperature.
-
-
-```{r, message = FALSE}
-# All individuals
-ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Temp)) +
-  geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
-  scale_colour_gradientn(name = "Temperature (°C)", colours = heat.colors(10)) +
-  theme_bw(base_size = 14) +
-  ylim(0, 5)+
-  xlim(4, 5.5) +
-  ylab("log(Bite Force) (N)") +
-  xlab("log(SVL) (mm)")
-
-#ggsave(here("figures/temp-genotype-bf.png"))
-```
-
-
-This code creates a plot of BF vs log(SVL) colour coded according to temperature divided by genotype.
-
-
-```{r, message = FALSE}
-# All individuals
-ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Temp, shape = Genotype)) +
-  geom_point(alpha = 0.8, na.rm = TRUE, size = 2) +
-  #geom_smooth(method = lm, se = TRUE, alpha = 0.2, colour = "black", size = 0.5) +
-  scale_colour_gradientn(name = "Temperature (°C)", colours = heat.colors(10)) +
-  theme_bw(base_size = 14) +
-  ylim(0, 5)+
-  xlim(4, 5.5) +
-  ylab("log(Bite Force) (N)") +
-  xlab("log(SVL) (mm)")
-
-#ggsave(here("figures/temp-genotype-bf.png"))
-```
-
 
 
 
