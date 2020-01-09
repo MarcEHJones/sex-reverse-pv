@@ -131,7 +131,7 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)")
 
-#ggsave(here("figures/temp-genotype-bf.png"))
+#ggsave(here("figures/temp-genotype-bf-shapes.png"))
 ```
 
 
@@ -156,7 +156,7 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)")
 
-#ggsave(here("figures/inctemp-genotype-bf.png"))
+#ggsave(here("figures/inctemp-genotype-bf-shapes.png"))
 ```
 
 
