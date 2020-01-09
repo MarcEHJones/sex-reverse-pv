@@ -527,9 +527,9 @@ loadingsadults
 ```
 
 
-Figure five
-
 Plot PC plot with convex hulls for adults (n = 39):
+
+Figure 5
 
 ```{r, echo = FALSE}
 Apc12 <-
@@ -582,6 +582,63 @@ all
 #ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes3.png"))
 ```
 
+
+Plot PC plot with convex hulls for adults (n = 39):
+
+Figure 5
+
+Black and white version
+
+```{r, echo = FALSE}
+Apc12 <-
+  ggplot(pog3, aes(x = Comp.1, y = Comp.2, 
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (36.56%)", y = "PC2 (31.69%)") +
+  theme(legend.position = "none")
+
+Apc13 <-
+  ggplot(pog3, aes(x = Comp.1, y = Comp.3, 
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (36.56%)", y = "PC3 (21.19%)") +
+  theme(legend.position = "none")
+
+Apc23 <-
+  ggplot(pog3, aes(x = Comp.2, y = Comp.3, 
+                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
+
+Apc12
+
+
+all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
+all
+
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes3-bw.png"))
+```
 
 
 FIGURE SI 2
