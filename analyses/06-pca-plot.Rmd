@@ -715,11 +715,11 @@ Plot PC plot with convex hulls and scaled points according to bite force for adu
 ```{r, echo = FALSE}
 Apc12b <-
   ggplot(pog3, aes(x = Comp.1, y = Comp.2, 
-                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+                 colour = Genotype, fill = Genotype)) +
   geom_point(aes(size = BiteForce), alpha = 0.6) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
+  #scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   xlim (-4.5, 4.5) +
   ylim (-4.5, 4.5) +
@@ -729,11 +729,11 @@ Apc12b <-
 
 Apc13b <-
   ggplot(pog3, aes(x = Comp.1, y = Comp.3, 
-                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+                 colour = Genotype, fill = Genotype)) +
   geom_point(aes(size = BiteForce), alpha = 0.6) +
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
+  #scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   xlim (-4.5, 4.5) +
   ylim (-4.5, 4.5) +
@@ -743,13 +743,13 @@ Apc13b <-
 
 Apc23b <-
   ggplot(pog3, aes(x = Comp.2, y = Comp.3, 
-                 colour = Genotype, fill = Genotype, shape = Genotype)) +
+                 colour = Genotype, fill = Genotype)) +
   geom_point(aes(size = BiteForce), alpha = 0.6) +
   geom_convexhull(alpha = 0.2) +
   xlim (-4.5, 4.5) +
   ylim (-4.5, 4.5) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
+  #scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
@@ -757,7 +757,7 @@ Apc23b <-
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with_BF-shapes.png"))
+#ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with_BF2.png"))
 ```
 
 
