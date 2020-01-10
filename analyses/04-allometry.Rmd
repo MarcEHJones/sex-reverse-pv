@@ -174,3 +174,168 @@ output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
 
 #write_csv(output, path = here("outputs/allometry-results-HLroret.csv"))
 ```
+
+HLroqu
+
+```{r}
+modelF <- lm(log10(BiteForce) ~ log10(HLroqu), data = pogF)
+tidy(anova(modelF))
+summary(modelF)
+
+modelM <- lm(log10(BiteForce) ~ log10(HLroqu), data = pogM)
+tidy(anova(modelM))
+summary(modelM)
+
+modelSRF <- lm(log10(BiteForce) ~ log10(HLroqu), data = pogSRF)
+anova(modelSRF)
+summary(modelSRF)
+
+output <- data.frame(array(dim = c(3, 7)))
+names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
+
+output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["slope"] <- c(summary(modelF)$coefficients[2],
+                     summary(modelM)$coefficients[2],
+                     summary(modelSRF)$coefficients[2])
+output["SE"] <- c(summary(modelF)$coefficients[4],
+                     summary(modelM)$coefficients[4],
+                     summary(modelSRF)$coefficients[4])
+output["df"] <- c(summary(modelF)$df[2],
+                     summary(modelM)$df[2],
+                     summary(modelSRF)$df[2])
+output["t"] <- c(summary(modelF)$coefficients[6],
+                     summary(modelM)$coefficients[6],
+                     summary(modelSRF)$coefficients[6])
+output["p"] <- c(summary(modelF)$coefficients[8],
+                     summary(modelM)$coefficients[8],
+                     summary(modelSRF)$coefficients[8])
+output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
+                      summary(modelM)$adj.r.squared,
+                      summary(modelSRF)$adj.r.squared)
+
+#write_csv(output, path = here("outputs/allometry-results-HLroqu.csv"))
+```
+
+HWqu
+
+```{r}
+modelF <- lm(log10(BiteForce) ~ log10(HWqu), data = pogF)
+tidy(anova(modelF))
+summary(modelF)
+
+modelM <- lm(log10(BiteForce) ~ log10(HWqu), data = pogM)
+tidy(anova(modelM))
+summary(modelM)
+
+modelSRF <- lm(log10(BiteForce) ~ log10(HWqu), data = pogSRF)
+anova(modelSRF)
+summary(modelSRF)
+
+output <- data.frame(array(dim = c(3, 7)))
+names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
+
+output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["slope"] <- c(summary(modelF)$coefficients[2],
+                     summary(modelM)$coefficients[2],
+                     summary(modelSRF)$coefficients[2])
+output["SE"] <- c(summary(modelF)$coefficients[4],
+                     summary(modelM)$coefficients[4],
+                     summary(modelSRF)$coefficients[4])
+output["df"] <- c(summary(modelF)$df[2],
+                     summary(modelM)$df[2],
+                     summary(modelSRF)$df[2])
+output["t"] <- c(summary(modelF)$coefficients[6],
+                     summary(modelM)$coefficients[6],
+                     summary(modelSRF)$coefficients[6])
+output["p"] <- c(summary(modelF)$coefficients[8],
+                     summary(modelM)$coefficients[8],
+                     summary(modelSRF)$coefficients[8])
+output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
+                      summary(modelM)$adj.r.squared,
+                      summary(modelSRF)$adj.r.squared)
+
+#write_csv(output, path = here("outputs/allometry-results-HLroqu.csv"))
+```
+
+
+HWmt
+
+```{r}
+modelF <- lm(log10(BiteForce) ~ log10(HWmt), data = pogF)
+tidy(anova(modelF))
+summary(modelF)
+
+modelM <- lm(log10(BiteForce) ~ log10(HWmt), data = pogM)
+tidy(anova(modelM))
+summary(modelM)
+
+modelSRF <- lm(log10(BiteForce) ~ log10(HWmt), data = pogSRF)
+anova(modelSRF)
+summary(modelSRF)
+
+output <- data.frame(array(dim = c(3, 7)))
+names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
+
+output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["slope"] <- c(summary(modelF)$coefficients[2],
+                     summary(modelM)$coefficients[2],
+                     summary(modelSRF)$coefficients[2])
+output["SE"] <- c(summary(modelF)$coefficients[4],
+                     summary(modelM)$coefficients[4],
+                     summary(modelSRF)$coefficients[4])
+output["df"] <- c(summary(modelF)$df[2],
+                     summary(modelM)$df[2],
+                     summary(modelSRF)$df[2])
+output["t"] <- c(summary(modelF)$coefficients[6],
+                     summary(modelM)$coefficients[6],
+                     summary(modelSRF)$coefficients[6])
+output["p"] <- c(summary(modelF)$coefficients[8],
+                     summary(modelM)$coefficients[8],
+                     summary(modelSRF)$coefficients[8])
+output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
+                      summary(modelM)$adj.r.squared,
+                      summary(modelSRF)$adj.r.squared)
+
+#write_csv(output, path = here("outputs/allometry-results-HLroqu.csv"))
+```
+
+HDmt
+
+```{r}
+modelF <- lm(log10(BiteForce) ~ log10(HDmt), data = pogF)
+tidy(anova(modelF))
+summary(modelF)
+
+modelM <- lm(log10(BiteForce) ~ log10(HDmt), data = pogM)
+tidy(anova(modelM))
+summary(modelM)
+
+modelSRF <- lm(log10(BiteForce) ~ log10(HDmt), data = pogSRF)
+anova(modelSRF)
+summary(modelSRF)
+
+output <- data.frame(array(dim = c(3, 7)))
+names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
+
+output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["slope"] <- c(summary(modelF)$coefficients[2],
+                     summary(modelM)$coefficients[2],
+                     summary(modelSRF)$coefficients[2])
+output["SE"] <- c(summary(modelF)$coefficients[4],
+                     summary(modelM)$coefficients[4],
+                     summary(modelSRF)$coefficients[4])
+output["df"] <- c(summary(modelF)$df[2],
+                     summary(modelM)$df[2],
+                     summary(modelSRF)$df[2])
+output["t"] <- c(summary(modelF)$coefficients[6],
+                     summary(modelM)$coefficients[6],
+                     summary(modelSRF)$coefficients[6])
+output["p"] <- c(summary(modelF)$coefficients[8],
+                     summary(modelM)$coefficients[8],
+                     summary(modelSRF)$coefficients[8])
+output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
+                      summary(modelM)$adj.r.squared,
+                      summary(modelSRF)$adj.r.squared)
+
+#write_csv(output, path = here("outputs/allometry-results-HLroqu.csv"))
+```
