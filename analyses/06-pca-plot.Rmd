@@ -204,7 +204,7 @@ pc12 <-
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("grey30", "grey70", "black")) +
   xlim (-4.5, 4.5) +
@@ -218,7 +218,7 @@ pc13 <-
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("grey30", "grey70", "black")) +
   xlim (-4.5, 4.5) +
@@ -232,7 +232,7 @@ pc23 <-
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_shape_manual(values=c(23, 21, 22)) +
   scale_fill_manual(values = c("grey30", "grey70", "black")) +
   xlim (-4.5, 4.5) +
@@ -247,7 +247,7 @@ all
 #all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
 #all
 
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes3-bw.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes3-bwalt.png"))
 ```
 
 
