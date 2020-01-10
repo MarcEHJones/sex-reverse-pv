@@ -254,7 +254,7 @@ output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
                       summary(modelM)$adj.r.squared,
                       summary(modelSRF)$adj.r.squared)
 
-#write_csv(output, path = here("outputs/allometry-results-HLroqu.csv"))
+#write_csv(output, path = here("outputs/allometry-results-HWqu.csv"))
 ```
 
 
@@ -296,7 +296,7 @@ output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
                       summary(modelM)$adj.r.squared,
                       summary(modelSRF)$adj.r.squared)
 
-#write_csv(output, path = here("outputs/allometry-results-HLroqu.csv"))
+#write_csv(output, path = here("outputs/allometry-results-HWmt.csv"))
 ```
 
 HDmt
@@ -337,5 +337,5 @@ output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
                       summary(modelM)$adj.r.squared,
                       summary(modelSRF)$adj.r.squared)
 
-#write_csv(output, path = here("outputs/allometry-results-HLroqu.csv"))
+#write_csv(output, path = here("outputs/allometry-results-HDmt.csv"))
 ```
