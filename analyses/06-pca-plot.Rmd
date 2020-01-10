@@ -204,9 +204,9 @@ pc12 <-
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("grey30", "grey70", "black")) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
   scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
   xlim (-4.5, 4.5) +
   ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
@@ -218,9 +218,9 @@ pc13 <-
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
-   scale_colour_manual(values = c("grey30", "grey70", "black")) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
   scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
   xlim (-4.5, 4.5) +
   ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
@@ -232,9 +232,9 @@ pc23 <-
                  colour = Genotype, fill = Genotype, shape = Genotype)) +
   geom_point(alpha = 0.8) +
   geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("grey30", "grey70", "black")) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
   scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
   xlim (-4.5, 4.5) +
   ylim (-4.5, 4.5) +
 
