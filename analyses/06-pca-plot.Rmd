@@ -705,7 +705,7 @@ Apc12
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes4-bw.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes4-bw.png"))
 ```
 
 
@@ -757,7 +757,7 @@ Apc23b <-
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with_BF-shapes.png"))
+#ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with_BF-shapes.png"))
 ```
 
 
@@ -772,8 +772,8 @@ Apc12b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  xlim (-4, 4) +
-  ylim (-4, 4) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.69%)", y = "PC2 (31.69%)") +
   theme(legend.position = "none")
@@ -785,8 +785,8 @@ Apc13b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  xlim (-4, 4) +
-  ylim (-4, 4) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC1 (36.69%)", y = "PC3 (21.19%)") +
   theme(legend.position = "none")
@@ -798,15 +798,15 @@ Apc23b <-
   geom_convexhull(alpha = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  xlim (-4, 4) +
-  ylim (-4, 4) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
   theme_bw(base_size = 14) +
   labs(x = "PC2 (31.69%)", y = "PC3 (21.19%)")
 
 all <- ggarrange(Apc12b, Apc13b, Apc23b, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with-SVL.png"))
+#ggsave(all, height = 7 , width = 7, filename = here ("figures/pca-plots-Adults-with-SVL-shapes.png"))
 
 ```
 
