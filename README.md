@@ -15,7 +15,7 @@ The cleaned data are available from the [xxx]()
 
 For reproducibility purposes the data needed to rerun all the analyses is found in the `data/` folder. Note that I cannot share the raw data as it is not all published yet and does not belong solely to me.
 
-* `data/` should include `pog.csv`. This is the dataset required to run the analyses.
+* `data/` should include `pogona-data.csv`. This is the dataset required to run the analyses.
 
 If you use the cleaned data please cite as follows: 
 > ???
