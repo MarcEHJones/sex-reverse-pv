@@ -23,19 +23,19 @@ pog <- read_csv(here("data/pogona-data.csv"))
 
 pog <-
   pog %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 
 pogF <-
   pog %>%
-  filter(Genotype == "ZWF")
+  filter(Genotype == "ZWf")
 
 pogM <-
   pog %>%
-  filter(Genotype == "ZZM")
+  filter(Genotype == "ZZm")
 
 pogSRF <-
   pog %>%
-  filter(Genotype == "ZZF")
+  filter(Genotype == "ZZf")
 ```
 
 Now fit the models and save the outputs
@@ -60,7 +60,7 @@ summary(modelSRF)
 output <- data.frame(array(dim = c(3, 7)))
 names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
 
-output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["genotype"] <- c("ZWf", "ZZm", "ZZf")
 output["slope"] <- c(summary(modelF)$coefficients[2],
                      summary(modelM)$coefficients[2],
                      summary(modelSRF)$coefficients[2])
@@ -105,7 +105,7 @@ summary(modelSRF)
 output <- data.frame(array(dim = c(3, 7)))
 names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
 
-output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["genotype"] <- c("ZWf", "ZZm", "ZZf")
 output["slope"] <- c(summary(modelF)$coefficients[2],
                      summary(modelM)$coefficients[2],
                      summary(modelSRF)$coefficients[2])
@@ -152,7 +152,7 @@ summary(modelSRF)
 output <- data.frame(array(dim = c(3, 7)))
 names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
 
-output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["genotype"] <- c("ZWf", "ZZm", "ZZf")
 output["slope"] <- c(summary(modelF)$coefficients[2],
                      summary(modelM)$coefficients[2],
                      summary(modelSRF)$coefficients[2])
@@ -193,7 +193,7 @@ summary(modelSRF)
 output <- data.frame(array(dim = c(3, 7)))
 names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
 
-output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["genotype"] <- c("ZWf", "ZZm", "ZZf")
 output["slope"] <- c(summary(modelF)$coefficients[2],
                      summary(modelM)$coefficients[2],
                      summary(modelSRF)$coefficients[2])
@@ -234,7 +234,7 @@ summary(modelSRF)
 output <- data.frame(array(dim = c(3, 7)))
 names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
 
-output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["genotype"] <- c("ZWf", "ZZm", "ZZf")
 output["slope"] <- c(summary(modelF)$coefficients[2],
                      summary(modelM)$coefficients[2],
                      summary(modelSRF)$coefficients[2])
@@ -276,7 +276,7 @@ summary(modelSRF)
 output <- data.frame(array(dim = c(3, 7)))
 names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
 
-output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["genotype"] <- c("ZWf", "ZZm", "ZZf")
 output["slope"] <- c(summary(modelF)$coefficients[2],
                      summary(modelM)$coefficients[2],
                      summary(modelSRF)$coefficients[2])
@@ -317,7 +317,7 @@ summary(modelSRF)
 output <- data.frame(array(dim = c(3, 7)))
 names(output) <- c("genotype", "slope", "SE", "df", "t", "p", "adj.r2")
 
-output["genotype"] <- c("ZWF", "ZZM", "ZZF")
+output["genotype"] <- c("ZWf", "ZZm", "ZZf")
 output["slope"] <- c(summary(modelF)$coefficients[2],
                      summary(modelM)$coefficients[2],
                      summary(modelSRF)$coefficients[2])
