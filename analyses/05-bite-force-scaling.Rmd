@@ -14,13 +14,7 @@ library(knitr)
 library(broom)
 library(ggfortify)
 library(here)
-
-# 
-library(devtools) #after install from github by cutting and paste install.packages("devtools") into console
-
-# 
-library(patchwork) #after install from github by cutting and pasting install_github("thomasp85/patchwork") into console
-
+library(patchwork)
 ```
 
 Read in the dataset, relevel the genotype variable so everything is compared to ZZf as that's the key comparison.
@@ -30,7 +24,7 @@ pog <- read_csv(here("data/pogona-data.csv"))
 
 pog <-
   pog %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
 This creates a plot of log(BF) vs log(SVL)
@@ -58,7 +52,6 @@ log_plot<-
         axis.title = element_text(size = 12))
 
 log_plot
-
 
 #ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf.png"))
 ```
