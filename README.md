@@ -1,6 +1,6 @@
 # Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons  
 
-Author(s): .[MarcEHJones].(mailto:marc.jones@ucl.ac.uk) and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)
+Author(s): [Marc EH Jones](mailto:marc.jones@ucl.ac.uk) and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)
 
 This repository contains all the code and some data used in the [paper - link will appear here](xxx). 
 
@@ -15,7 +15,7 @@ The cleaned data are available from the [xxx]()
 
 For reproducibility purposes the data needed to rerun all the analyses is found in the `data/` folder. Note that I cannot share the raw data as it is not all published yet and does not belong solely to me.
 
-* `data/` should include `pog.csv`. This is the dataset required to run the analyses.
+* `data/` should include `pogona-data.csv`. This is the dataset required to run the analyses.
 
 If you use the cleaned data please cite as follows: 
 > ???
