@@ -12,6 +12,7 @@ library(tidyverse)
 library(knitr)
 library(here)
 library(ggpubr) # for fancy multi-panel plots
+library(gridExtra)
 
 #need to install from GitHub 
 #install.packages("devtools")
@@ -21,7 +22,6 @@ library(ggpubr) # for fancy multi-panel plots
 # need to install from GitHub
 
 library(ggConvexHull)  
-
 library(ggfortify)
 library(car)
 library(broom)
@@ -45,7 +45,7 @@ pog <- read_csv(here("data/pogona-data.csv"))
 
 pog <-
   pog %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
 PCA for all animals (including juveniles) (n = 91).
@@ -66,27 +66,24 @@ pca_head_ds <- data.frame(pca_head$scores, ID = pog$ID)
 pog2 <- left_join(pog, pca_head_ds, by = "ID")
 ```
 
-
-
 PCA outputs for all animals (including juveniles) (n = 91).
-
 
 ```{r}
 loadings(pca_head)
 summary(pca_head)
 ```
 
-Loadings diagram for full sample (n = 91)
+Loadings diagrams for PC1-3 for the full sample (n = 91)
 
 ```{r}
-#princomp(pca_head, cor = TRUE) 
-
 mydata <- data.frame(unclass(loadings(pca_head)))
 mydata <- mutate(mydata, variable = rownames(mydata))
-
-
-library(grid)
-
+# Fix ordering of variables
+mydata <- mutate(mydata, 
+                 variable = factor(variable, levels =  
+                                     c("LSR_HDmt","LSR_HWmt","LSR_HWqu", 
+                                       "LSR_HLroqu","LSR_HLroret")))
+  
 pc1 <- 
 ggplot(mydata, aes(x = Comp.1, y = variable)) +
   xlim(-0.75, 0.75) +
@@ -122,21 +119,15 @@ pc3 <-
   labs(x = "", y = " ") +
   theme_bw(base_size = 8)
 
-
-loadingsall <- ggarrange(pc1, pc2, pc3)
-loadingsall
-
-# provide three seperate panels for the pc loadings
-# ggsave(pc1, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc1.png"))  
-# ggsave(pc2, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc2.png"))  
-# ggsave(pc3, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-ALL-pc3.png"))  
-
-
+# Save three separate panels for the pc loadings to create the multi-panel
+# plot later in inkscape
+# ggsave(pc1, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc1-all.png"))  
+# ggsave(pc2, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc2-all.png"))  
+# ggsave(pc3, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc3-all.png"))  
 
 ```
   
-
-FIGURE SI 4
+FIGURE SI 6
 
 Plot PC plot with convex hulls for all animals (including juveniles) (n = 91).
 ```{r, echo = FALSE}
@@ -184,19 +175,11 @@ pc23 <-
 all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
 
-#all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
-#all
-
-#ggsave(all, filename = here("figures/pca-plots-ALL-shapes.png"))
-
-#ggsave(all, filename = here("figures/pca-plots-ALL-shapes3.png"))
+#ggsave(all, filename = here("figures/FigureS6-pca-plots-colour.png"))
 ```
-
-
 
 Black and white version
 
-
 Plot PC plot with convex hulls for all animals (including juveniles) (n = 91).
 ```{r, echo = FALSE}
 pc12 <-
@@ -244,10 +227,7 @@ pc23 <-
 all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
 
-#all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
-#all
-
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes3-bwalt2.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/FigureS6-pca-plots-bw.png"))
 ```
 
 
