@@ -27,8 +27,7 @@ pog <-
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
-This creates a plot of log(BF) vs log(SVL)
-(Figure 4a in colour)
+This creates a plot of log(BF) vs log(SVL) Figure 4a
 
 ```{r, message = FALSE}
 # All individuals
@@ -46,76 +45,13 @@ log_plot<-
   xlim(4, 5.5) +
   ylab("log(Bite Force) (N)") +
   xlab("log(SVL) (mm)") +
-  labs(tag = "A") +
+  labs(tag = "(a)") +
   theme(legend.position = "none") +
   theme(plot.tag = element_text(size = 12, face = "bold"),
         axis.title = element_text(size = 12))
 
 log_plot
-
-#ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf.png"))
 ```
-
-
-This creates a plot of log(BF) vs log(SVL)
-(Figure 4a in grayscale without the lines)
-
-```{r, message = FALSE}
-# All individuals
-
-nl_plot_bw <-
-
-ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
-  geom_point(alpha = 0.8, na.rm = TRUE) +
-  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
-  scale_colour_manual(values = c("black", "black", "black")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("grey30", "grey70", "black")) +
-  scale_size_manual(values=c(2,2,2))+
-  theme_bw(base_size = 14) +
-  #theme(legend.title = element_blank()) +
-  ylim(0, 5)+
-  xlim(4, 5.5) +
-  ylab("log(Bite Force) (N)") +
-  xlab("log(SVL) (mm)")
-
-nl_plot_bw
-
-#ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-greyscale-noline.png"))
-```
-
-
-This creates a plot of log(BF) vs log(SVL)
-(Figure 3 in grayscale)
-
-```{r, message = FALSE}
-# All individuals
- 
-
-log_plot_bw <-
-
- ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
-  geom_point(alpha = 0.8, na.rm = TRUE) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.15, size = 0.4) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("grey30", "grey70", "black")) +
-  scale_size_manual(values=c(2,2,2))+
-  theme_bw(base_size = 14) +
-  #theme(legend.title = element_blank()) +
-  ylim(0, 5)+
-  xlim(4, 5.5) +
-  ylab("log(Bite Force) (N)") +
-  xlab("log(SVL) (mm)") 
-
-log_plot_bw
-
-
-#ggsave(height = 6 , width = 7, filename = here ("figures/svl-bf-greyscale.png"))
-```
-
 
 This creates a non logged plot of BF vs SVL (Figure 4b)
 
@@ -134,31 +70,67 @@ ggplot(pog, aes(x = SVL, y = BiteForce,
   xlim(50, 250) +
   ylab("Bite Force (N)") +
   xlab("SVL (mm)") +
-  labs(tag = "B") +
+  labs(tag = "(b)") +
   theme(plot.tag = element_text(size = 12, face = "bold"),
         axis.title = element_text(size = 12))
 
 nl_plot
-#ggsave(here("figures/NotLOG-svl-bf.png"))
-```
 
-
-New combined BF vs LOG SVL and non LOG SVL colour plot for publication.
-
-```{r}
+# combine a and b
 log_plot / nl_plot
 
-ggsave(height = 8 , width = 7, here("figures/figure4_new_twopanel2.png"))
+ggsave(here("figures/Figure4-colour.png"), height = 8 , width = 7)
 ```
 
+This creates a plot of log(BF) vs log(SVL)
+(Figure 4a in grayscale without the lines)
 
-New combined BF vs LOG SVL and non LOG SVL black and white plot for publication.
+```{r, message = FALSE}
+log_plot_bw <-
+ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
+                colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2, size = 0.5) +
+  scale_colour_manual(values = c("grey30", "grey30", "black")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  scale_size_manual(values=c(2,2,2))+
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  labs(tag = "(a)") +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(SVL) (mm)")
 
-```{r}
+log_plot_bw
+```
+
+This creates a plot of BF vs SVL
+(Figure 4b in grayscale)
+
+```{r, message = FALSE}
+nl_plot_bw <-
+ ggplot(pog, aes(x = (SVL), y = (BiteForce), 
+                colour = Genotype, fill = Genotype, shape = Genotype, size=Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.15, size = 0.4) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  scale_size_manual(values=c(2,2,2))+
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  #ylim(0, 5)+
+  #xlim(4, 5.5) +
+  labs(tag = "(b)") +
+  ylab("Bite Force (N)") +
+  xlab("SVL (mm)") 
+
+# Combine the two
 log_plot_bw / nl_plot_bw
 
-
-#ggsave(height = 8 , width = 7, here("figures/figure4_twopanel_bw.png"))
+ggsave(here("figures/Figure4-bw.png"), height = 8 , width = 7)
 
 ```
 
