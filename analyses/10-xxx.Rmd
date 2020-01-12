@@ -3,26 +3,164 @@ title: "10-xxx"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+~From script 2~
+
+5. Plots to explore the data.
+
+Head width at the back relative to SVL:
+log(SVL) vs log(HWqu) 
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(HWqu), 
+                colour =  Genotype, fill = Genotype, shape =  Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(2, 4.5)+
+  xlim(3.5, 6) +
+  ylab("log(HWqu) (mm)") +
+  xlab("LOG(SVL) (mm)")
+
+
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Head width at the back relative to head length:
+log(HLroret) vs log(HWqu) 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(HLroret), y = log(HWqu), 
+                colour =  Genotype, fill = Genotype, shape =  Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  #geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(2, 4.5)+
+  xlim(2.5, 4.5) +
+  ylab("log(HWqu) (mm)") +
+  xlab("log(HLroret) (mm)")
 
-```{r cars}
-summary(cars)
+
 ```
 
-## Including Plots
+~From script 3~
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+Plots of log raw head dimensions against SVL.
+
+SVL vs HLroret
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(HLroret), 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(HLroret) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/svl-HLroret.png"))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+SVL vs HLroqu
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(HLroqu), 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(HLroqu) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/svl-HLroqu.png"))
+```
+
+SVL vs HWmt
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(HWmt), 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(HWmt) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/svl-Hwqu.png"))
+```
+
+
+SVL vs HWqu
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(HWqu), 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(HWqu) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/svl-Hwqu.png"))
+```
+
+SVL vs HDmt
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(HDmt), 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(HDmt) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/svl-HDmt.png"))
+```
+
+
