@@ -37,7 +37,7 @@ Relevel the genotype variable so everything is compared to ZZf as that's the key
 ```{r}
 pogA <-
   pogA %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
 Fit ANOVAs to look at differences in size, head shape and bite force in the three genotypes.
@@ -48,9 +48,9 @@ Next set up an empty output file
 ```{r}
 output <- data.frame(array(dim = c(11, 15)))
 names(output) <- c("response", "df1", "df2", "F", "p", 
-                  "mean_ZZF", "se_ZZF",
-                  "meandiff_ZWF", "se_ZWF", "t_ZWF", "p_ZWF",
-                  "meandiff_ZZM", "se_ZZM", "t_ZZM", "p_ZZM")
+                  "mean_ZZf", "se_ZZf",
+                  "meandiff_ZWf", "se_ZWf", "t_ZWf", "p_ZWf",
+                  "meandiff_ZZm", "se_ZZm", "t_ZZm", "p_ZZm")
 
 # Short function to help write output files
 write_output <- function(model, response, n){
@@ -63,16 +63,16 @@ write_output <- function(model, response, n){
     output[n, "df2"] <- x$df[2]
     output[n, "F"] <- x$statistic[1]
     output[n, "p"] <- x$p.value[1]
-    output[n, "mean_ZZF"] <- y$coefficients[1]
-    output[n, "se_ZZF"] <- y$coefficients[4]
-    output[n, "meandiff_ZWF"] <- y$coefficients[2]
-    output[n, "se_ZWF"] <- y$coefficients[5]
-    output[n, "t_ZWF"] <- y$coefficients[8]
-    output[n, "p_ZWF"] <- y$coefficients[11]
-    output[n, "meandiff_ZZM"] <- y$coefficients[3]
-    output[n, "se_ZZM"] <- y$coefficients[5]
-    output[n, "t_ZZM"] <- y$coefficients[9]
-    output[n, "p_ZZM"] <- y$coefficients[12]
+    output[n, "mean_ZZf"] <- y$coefficients[1]
+    output[n, "se_ZZf"] <- y$coefficients[4]
+    output[n, "meandiff_ZWf"] <- y$coefficients[2]
+    output[n, "se_ZWf"] <- y$coefficients[5]
+    output[n, "t_ZWf"] <- y$coefficients[8]
+    output[n, "p_ZWf"] <- y$coefficients[11]
+    output[n, "meandiff_ZZm"] <- y$coefficients[3]
+    output[n, "se_ZZm"] <- y$coefficients[5]
+    output[n, "t_ZZm"] <- y$coefficients[9]
+    output[n, "p_ZZm"] <- y$coefficients[12]
     
     return(output)
 }
