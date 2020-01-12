@@ -174,10 +174,10 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+ggsave(here("figures/Figure2-colour.png"), height = 5)
 ```
 
-black and white version
+Black and white version
 
 ```{r, warning = FALSE}
 bfplot <-
@@ -198,8 +198,6 @@ bfplot <-
   ylim(0, 100) +
   ylab("Bite Force (N)")
 
-
-  
 bfnoleverplot <-
   ggplot(pogA, aes(x = Genotype, y = BFnolever, 
                 colour = Genotype, fill = Genotype, shape = Genotype)) +
@@ -259,111 +257,111 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-ggsave(here("figures/genotype-means-bfmasssvl-bw-j.png"), height = 5)
+ggsave(here("figures/Figure2-bw.png"), height = 5)
 ```
 
 
 4. And for the head shape (Figure 3)
-
-```{r, warning = FALSE}
-HLroretplot <-
-  ggplot(pogA, aes(x = Genotype, y = HLroret, 
-                colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("grey30", "grey70", "black")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = HLroret_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = HLroret_mean,
-                                    ymin = HLroret_mean - HLroret_SE,
-                                    ymax = HLroret_mean + HLroret_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(panel.grid.minor = element_blank(), legend.position = "none") +
-  ylim(40, 70) +
-  ylab("HLroret (mm)")
-
-HLroquplot <-
-  ggplot(pogA, aes(x = Genotype, y = HLroqu, 
-                colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("grey30", "grey70", "black")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = HLroqu_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = HLroqu_mean,
-                                    ymin = HLroqu_mean - HLroqu_SE,
-                                    ymax = HLroqu_mean + HLroqu_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(panel.grid.minor = element_blank(), legend.position = "none") +
-  ylim(30, 60) +
-  ylab("HLroqu (mm)")
-
-HWquplot <-
-  ggplot(pogA, aes(x = Genotype, y = HWqu, 
-                colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("grey30", "grey70", "black")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = HWqu_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = HWqu_mean,
-                                    ymin = HWqu_mean - HWqu_SE,
-                                    ymax = HWqu_mean + HWqu_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(panel.grid.minor = element_blank(), legend.position = "none") +
-  ylim(30, 50) +
-  ylab("HWqu (mm)")
-
-HWmtplot <-
-  ggplot(pogA, aes(x = Genotype, y = HWmt, 
-                colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("grey30", "grey70", "black")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = HWmt_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = HWmt_mean,
-                                    ymin = HWmt_mean - HWmt_SE,
-                                    ymax = HWmt_mean + HWmt_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(panel.grid.minor = element_blank(), legend.position = "none") +
-  ylim(20, 50) +
-  ylab("HWmt (mm)")
-
-HDmtplot <-
-  ggplot(pogA, aes(x = Genotype, y = HDmt, 
-                colour = Genotype, fill = Genotype, shape = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
-  scale_shape_manual(values=c(23, 21, 22)) +
-  scale_fill_manual(values = c("grey30", "grey70", "black")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = HDmt_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = HDmt_mean,
-                                    ymin = HDmt_mean - HDmt_SE,
-                                    ymax = HDmt_mean + HDmt_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(panel.grid.minor = element_blank(), legend.position = "none") +
-  ylim(20, 35) +
-  ylab("HDmt (mm)")
-
-(HLroretplot + HLroquplot) / 
-  (HWquplot + HWmtplot) / 
-  (HDmtplot + plot_spacer())
-
-ggsave(here("figures/genotype-means-headvars-bw.png"), height = 7)
-```
-
 Black and white version
+```{r, warning = FALSE}
+HLroretplot <-
+  ggplot(pogA, aes(x = Genotype, y = HLroret, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = HLroret_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = HLroret_mean,
+                                    ymin = HLroret_mean - HLroret_SE,
+                                    ymax = HLroret_mean + HLroret_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(40, 70) +
+  ylab("HLroret (mm)")
+
+HLroquplot <-
+  ggplot(pogA, aes(x = Genotype, y = HLroqu, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = HLroqu_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = HLroqu_mean,
+                                    ymin = HLroqu_mean - HLroqu_SE,
+                                    ymax = HLroqu_mean + HLroqu_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(30, 60) +
+  ylab("HLroqu (mm)")
+
+HWquplot <-
+  ggplot(pogA, aes(x = Genotype, y = HWqu, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = HWqu_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = HWqu_mean,
+                                    ymin = HWqu_mean - HWqu_SE,
+                                    ymax = HWqu_mean + HWqu_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(30, 50) +
+  ylab("HWqu (mm)")
+
+HWmtplot <-
+  ggplot(pogA, aes(x = Genotype, y = HWmt, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = HWmt_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = HWmt_mean,
+                                    ymin = HWmt_mean - HWmt_SE,
+                                    ymax = HWmt_mean + HWmt_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(20, 50) +
+  ylab("HWmt (mm)")
+
+HDmtplot <-
+  ggplot(pogA, aes(x = Genotype, y = HDmt, 
+                colour = Genotype, fill = Genotype, shape = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("grey50", "grey50", "grey50")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("grey30", "grey70", "black")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = HDmt_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = HDmt_mean,
+                                    ymin = HDmt_mean - HDmt_SE,
+                                    ymax = HDmt_mean + HDmt_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(panel.grid.minor = element_blank(), legend.position = "none") +
+  ylim(20, 35) +
+  ylab("HDmt (mm)")
+
+gridExtra::grid.arrange(HLroretplot, HLroquplot,
+                        HWquplot, HWmtplot,
+                        HDmtplot, nrow = 3)
+
+ggsave(here("figures/Figure3-bw.png"), height = 7)
+```
+
+Colour version
 
 ```{r, warning = FALSE}
 HLroretplot <-
@@ -446,10 +444,9 @@ HDmtplot <-
   ylim(20, 35) +
   ylab("HDmt (mm)")
 
-(HLroretplot + HLroquplot) / 
-  (HWquplot + HWmtplot) / 
-  (HDmtplot + plot_spacer())
+gridExtra::grid.arrange(HLroretplot, HLroquplot,
+                        HWquplot, HWmtplot,
+                        HDmtplot, nrow = 3)
 
-#ggsave(here("figures/genotype-means-headvars.png"), height = 7)
+ggsave(here("figures/Figure3-colour.png"), height = 7)
 ```
-
