@@ -38,6 +38,10 @@ pog <-
   # Replace A and J with Adult and Juvenile
   mutate(Age = case_when(Age == "A" ~ "Adult", 
                          Age == "J" ~ "Juvenile")) %>%
+  # Replace ZZF/ZZM/ZWF with f,m to match text
+  mutate(Genotype = case_when(Genotype == "ZZF" ~ "ZZf", 
+                              Genotype == "ZZM" ~ "ZZm",
+                              Genotype == "ZWF" ~ "ZWf")) %>%
   # Rename some variables so they are easier to remember
   rename(BiteForce = BF4) %>%
   rename(SVL = SVLm) %>%
