@@ -17,13 +17,7 @@ library(knitr)
 library(broom)
 library(ggfortify)
 library(here)
-
-# 
-library(devtools) #after install from github by cutting and paste install.packages("devtools") into console
-
-# 
-library(patchwork) #after install from github by cutting and pasting install_github("thomasp85/patchwork") into console
-
+library(patchwork)
 ```
 
 Write a quick standard error function
@@ -48,22 +42,7 @@ Relevel the genotype variable so everything is compared to ZZf as that's the key
 ```{r}
 pogA <-
   pogA %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
-```
-
-
-Sample composition by LOG SVL.
-
-```{r, echo = FALSE}
-  ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(SVL), 
-                                   colour = Genotype, fill = Genotype)) +
-  geom_histogram(alpha = 0.2, bins = 20) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "right", legend.title = element_blank(),
-        strip.background = element_rect(fill = "white")) +
-  facet_wrap(~ Genotype)
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
 Sample composition by SVL.
@@ -81,34 +60,6 @@ Sample composition by SVL.
 ```
 
 
-Sample composition by LOG Mass.
-
-```{r, echo = FALSE}
-  ggplot(pog[!is.na(pog$Genotype), ], aes(x = log(Mass), 
-                                   colour = Genotype, fill = Genotype)) +
-  geom_histogram(alpha = 0.2, bins = 20) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "right", legend.title = element_blank(),
-        strip.background = element_rect(fill = "white")) +
-  facet_wrap(~ Genotype)
-```
-
-
-Sample composition by Mass.
-
-```{r, echo = FALSE}
-  ggplot(pog[!is.na(pog$Genotype), ], aes(x = Mass, 
-                                   colour = Genotype, fill = Genotype)) +
-  geom_histogram(alpha = 0.2, bins = 20) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "right", legend.title = element_blank(),
-        strip.background = element_rect(fill = "white")) +
-  facet_wrap(~ Genotype)
-```
 
 1a. What is the range of bite forces?
 
