@@ -174,10 +174,10 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-#ggsave(here("figures/genotype-means-bfmasssvl.png"), height = 5)
+ggsave(here("figures/Figure2-colour.png"), height = 5)
 ```
 
-black and white version
+Black and white version
 
 ```{r, warning = FALSE}
 bfplot <-
@@ -198,8 +198,6 @@ bfplot <-
   ylim(0, 100) +
   ylab("Bite Force (N)")
 
-
-  
 bfnoleverplot <-
   ggplot(pogA, aes(x = Genotype, y = BFnolever, 
                 colour = Genotype, fill = Genotype, shape = Genotype)) +
@@ -259,7 +257,7 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-ggsave(here("figures/genotype-means-bfmasssvl-bw-j.png"), height = 5)
+ggsave(here("figures/Figure2-bw.png"), height = 5)
 ```
 
 
