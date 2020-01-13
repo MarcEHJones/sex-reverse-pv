@@ -39,7 +39,7 @@ pogSRF <-
 ```
 
 
-~~~~ using standardised bite force ~~~~
+~~~~ STANDARDISED BITE FORCE ~~~~
 
 Now fit the models and save the outputs
 Remember to use log 10 not ln!!!
@@ -344,7 +344,7 @@ output["adj.r2"] <- c(summary(modelF)$adj.r.squared,
 ```
 
 
-~~~~ no lever ~~~~
+~~~~ BITE FORCE NO LEVER ~~~~
 
 And get rid of the lever...
 
