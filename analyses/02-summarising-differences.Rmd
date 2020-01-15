@@ -57,6 +57,9 @@ Sample composition by SVL.
   theme(legend.position = "right", legend.title = element_blank(),
         strip.background = element_rect(fill = "white")) +
   facet_wrap(~ Genotype)
+
+#ggsave(here("figures/samplecomposition-SVL.png"), height = 4)
+
 ```
 
 
@@ -102,11 +105,11 @@ pogsumA <-
 
 kable(pogsumA)
 
-write_csv(pogsumA, path = here("outputs/morphometrics-results.csv"))
+#write_csv(pogsumA, path = here("outputs/morphometrics-results.csv"))
 
 ```
 
-3. Make figures showing the distributions of variables in relation to genotype 
+3. Make figures showing the distributions of variables (BF, SVL, Mass) in relation to genotype 
 (Figure 2)
 
 ```{r, warning = FALSE}
@@ -180,6 +183,7 @@ ggsave(here("figures/Figure2-colour.png"), height = 5)
 ```
 
 Black and white version
+
 
 ```{r, warning = FALSE}
 bfplot <-
@@ -259,12 +263,14 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-ggsave(here("figures/Figure2-bw.png"), height = 5)
+#ggsave(here("figures/Figure2-bw.png"), height = 5)
 ```
 
 
-4. And for the head shape (Figure 3)
+4. And for the head dimensions (Figure 3)
+
 Black and white version
+
 ```{r, warning = FALSE}
 HLroretplot <-
   ggplot(pogA, aes(x = Genotype, y = HLroret, 
@@ -360,7 +366,7 @@ gridExtra::grid.arrange(HLroretplot, HLroquplot,
                         HWquplot, HWmtplot,
                         HDmtplot, nrow = 3)
 
-ggsave(here("figures/Figure3-bw.png"), height = 7)
+ggsave(here("figures/Figure3-bw.png"), )
 ```
 
 Colour version
