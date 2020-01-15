@@ -46,7 +46,7 @@ First to make the models easier to interpret, relevel the genotype variable so e
 
 Next set up an empty output file
 ```{r}
-output <- data.frame(array(dim = c(11, 15)))
+output <- data.frame(array(dim = c(9, 15)))
 names(output) <- c("response", "df1", "df2", "F", "p", 
                   "mean_ZZf", "se_ZZf",
                   "meandiff_ZWf", "se_ZWf", "t_ZWf", "p_ZWf",
@@ -192,34 +192,11 @@ tidy(summary(m9))
 output <- write_output(m9, "log(HDmt)", 9)
 ```
 
-Temperature measured using a temperature gun between trial 1 and trial 2
-(Temp)
-```{r}
-# Fit the model
-m10 <- lm(log(Temp) ~ Genotype, data = pogA)
-# Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m10)
-tidy(anova(m10))
-summary(m10)
-
-output <- write_output(m10, "log(Temp)", 10)
-```
-
-Egg incubation temperature
-(IncTemp)
-```{r}
-# Fit the model
-m11 <- lm(log(IncTemp) ~ Genotype, data = pogA)
-# Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m11)
-tidy(anova(m11))
-summary(m11)
-
-output <- write_output(m11, "log(IncTemp)", 11)
-```
-
-
 Write all outputs to file
+
+This output is essentially Table 2
+
+
 ```{r}
 write_csv(output, path = here("outputs/genotype-anova-results.csv"))
 ```
