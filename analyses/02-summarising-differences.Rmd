@@ -86,7 +86,9 @@ kable(SVL)
 
 
 2. For adults, what are the means and SE of each variable?
-(This is Table 1 in the draft and table 1 in the new version)
+
+This output is essentially Table 1
+
 > This comes out as a long thin table but you can copy into Excel and quickly transpose to copy paste over into the manuscript. I have rounded to 2 decimal places.
 
 ```{r}
