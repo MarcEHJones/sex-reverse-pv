@@ -19,19 +19,45 @@ library(ggfortify)
 library(here)
 ```
 
-Read in the dataset, relevel the genotype variable so everything is compared to ZZf as that's the key comparison.
 
+Read in the dataset, and create a dataset with only adults
 ```{r}
 pog <- read_csv(here("data/pogona-data.csv"))
 
-pog <-
+pogA <- 
   pog %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZF"))
+  filter(Age == "Adult")
+```
+
+Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+
+```{r}
+pogA <-
+  pogA %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
 
 
-1. Temperature table (Table S5)
+1a Temperature table for whole sample
+
+```{r, warning = FALSE}
+
+pogtempsum <- 
+  pog %>%
+  group_by(Genotype) %>%
+  summarize_at(vars(IncTemp, Temp), 
+               list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
+  mutate_if(is.numeric, round, digits = 2)
+
+kable(pogtempsum)
+
+#write_csv(pogtempsum, path = here("outputs/temperature-all.csv"))
+
+```
+
+
+1b Temperature table for adults
 
 ```{r, warning = FALSE}
 
@@ -44,12 +70,31 @@ pogtempsum <-
 
 kable(pogtempsum)
 
-#write_csv(pogtempsum, path = here("outputs/temperature.csv"))
+#write_csv(pogtempsum, path = here("outputs/temperature-ad.csv"))
 
 ```
 
+1c Temperature table for juveniles
+
+```{r, warning = FALSE}
+
+pogtempsum <- 
+  pogJ %>%
+  group_by(Genotype) %>%
+  summarize_at(vars(IncTemp, Temp), 
+               list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
+  mutate_if(is.numeric, round, digits = 2)
+
+kable(pogtempsum)
+
+#write_csv(pogtempsum, path = here("outputs/temperature-juv.csv"))
+```
+
+
+
 2. Temperature plots 
-(Figure S6)
+
+For adults
 
 ```{r, warning = FALSE}
 tempplot <-
@@ -70,6 +115,48 @@ tempplot <-
 
 inctempplot <-
   ggplot(pogA, aes(x = Genotype, y = IncTemp, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from ppogtempsum
+  geom_point(data = pogtempsum, aes(y = IncTemp_mean), size = 2) +
+  geom_errorbar(data = pogtempsum, aes(y = IncTemp_mean,
+                                    ymin = IncTemp_mean - IncTemp_SE,
+                                    ymax = IncTemp_mean + IncTemp_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(20, 40) +
+  ylab(expression('Incubation temperature (°C)'))
+
+
+(tempplot + inctempplot)
+
+#ggsave(here("figures/genotype-means-temp-inctemp.png"), height = 5)
+
+```
+
+For juveniles
+
+```{r, warning = FALSE}
+tempplot <-
+  ggplot(pogJ, aes(x = Genotype, y = Temp, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from pogtempsum
+  geom_point(data = pogtempsum, aes(y = Temp_mean), size = 2) +
+  geom_errorbar(data = pogtempsum, aes(y = Temp_mean,
+                                    ymin = Temp_mean - Temp_SE,
+                                    ymax = Temp_mean + Temp_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(20, 40) +
+  ylab(expression('Temperature (°C)'))
+
+inctempplot <-
+  ggplot(pogJ, aes(x = Genotype, y = IncTemp, 
                 colour = Genotype, fill = Genotype)) +
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
@@ -207,6 +294,7 @@ write_output <- function(model, response, predictor, n){
 }
 ```
 
+7.
 Temp
 ```{r}
 # Fit the model
@@ -216,9 +304,13 @@ autoplot(t1)
 tidy(anova(t1))
 summary(t1)
 
-#output <- write_output(t1, "log(Bite Force)", "log(temp)", 1)
+output <- write_output(t1, "log(Bite Force)", "log(temp)", 1)
 ```
 
+
+
+
+8.
 Inctemp
 ```{r}
 # Fit the model
@@ -228,11 +320,211 @@ autoplot(t2)
 tidy(anova(t2))
 summary(t2)
 
-#output <- write_output(t2, "log(Bite Force)", "log(IncTemp)", 2)
+output <- write_output(t2, "log(Bite Force)", "log(IncTemp)", 2)
+```
+
+
+
+Write all outputs to file
+```{r}
+write_csv(output, path = here("outputs/bite-force-temp-results-h.csv"))
+```
+
+
+
+
+
+
+
+9. 
+An ANOVA for all animals, adults, and juveniles.
+
+
+Write a quick standard error function
+```{r}
+se <- function(x){
+  sqrt(var(x)/length(x))
+}
+```
+
+
+
+Read in the dataset, and create a dataset with only adults
+```{r}
+pog <- read_csv(here("data/pogona-data.csv"))
+
+pogA <- 
+  pog %>%
+  filter(Age == "Adult")
+```
+
+Read in the dataset, and create a dataset with only juveniles
+```{r}
+pog <- read_csv(here("data/pogona-data.csv"))
+
+pogJ <- 
+  pog %>%
+  filter(Age == "Juvenile")
+```
+
+
+
+Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+
+```{r}
+pogA <-
+  pogA %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
+```
+
+
+Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+
+```{r}
+pogJ <-
+  pogJ %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
+```
+
+Fit ANOVAs to look at differences in temperature between the three genotypes.
+
+First to make the models easier to interpret, relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+
+Next set up an empty output file
+```{r}
+output <- data.frame(array(dim = c(6, 15)))
+names(output) <- c("response", "df1", "df2", "F", "p", 
+                  "mean_ZZf", "se_ZZf",
+                  "meandiff_ZWf", "se_ZWf", "t_ZWf", "p_ZWf",
+                  "meandiff_ZZm", "se_ZZm", "t_ZZm", "p_ZZm")
+
+# Short function to help write output files
+write_output <- function(model, response, n){
+  
+  x <- tidy(anova(model))
+  y <- summary(model)
+    
+  output[n, "response"] <- response
+  output[n, "df1"] <- x$df[1]
+    output[n, "df2"] <- x$df[2]
+    output[n, "F"] <- x$statistic[1]
+    output[n, "p"] <- x$p.value[1]
+    output[n, "mean_ZZf"] <- y$coefficients[1]
+    output[n, "se_ZZf"] <- y$coefficients[4]
+    output[n, "meandiff_ZWf"] <- y$coefficients[2]
+    output[n, "se_ZWf"] <- y$coefficients[5]
+    output[n, "t_ZWf"] <- y$coefficients[8]
+    output[n, "p_ZWf"] <- y$coefficients[11]
+    output[n, "meandiff_ZZm"] <- y$coefficients[3]
+    output[n, "se_ZZm"] <- y$coefficients[5]
+    output[n, "t_ZZm"] <- y$coefficients[9]
+    output[n, "p_ZZm"] <- y$coefficients[12]
+    
+    return(output)
+}
+```
+
+
+Surface temperature measured using a temperature gun between trial 1 and trial 2
+(Temp)
+
+```{r}
+# Fit the model
+m1 <- lm(log(Temp) ~ Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m10)
+tidy(anova(m10))
+summary(m10)
+
+output <- write_output(m1, "log(Temp)", 1)
+```
+
+
+Adult surface temperature measured using a temperature gun between trial 1 and trial 2
+(Temp)
+
+```{r}
+# Fit the model
+m2 <- lm(log(Temp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m10)
+tidy(anova(m10))
+summary(m10)
+
+output <- write_output(m2, "log(Temp)", 2)
+```
+
+Juvenile surface temperature measured using a temperature gun between trial 1 and trial 2
+(Temp)
+
+```{r}
+# Fit the model
+m3 <- lm(log(Temp) ~ Genotype, data = pogJ)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m10)
+tidy(anova(m10))
+summary(m10)
+
+output <- write_output(m3, "log(Temp)", 3)
+```
+
+
+Egg incubation temperature
+(IncTemp)
+```{r}
+# Fit the model
+m4 <- lm(log(IncTemp) ~ Genotype, data = pog)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m11)
+tidy(anova(m11))
+summary(m11)
+
+output <- write_output(m4, "log(IncTemp)", 4)
+```
+
+Adult egg incubation temperature
+(IncTemp)
+```{r}
+# Fit the model
+m5 <- lm(log(IncTemp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m11)
+tidy(anova(m11))
+summary(m11)
+
+output <- write_output(m5, "log(IncTemp)", 5)
+```
+
+
+Adult egg incubation temperature
+(IncTemp)
+```{r}
+# Fit the model
+m6 <- lm(log(IncTemp) ~ Genotype, data = pogJ)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m11)
+tidy(anova(m11))
+summary(m11)
+
+output <- write_output(m6, "log(IncTemp)", 6)
 ```
 
 
 Write all outputs to file
 ```{r}
-#write_csv(output, path = here("outputs/bite-force-temp-results.csv"))
+write_csv(output, path = here("outputs/temp-ANOVA-results-e.csv"))
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
