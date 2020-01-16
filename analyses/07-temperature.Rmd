@@ -19,6 +19,13 @@ library(ggfortify)
 library(here)
 ```
 
+Standard error function
+```{r}
+se <- function(x){
+  sqrt(var(x, na.rm = TRUE)/
+       sum(!is.na(x) == TRUE))
+}
+```
 
 Prepare the dataset
 
