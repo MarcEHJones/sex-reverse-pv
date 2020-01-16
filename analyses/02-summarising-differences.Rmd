@@ -179,7 +179,7 @@ svlplot <-
 
 (bfplot + bfnoleverplot) / (massplot + svlplot)
 
-ggsave(here("figures/Figure2-colour.png"), height = 5)
+#ggsave(here("figures/Figure2-colour.png"), height = 5)
 ```
 
 Black and white version
@@ -366,7 +366,7 @@ gridExtra::grid.arrange(HLroretplot, HLroquplot,
                         HWquplot, HWmtplot,
                         HDmtplot, nrow = 3)
 
-ggsave(here("figures/Figure3-bw.png"), )
+#ggsave(here("figures/Figure3-bw.png"), )
 ```
 
 Colour version
@@ -456,5 +456,5 @@ gridExtra::grid.arrange(HLroretplot, HLroquplot,
                         HWquplot, HWmtplot,
                         HDmtplot, nrow = 3)
 
-ggsave(here("figures/Figure3-colour.png"), height = 7)
+#ggsave(here("figures/Figure3-colour.png"), height = 7)
 ```
