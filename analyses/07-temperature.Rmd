@@ -442,9 +442,9 @@ Adult surface temperature measured using a temperature gun between trial 1 and t
 # Fit the model
 m2 <- lm(log(Temp) ~ Genotype, data = pogA)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m10)
-tidy(anova(m10))
-summary(m10)
+autoplot(m2)
+tidy(anova(m2))
+summary(m2)
 
 output <- write_output(m2, "log(Temp)", 2)
 ```
@@ -456,9 +456,9 @@ Juvenile surface temperature measured using a temperature gun between trial 1 an
 # Fit the model
 m3 <- lm(log(Temp) ~ Genotype, data = pogJ)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m10)
-tidy(anova(m10))
-summary(m10)
+autoplot(m3)
+tidy(anova(m3))
+summary(m3)
 
 output <- write_output(m3, "log(Temp)", 3)
 ```
@@ -470,9 +470,9 @@ Egg incubation temperature
 # Fit the model
 m4 <- lm(log(IncTemp) ~ Genotype, data = pog)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m11)
-tidy(anova(m11))
-summary(m11)
+autoplot(m4)
+tidy(anova(m4))
+summary(m4)
 
 output <- write_output(m4, "log(IncTemp)", 4)
 ```
@@ -483,9 +483,9 @@ Adult egg incubation temperature
 # Fit the model
 m5 <- lm(log(IncTemp) ~ Genotype, data = pogA)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m11)
-tidy(anova(m11))
-summary(m11)
+autoplot(m5)
+tidy(anova(m5))
+summary(m5)
 
 output <- write_output(m5, "log(IncTemp)", 5)
 ```
@@ -497,9 +497,9 @@ Adult egg incubation temperature
 # Fit the model
 m6 <- lm(log(IncTemp) ~ Genotype, data = pogJ)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m11)
-tidy(anova(m11))
-summary(m11)
+autoplot(m6)
+tidy(anova(m6))
+summary(m6)
 
 output <- write_output(m6, "log(IncTemp)", 6)
 ```
