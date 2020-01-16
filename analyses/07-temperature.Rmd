@@ -20,6 +20,8 @@ library(here)
 ```
 
 
+Prepare the dataset
+
 Read in the dataset, and create a dataset with only adults
 ```{r}
 pog <- read_csv(here("data/pogona-data.csv"))
@@ -29,11 +31,33 @@ pogA <-
   filter(Age == "Adult")
 ```
 
-Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+Read in the dataset, and create a dataset with only juveniles
+```{r}
+pog <- read_csv(here("data/pogona-data.csv"))
 
+pogJ <- 
+  pog %>%
+  filter(Age == "Juvenile")
+```
+
+Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
 ```{r}
 pogA <-
   pogA %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
+```
+
+Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+```{r}
+pogJ <-
+  pogJ %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
+```
+
+Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+```{r}
+pog <-
+  pog %>%
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
@@ -348,43 +372,6 @@ se <- function(x){
 ```
 
 
-
-Read in the dataset, and create a dataset with only adults
-```{r}
-pog <- read_csv(here("data/pogona-data.csv"))
-
-pogA <- 
-  pog %>%
-  filter(Age == "Adult")
-```
-
-Read in the dataset, and create a dataset with only juveniles
-```{r}
-pog <- read_csv(here("data/pogona-data.csv"))
-
-pogJ <- 
-  pog %>%
-  filter(Age == "Juvenile")
-```
-
-
-
-Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
-
-```{r}
-pogA <-
-  pogA %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
-```
-
-
-Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
-
-```{r}
-pogJ <-
-  pogJ %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
-```
 
 Fit ANOVAs to look at differences in temperature between the three genotypes.
 
