@@ -17,6 +17,7 @@ library(knitr)
 library(broom)
 library(ggfortify)
 library(here)
+library(patchwork)
 ```
 
 Standard error function
@@ -426,9 +427,9 @@ Surface temperature measured using a temperature gun between trial 1 and trial 2
 # Fit the model
 m1 <- lm(log(Temp) ~ Genotype, data = pog)
 # Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m10)
-tidy(anova(m10))
-summary(m10)
+autoplot(m1)
+tidy(anova(m1))
+summary(m1)
 
 output <- write_output(m1, "log(Temp)", 1)
 ```
