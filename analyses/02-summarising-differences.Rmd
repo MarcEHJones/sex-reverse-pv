@@ -362,11 +362,11 @@ HDmtplot <-
   ylim(20, 35) +
   ylab("HDmt (mm)")
 
-gridExtra::grid.arrange(HLroretplot, HLroquplot,
+x <- gridExtra::grid.arrange(HLroretplot, HLroquplot,
                         HWquplot, HWmtplot,
                         HDmtplot, nrow = 3)
 
-#ggsave(here("figures/Figure3-bw.png"), )
+#ggsave(file = here("figures/Figure3-bw.png"), x)
 ```
 
 Colour version
@@ -452,9 +452,9 @@ HDmtplot <-
   ylim(20, 35) +
   ylab("HDmt (mm)")
 
-gridExtra::grid.arrange(HLroretplot, HLroquplot,
+z <- gridExtra::grid.arrange(HLroretplot, HLroquplot,
                         HWquplot, HWmtplot,
                         HDmtplot, nrow = 3)
 
-#ggsave(here("figures/Figure3-colour.png"), height = 7)
+#ggsave(file = here("figures/Figure3-colour.png"), z, height = 7)
 ```
