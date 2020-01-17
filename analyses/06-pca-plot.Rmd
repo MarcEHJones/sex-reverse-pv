@@ -191,7 +191,7 @@ pc23 <-
 all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, filename = here("figures/FigureS6-pca-plots-colour.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/FigureS6-pca-plots-colour.png"))
 ```
 
 FIGURE SI 6 colour Black and white version
