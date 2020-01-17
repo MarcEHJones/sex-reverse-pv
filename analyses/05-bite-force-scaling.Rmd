@@ -79,7 +79,7 @@ nl_plot
 # combine a and b
 log_plot / nl_plot
 
-ggsave(here("figures/Figure4-colour.png"), height = 8 , width = 7)
+#ggsave(here("figures/Figure4-colour.png"), height = 8 , width = 7)
 ```
 
 This creates a plot of log(BF) vs log(SVL)
@@ -121,21 +121,52 @@ nl_plot_bw <-
   scale_size_manual(values=c(2,2,2))+
   theme_bw(base_size = 14) +
   #theme(legend.title = element_blank()) +
-  #ylim(0, 5)+
-  #xlim(4, 5.5) +
+  ylim(0, 100) +
+  xlim(50, 250) +
   labs(tag = "(b)") +
   ylab("Bite Force (N)") +
   xlab("SVL (mm)") 
+ #theme(plot.tag = element_text(size = 12, face = "bold"),
+        axis.title = element_text(size = 12))
 
 # Combine the two
 log_plot_bw / nl_plot_bw
 
-ggsave(here("figures/Figure4-bw.png"), height = 8 , width = 7)
+#ggsave(here("figures/Figure4-bw.png"), height = 8 , width = 7)
 
 ```
 
 
 
+
+This creates a plot of log(BF) vs log(Mass) Figure SI4
+
+```{r, message = FALSE}
+# All individuals
+log_plot_mass<-
+  ggplot(pog, aes(x = log(Mass), y = log(BiteForce), 
+                colour = Genotype, shape = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_shape_manual(values=c(23, 21, 22)) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(1, 5)+
+  xlim(1, 6) +
+  ylab("log(Bite Force) (N)") +
+  xlab("log(Mass) (mm)") +
+  labs(tag = "(a)") +
+  theme(legend.position = "none") +
+  theme(plot.tag = element_text(size = 12, face = "bold"),
+        axis.title = element_text(size = 12))
+
+log_plot_mass
+```
+
+
+~~ ANOVAs ~~
 
 Mass
 ```{r}
@@ -221,9 +252,11 @@ tidy(summary(m7))
 output <- write_output(m7, "log(Bite Force)", "log(HDmt)", 7)
 ```
 
+
 And get rid of the lever...
 
 Mass
+
 ```{r}
 # Fit the model
 m8 <- lm(log(BFnolever) ~ log(Mass) * Genotype, data = pog)
