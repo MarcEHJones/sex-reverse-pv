@@ -133,9 +133,10 @@ pc3 <-
 loadingsall <- ggarrange(pc1, pc2, pc3)
 loadingsall
 
-# ggsave(pc1, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc1-all.png"))  
-# ggsave(pc2, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc2-all.png"))  
-# ggsave(pc3, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc3-all.png"))  
+# provide individual plots
+#ggsave(pc1, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc1-all.png"))  
+#ggsave(pc2, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc2-all.png"))  
+#ggsave(pc3, height = 1.2 , width = 3.25, filename = here("figures/FigureS6-loadings-pc3-all.png"))  
 
 ```
   
@@ -390,8 +391,8 @@ loading panels for adults
 ```{r}
 #princomp(pca_head, cor = TRUE) 
 
-#mydata2 <- data.frame(unclass(loadings(pca_head_adults)))
-#mydata2 <- mutate(mydata2, variable = rownames(mydata2))
+mydata2 <- data.frame(unclass(loadings(pca_head_adults)))
+mydata2 <- mutate(mydata2, variable = rownames(mydata2))
 
 
 # Fix ordering of variables
@@ -440,14 +441,14 @@ pc3ad <-
 
 
 # provide three seperate panels for the pc loadings
-# ggsave(pc1ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc1.png"))  
-# ggsave(pc2ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc2.png"))  
-# ggsave(pc3ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc3.png"))  
+#ggsave(pc1ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc1.png"))  
+#ggsave(pc2ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc2.png"))  
+#ggsave(pc3ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc3.png"))  
 
 
 #provide combined panel  
-loadingsadults <- ggarrange(pc1ad, pc2ad, pc3ad)
-loadingsadults
+#loadingsadults <- ggarrange(pc1ad, pc2ad, pc3ad)
+#loadingsadults
 
 
 
@@ -729,7 +730,7 @@ all
 #all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
 #all
 
-ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes-adultsjuveniles.png"))
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes-adultsjuveniles.png"))
 
 
 ```
