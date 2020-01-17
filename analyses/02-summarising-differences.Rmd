@@ -366,7 +366,7 @@ x <- gridExtra::grid.arrange(HLroretplot, HLroquplot,
                         HWquplot, HWmtplot,
                         HDmtplot, nrow = 3)
 
-#ggsave(file = here("figures/Figure3-bw.png"), x)
+#ggsave(file = here("figures/Figure3-bw.png"), x, height = 7.5)
 ```
 
 Colour version
@@ -456,5 +456,5 @@ z <- gridExtra::grid.arrange(HLroretplot, HLroquplot,
                         HWquplot, HWmtplot,
                         HDmtplot, nrow = 3)
 
-#ggsave(file = here("figures/Figure3-colour.png"), z, height = 7)
+#ggsave(file = here("figures/Figure3-colour.png"), z, height = 7.5)
 ```
