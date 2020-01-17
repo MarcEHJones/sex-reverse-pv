@@ -156,14 +156,39 @@ log_plot_mass<-
   ylim(1, 5)+
   xlim(1, 6) +
   ylab("log(Bite Force) (N)") +
-  xlab("log(Mass) (mm)") +
+  xlab("log(Mass) (g)") +
   labs(tag = "(a)") +
   theme(legend.position = "none") +
   theme(plot.tag = element_text(size = 12, face = "bold"),
         axis.title = element_text(size = 12))
 
 log_plot_mass
+
+#ggsave(here("figures/FigS4-col-BFlogmass.png"), height = 6 , width = 7)
 ```
+
+
+log(SVL) and log(bite force no lever) Figure SI 5
+
+
+```{r, message = FALSE}
+# All individuals
+ggplot(pog, aes(x = log(SVL), y = log(BFnolever), 
+                colour = Genotype, fill = Genotype)) +
+  geom_point(alpha = 0.8, na.rm = TRUE) +
+  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  #theme(legend.title = element_blank()) +
+  ylim(0, 5)+
+  xlim(4, 5.5) +
+  ylab("log(Bite Force no lever) (N)") +
+  xlab("log(SVL) (mm)")
+
+#ggsave(here("figures/svl-bfnolever.png"))
+```
+
 
 
 ~~ ANOVAs ~~
