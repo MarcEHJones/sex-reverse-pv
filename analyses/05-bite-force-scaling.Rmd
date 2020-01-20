@@ -125,14 +125,16 @@ nl_plot_bw <-
   xlim(50, 250) +
   labs(tag = "(b)") +
   ylab("Bite Force (N)") +
-  xlab("SVL (mm)") 
- #theme(plot.tag = element_text(size = 12, face = "bold"),
+  xlab("SVL (mm)") +
+  theme(plot.tag = element_text(size = 12, face = "bold"),
         axis.title = element_text(size = 12))
+
+
 
 # Combine the two
 log_plot_bw / nl_plot_bw
 
-#ggsave(here("figures/Figure4-bw.png"), height = 8 , width = 7)
+ggsave(here("figures/Figure4-bw-900dpi.png"), height = 8 , width = 7, dpi=900)
 
 ```
 
