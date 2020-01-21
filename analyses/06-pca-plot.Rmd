@@ -441,9 +441,9 @@ pc3ad <-
 
 
 # provide three seperate panels for the pc loadings
-#ggsave(pc1ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc1.png"))  
-#ggsave(pc2ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc2.png"))  
-#ggsave(pc3ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc3.png"))  
+#ggsave(pc1ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc1-900dpi.png"))  
+#ggsave(pc2ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc2-900dpi.png"))  
+#ggsave(pc3ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc3-900dpi.png"))  
 
 
 #provide combined panel  
