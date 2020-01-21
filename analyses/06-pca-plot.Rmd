@@ -140,7 +140,7 @@ loadingsall
 
 ```
   
-FIGURE SI 6 colour
+FIGURE S7 in colour
 
 Plot PC plot with convex hulls for all animals (including juveniles) (n = 91).
 
@@ -194,7 +194,7 @@ all
 #ggsave(all, height = 7 , width = 7, filename = here("figures/FigureS6-pca-plots-colour.png"))
 ```
 
-FIGURE SI 6 colour Black and white version
+FIGURE S7 colour Black and white version
 
 Plot PC plot with convex hulls for all animals (including juveniles) (n = 91).
 
@@ -250,57 +250,10 @@ all
 
 
 
+Plot PC plot with convex hulls and scaled points according to bite force for all animals (including juveniles) (n = 91).
 
+Figure S8
 
-
-Plot PC plot with convex hulls and scaled points according to SVL for all animals (including juveniles) (n = 91).: 
-```{r, echo = FALSE}
-pc12b <-
-  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
-                 colour = Genotype, fill = Genotype)) +
-  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
-  geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  xlim (-4.5, 4.5) +
-  ylim (-4.5, 4.5) +
-  theme_bw(base_size = 14) +
-  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
-  theme(legend.position = "none")
-
-pc13b <-
-  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
-                 colour = Genotype, fill = Genotype)) +
-  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
-  geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  xlim (-4.5, 4.5) +
-  ylim (-4.5, 4.5) +
-  theme_bw(base_size = 14) +
-  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
-  theme(legend.position = "none")
-
-pc23b <-
-  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
-                 colour = Genotype, fill = Genotype)) +
-  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
-  geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  xlim (-4.5, 4.5) +
-  ylim (-4.5, 4.5) +
-  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
-
-all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
-all
-
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-withSVL.png"))
-```
-
-
-Plot PC plot with convex hulls and scaled points according to bite force for all animals (including juveniles) (n = 91): 
 ```{r, echo = FALSE}
 pc12b <-
   ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
@@ -348,7 +301,112 @@ all
 
 
 
+Plot PC plot with convex hulls and scaled points according to SVL for all animals (including juveniles) (n = 91).
 
+Figure S9
+
+```{r, echo = FALSE}
+pc12b <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
+  theme(legend.position = "none")
+
+pc13b <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
+  theme(legend.position = "none")
+
+pc23b <-
+  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
+                 colour = Genotype, fill = Genotype)) +
+  geom_point(aes(size = SVL), shape = 19 , alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
+
+all <- ggarrange(pc12b, pc13b, pc23b, common.legend = TRUE, legend = "top")
+all
+
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-withSVL.png"))
+```
+
+
+Plot PC plot with convex hulls for adults and juveniles (n = 91).
+
+Figure S10
+
+```{r, echo = FALSE}
+pc12 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
+                 colour = Age, fill = Age, shape = Age)) +
+  geom_point(aes(size = SVL), alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "purple")) +
+  scale_shape_manual(values=c(23, 21)) +
+  scale_fill_manual(values = c("orange1", "purple")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
+  theme(legend.position = "none")
+
+pc13 <-
+  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
+                 colour = Age, fill = Age, shape = Age)) +
+ geom_point(aes(size = SVL), alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "purple")) +
+  scale_shape_manual(values=c(23, 21)) +
+  scale_fill_manual(values = c("orange1", "purple")) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
+  theme(legend.position = "none")
+
+pc23 <-
+  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
+                 colour = Age, fill = Age, shape = Age)) +
+  geom_point(aes(size = SVL), alpha = 0.8) +
+  geom_convexhull(alpha = 0.2) +
+  scale_colour_manual(values = c("orange1", "purple")) +
+  scale_shape_manual(values=c(23, 21)) +
+  xlim (-4.5, 4.5) +
+  ylim (-4.5, 4.5) +
+  scale_fill_manual(values = c("orange1", "purple")) +
+  theme_bw(base_size = 14) +
+  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
+
+all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
+all
+
+#all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
+#all
+
+#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes-adultsjuveniles.png"))
+
+
+```
 
 
 ~~ ADULTS ONLY ~~
@@ -576,7 +634,7 @@ all
 ```
 
 
-FIGURE SI x
+FIGURE SY
 
 Plot PC plot with convex hulls and scaled points according to bite force for adults (n = 39): 
 
@@ -629,7 +687,7 @@ all
 ```
 
 
-FIGURE SI x
+FIGURE SX
 
 Plot PC plot with convex hulls and scaled points according to SVL for adults (n = 39): 
 ```{r, echo = FALSE}
@@ -679,62 +737,3 @@ all
 ```
 
 
-
-
-
-Plot PC plot with convex hulls for adults and juveniles (n = 91).
-
-Figure SI x
-
-```{r, echo = FALSE}
-pc12 <-
-  ggplot(pog2, aes(x = Comp.1, y = Comp.2, 
-                 colour = Age, fill = Age, shape = Age)) +
-  geom_point(aes(size = SVL), alpha = 0.8) +
-  geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("orange1", "purple")) +
-  scale_shape_manual(values=c(23, 21)) +
-  scale_fill_manual(values = c("orange1", "purple")) +
-  xlim (-4.5, 4.5) +
-  ylim (-4.5, 4.5) +
-  theme_bw(base_size = 14) +
-  labs(x = "PC1 (34.10%)", y = "PC2 (26.73%)") +
-  theme(legend.position = "none")
-
-pc13 <-
-  ggplot(pog2, aes(x = Comp.1, y = Comp.3, 
-                 colour = Age, fill = Age, shape = Age)) +
- geom_point(aes(size = SVL), alpha = 0.8) +
-  geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("orange1", "purple")) +
-  scale_shape_manual(values=c(23, 21)) +
-  scale_fill_manual(values = c("orange1", "purple")) +
-  xlim (-4.5, 4.5) +
-  ylim (-4.5, 4.5) +
-  theme_bw(base_size = 14) +
-  labs(x = "PC1 (34.10%)", y = "PC3 (21.79%)") +
-  theme(legend.position = "none")
-
-pc23 <-
-  ggplot(pog2, aes(x = Comp.2, y = Comp.3, 
-                 colour = Age, fill = Age, shape = Age)) +
-  geom_point(aes(size = SVL), alpha = 0.8) +
-  geom_convexhull(alpha = 0.2) +
-  scale_colour_manual(values = c("orange1", "purple")) +
-  scale_shape_manual(values=c(23, 21)) +
-  xlim (-4.5, 4.5) +
-  ylim (-4.5, 4.5) +
-  scale_fill_manual(values = c("orange1", "purple")) +
-  theme_bw(base_size = 14) +
-  labs(x = "PC2 (26.73%)", y = "PC3 (21.79%)")
-
-all <- ggarrange(pc12, pc13, pc23, common.legend = TRUE, legend = "top")
-all
-
-#all <- ggarrange(pc12, pc13, pc23, height = 4 , width = 7, common.legend = TRUE, legend = "top")
-#all
-
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-ALL-shapes-adultsjuveniles.png"))
-
-
-```
