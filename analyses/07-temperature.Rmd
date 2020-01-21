@@ -516,7 +516,7 @@ output <- write_output(m6, "log(IncTemp)", 6)
 
 Write all outputs to file
 ```{r}
-write_csv(output, path = here("outputs/temp-ANOVA-results-e.csv"))
+write_csv(output, path = here("outputs/temp-ANOVA-results.csv"))
 ```
 
 
