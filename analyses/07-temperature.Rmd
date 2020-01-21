@@ -50,6 +50,13 @@ pogJ <-
 
 Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
 ```{r}
+pog <-
+  pog %>%
+  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
+```
+
+Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
+```{r}
 pogA <-
   pogA %>%
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
@@ -59,13 +66,6 @@ Relevel the genotype variable so everything is compared to ZZf as that's the key
 ```{r}
 pogJ <-
   pogJ %>%
-  mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
-```
-
-Relevel the genotype variable so everything is compared to ZZf as that's the key comparison...
-```{r}
-pog <-
-  pog %>%
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
@@ -93,14 +93,14 @@ kable(pogtempsum)
 
 ```{r, warning = FALSE}
 
-pogtempsum <- 
+pogtempsumA <- 
   pogA %>%
   group_by(Genotype) %>%
   summarize_at(vars(IncTemp, Temp), 
                list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
   mutate_if(is.numeric, round, digits = 2)
 
-kable(pogtempsum)
+kable(pogtempsumA)
 
 #write_csv(pogtempsum, path = here("outputs/temperature-ad.csv"))
 
@@ -110,14 +110,14 @@ kable(pogtempsum)
 
 ```{r, warning = FALSE}
 
-pogtempsum <- 
+pogtempsumJ <- 
   pogJ %>%
   group_by(Genotype) %>%
   summarize_at(vars(IncTemp, Temp), 
                list(mean = ~ mean(., na.rm = TRUE), SE = se)) %>%
   mutate_if(is.numeric, round, digits = 2)
 
-kable(pogtempsum)
+kable(pogtempsumJ)
 
 #write_csv(pogtempsum, path = here("outputs/temperature-juv.csv"))
 ```
@@ -128,6 +128,10 @@ kable(pogtempsum)
 
 For adults
 
+Figure S3
+
+
+
 ```{r, warning = FALSE}
 tempplot <-
   ggplot(pogA, aes(x = Genotype, y = Temp, 
@@ -135,8 +139,35 @@ tempplot <-
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   # Add mean and se from pogtempsum
-  geom_point(data = pogtempsum, aes(y = Temp_mean), size = 2) +
-  geom_errorbar(data = pogtempsum, aes(y = Temp_mean,
+  geom_point(data = pogtempsumA, aes(y = Temp_mean), size = 2) +
+  geom_errorbar(data = pogtempsumA, aes(y = Temp_mean,
+                                    ymin = Temp_mean - Temp_SE,
+                                    ymax = Temp_mean + Temp_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(20, 40) +
+  ylab(expression('Temperature (°C)'))
+
+
+
+tempplot
+
+#ggsave(here("figures/genotype-means-temp.png"), height = 5, width = 3)
+
+```
+
+old figure
+
+```{r, warning = FALSE}
+tempplot <-
+  ggplot(pogA, aes(x = Genotype, y = Temp, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from pogtempsum
+  geom_point(data = pogtempsumA, aes(y = Temp_mean), size = 2) +
+  geom_errorbar(data = pogtempsumA, aes(y = Temp_mean,
                                     ymin = Temp_mean - Temp_SE,
                                     ymax = Temp_mean + Temp_SE),
                 width = 0.1) +
@@ -151,8 +182,8 @@ inctempplot <-
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   # Add mean and se from ppogtempsum
-  geom_point(data = pogtempsum, aes(y = IncTemp_mean), size = 2) +
-  geom_errorbar(data = pogtempsum, aes(y = IncTemp_mean,
+  geom_point(data = pogtempsumA, aes(y = IncTemp_mean), size = 2) +
+  geom_errorbar(data = pogtempsumA, aes(y = IncTemp_mean,
                                     ymin = IncTemp_mean - IncTemp_SE,
                                     ymax = IncTemp_mean + IncTemp_SE),
                 width = 0.1) +
@@ -177,8 +208,8 @@ tempplot <-
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   # Add mean and se from pogtempsum
-  geom_point(data = pogtempsum, aes(y = Temp_mean), size = 2) +
-  geom_errorbar(data = pogtempsum, aes(y = Temp_mean,
+  geom_point(data = pogtempsumJ, aes(y = Temp_mean), size = 2) +
+  geom_errorbar(data = pogtempsumJ, aes(y = Temp_mean,
                                     ymin = Temp_mean - Temp_SE,
                                     ymax = Temp_mean + Temp_SE),
                 width = 0.1) +
@@ -193,8 +224,8 @@ inctempplot <-
   geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
   scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
   # Add mean and se from ppogtempsum
-  geom_point(data = pogtempsum, aes(y = IncTemp_mean), size = 2) +
-  geom_errorbar(data = pogtempsum, aes(y = IncTemp_mean,
+  geom_point(data = pogtempsumJ, aes(y = IncTemp_mean), size = 2) +
+  geom_errorbar(data = pogtempsumJ, aes(y = IncTemp_mean,
                                     ymin = IncTemp_mean - IncTemp_SE,
                                     ymax = IncTemp_mean + IncTemp_SE),
                 width = 0.1) +
@@ -210,30 +241,8 @@ inctempplot <-
 
 ```
 
-3. 
-This code creates a plot of BF vs log(SVL) colour coded according to temperature.
-Draft of Figure S7.
-
-```{r, message = FALSE}
-# All individuals
-ggplot(pog, aes(x = log(SVL), y = log(BiteForce), 
-                colour = Temp, fill = Temp)) +
-  geom_point(alpha = 0.8, na.rm = TRUE) +
-  geom_smooth(method = lm, se = TRUE, alpha = 0.2) +
-  #scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  #scale_fill_manual(values = c("orange1", "red", "cornflowerblue")) +
-  theme_bw(base_size = 14) +
-  #theme(legend.title = element_blank()) +
-  ylim(0, 5)+
-  xlim(4, 5.5) +
-  ylab("log(Bite Force) (N)") +
-  xlab("log(SVL) (mm)")
-
-#ggsave(here("figures/temp-bf.png"))
-```
-
-4.
-This code creates a plot of BF vs log(SVL) colour coded according to temperature divided by genotype. Actual Figure S7.
+3.
+This code creates a plot of BF vs log(SVL) colour coded according to temperature divided by genotype. Actual Figure S4.
 
 ```{r, message = FALSE}
 # All individuals
@@ -255,9 +264,9 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 
 
 
-5.
+4.
 This code creates a plot of BF vs log(SVL) colour coded according to inclubation temperature divided by genotype.
-Actual Figure S8.
+
 
 
 ```{r, message = FALSE}
@@ -279,7 +288,7 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 ```
 
 
-6.
+5.
 Summary statistics.
 
 Set up an empty output file
@@ -326,7 +335,7 @@ write_output <- function(model, response, predictor, n){
 }
 ```
 
-7.
+6.
 Temp
 ```{r}
 # Fit the model
@@ -342,7 +351,7 @@ output <- write_output(t1, "log(Bite Force)", "log(temp)", 1)
 
 
 
-8.
+7.
 Inctemp
 ```{r}
 # Fit the model
@@ -368,7 +377,7 @@ write_csv(output, path = here("outputs/bite-force-temp-results-h.csv"))
 
 
 
-9. 
+8. 
 An ANOVA for all animals, adults, and juveniles.
 
 
