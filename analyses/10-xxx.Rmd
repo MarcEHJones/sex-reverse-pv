@@ -558,3 +558,29 @@ ggplot(pog, aes(x = log(SVL), y = log(BiteForce),
 #ggsave(here("figures/temp-bf.png"))
 ```
 
+
+From script 08
+
+Temp
+```{r}
+# Fit the model
+m10 <- lm(log(Temp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m10)
+tidy(anova(m10))
+summary(m10)
+
+output <- write_output(m10, "log(Temp)", 10)
+```
+
+IncTemp
+```{r}
+# Fit the model
+m11 <- lm(log(IncTemp) ~ Genotype, data = pogA)
+# Look at the model diagnostics (these all look fine so ANOVA is ok)
+autoplot(m11)
+tidy(anova(m11))
+summary(m11)
+
+output <- write_output(m11, "log(IncTemp)", 11)
+```
