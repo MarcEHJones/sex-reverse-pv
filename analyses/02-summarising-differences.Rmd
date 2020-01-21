@@ -45,7 +45,10 @@ pogA <-
   mutate(Genotype = relevel(as.factor(Genotype), ref = "ZZf"))
 ```
 
+
 Sample composition by SVL.
+
+Figure S1
 
 ```{r, echo = FALSE}
   ggplot(pog[!is.na(pog$Genotype), ], aes(x = SVL, 
