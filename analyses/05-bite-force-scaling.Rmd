@@ -141,7 +141,7 @@ log_plot_bw / nl_plot_bw
 
 
 
-This creates a plot of log(BF) vs log(Mass) Figure SI4
+This creates a plot of log(BF) vs log(Mass) Figure S 5
 
 ```{r, message = FALSE}
 # All individuals
@@ -170,7 +170,7 @@ log_plot_mass
 ```
 
 
-log(SVL) and log(bite force no lever) Figure SI 5
+log(SVL) and log(bite force no lever) Figure S 6
 
 
 ```{r, message = FALSE}
