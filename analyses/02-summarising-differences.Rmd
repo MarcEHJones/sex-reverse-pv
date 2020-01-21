@@ -46,6 +46,46 @@ pogA <-
 ```
 
 
+
+Let's check how many individuals we have in each group.
+```{r}
+# Summarise data
+sum_pog_all <- 
+  pog %>%
+  group_by(Genotype) %>%
+  summarise(n = n(),
+            minSVL = min(SVL),
+            maxSVL = max(SVL))
+
+kable(sum_pog_all)
+```
+
+
+Let's check how many individuals we have in each group, and that adults are > 150mm and juveniles < 150mm
+```{r}
+# Summarise data
+sum_pog_age <- 
+  pog %>%
+  group_by(Age, Genotype) %>%
+  summarise(n = n(),
+            minSVL = min(SVL),
+            maxSVL = max(SVL))
+
+kable(sum_pog_age)
+```
+And get total numbers of each genotype...
+```{r}
+# Summarise data
+sum_pog1 <- 
+  pog %>%
+  group_by(Genotype) %>%
+  summarise(n())
+
+kable(sum_pog1)
+```
+
+
+
 Sample composition by SVL.
 
 Figure S1
