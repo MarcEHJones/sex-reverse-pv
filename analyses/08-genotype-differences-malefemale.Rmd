@@ -37,7 +37,7 @@ Fit ANOVAs to look at differences in size, head shape and bite force in males an
 
 Set up an empty output file
 ```{r}
-output <- data.frame(array(dim = c(11, 11)))
+output <- data.frame(array(dim = c(9, 11)))
 names(output) <- c("response", "df1", "df2", "F", "p", 
                   "mean_ZWF", "se_ZWF",
                   "meandiff_ZZM", "se_ZZM", "t_ZZM", "p_ZZM")
@@ -172,31 +172,8 @@ tidy(summary(m9))
 output <- write_output(m9, "log(HDmt)", 9)
 ```
 
-Temp
-```{r}
-# Fit the model
-m10 <- lm(log(Temp) ~ Genotype, data = pogA)
-# Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m10)
-tidy(anova(m10))
-summary(m10)
-
-output <- write_output(m10, "log(Temp)", 10)
-```
-
-IncTemp
-```{r}
-# Fit the model
-m11 <- lm(log(IncTemp) ~ Genotype, data = pogA)
-# Look at the model diagnostics (these all look fine so ANOVA is ok)
-autoplot(m11)
-tidy(anova(m11))
-summary(m11)
-
-output <- write_output(m11, "log(IncTemp)", 11)
-```
 
 Write all outputs to file
 ```{r}
-write_csv(output, path = here("outputs/genotype-anova-results-malefemale.csv"))
+write_csv(output, path = here("outputs/genotype-anova-results-malefemale-d.csv"))
 ```
