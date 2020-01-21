@@ -195,8 +195,15 @@ ggplot(pog, aes(x = log(SVL), y = log(BFnolever),
 
 Next set up an empty output file
 ```{r}
-output <- data.frame(array(dim = c(14, 20)))
-names(output) <- c("response", "predictor", "df", "F_pred", "p_pred", "F_gen", "p_gen", "F_int", "p_int", "slope_ZZf", "slope_se_ZZf", "slopediff_ZWf", "se_ZWf", "t_ZWf", "p_ZWf", "slopediff_ZZm", "se_ZZm", "t_ZZm", "p_ZZm", "adj.r2")
+output <- data.frame(array(dim = c(14, 25)))
+names(output) <- c("response", "predictor", "df", 
+                   "df_pred", "F_pred", "p_pred", 
+                   "df_gen", "F_gen", "p_gen", 
+                   "df_int","F_int", "p_int", 
+                   "slope_ZZf", "slope_se_ZZf", "t_ZZf", "p_ZZf",
+                   "slopediff_ZWf", "se_ZWf", "t_ZWf", "p_ZWf",
+                   "slopediff_ZZm", "se_ZZm", "t_ZZm", "p_ZZm", 
+                   "adj.r2")
 
 # Short function to help write output files
 write_output <- function(model, response, predictor, n){
@@ -206,30 +213,35 @@ write_output <- function(model, response, predictor, n){
     
   output[n, "response"] <- response
   output[n, "predictor"] <- predictor
-  output[n, "df"] <- x$df[2]
+  output[n, "df"] <- x$df[4]
+  output[n, "df_pred"] <- x$df[1]
   output[n, "F_pred"] <- x$statistic[1]
   output[n, "p_pred"] <- x$p.value[1]
-  output[n, "F_gen"] <- y$coefficients[1]
-  output[n, "p_gen"] <- y$coefficients[4]
-  output[n, "F_int"] <- y$coefficients[2]
-  output[n, "p_int"] <- y$coefficients[5]
-  output[n, "slope_ZZf"] <- y$coefficients[8]
-  output[n, "slope_se_ZZf"] <- y$coefficients[11]
+  output[n, "df_gen"] <- x$df[2]
+  output[n, "F_gen"] <- x$statistic[2]
+  output[n, "p_gen"] <- x$p.value[2]
+  output[n, "df_int"] <- x$df[3]
+  output[n, "F_int"] <- x$statistic[3]
+  output[n, "p_int"] <- x$p.value[3]
+  output[n, "slope_ZZf"] <- y$coefficients[2]
+  output[n, "slope_se_ZZf"] <- y$coefficients[8]
+  output[n, "t_ZZf"] <- y$coefficients[14]
+  output[n, "p_ZZf"] <- y$coefficients[20] 
   output[n, "slopediff_ZWf"] <- y$coefficients[3]
-  output[n, "se_ZWf"] <- y$coefficients[5]
-  output[n, "t_ZWf"] <- y$coefficients[9]
-  output[n, "p_ZWf"] <- y$coefficients[12]
-  output[n, "slopediff_ZZm"] <- y$coefficients[3]
-  output[n, "se_ZZm"] <- y$coefficients[5]
-  output[n, "t_ZZm"] <- y$coefficients[9]
-  output[n, "p_ZZm"] <- y$coefficients[12] 
-  output[n, "adj.r2"] <- y$coefficients[12] 
+  output[n, "se_ZWf"] <- y$coefficients[9]
+  output[n, "t_ZWf"] <- y$coefficients[15]
+  output[n, "p_ZWf"] <- y$coefficients[21]
+  output[n, "slopediff_ZZm"] <- y$coefficients[4]
+  output[n, "se_ZZm"] <- y$coefficients[10]
+  output[n, "t_ZZm"] <- y$coefficients[16]
+  output[n, "p_ZZm"] <- y$coefficients[22]
+  output[n, "adj.r2"] <- y$adj.r.squared
   return(output)
 }
 ```
 
 
-~~ ANOVAs ~~
+~~ ANCOVAs ~~
 
 Mass
 ```{r}
