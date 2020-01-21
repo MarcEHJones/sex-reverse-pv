@@ -134,7 +134,7 @@ nl_plot_bw <-
 # Combine the two
 log_plot_bw / nl_plot_bw
 
-ggsave(here("figures/Figure4-bw-900dpi.png"), height = 8 , width = 7, dpi=900)
+#ggsave(here("figures/Figure4-bw-900dpi.png"), height = 8 , width = 7, dpi=900)
 
 ```
 
