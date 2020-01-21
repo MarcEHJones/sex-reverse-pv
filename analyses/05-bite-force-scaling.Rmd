@@ -205,7 +205,6 @@ write_output <- function(model, response, n){
   y <- summary(model)
     
  # output[n, "response"] <- response
-#  output[n, "df1"] <- x$df[1]
  #   output[n, "df2"] <- x$df[2]
   #  output[n, "F"] <- x$statistic[1]
    # output[n, "p"] <- x$p.value[1]
@@ -243,6 +242,7 @@ write_output <- function(model, response, n){
     return(output)
 }
 ```
+
 
 ~~ ANOVAs ~~
 
