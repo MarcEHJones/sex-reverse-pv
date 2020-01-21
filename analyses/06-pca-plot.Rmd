@@ -441,9 +441,9 @@ pc3ad <-
 
 
 # provide three seperate panels for the pc loadings
-#ggsave(pc1ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc1.png"))  
-#ggsave(pc2ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc2.png"))  
-#ggsave(pc3ad, height = 1.2 , width = 3.25, filename = here("figures/loadings-pca-plots-Adults-pc3.png"))  
+#ggsave(pc1ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc1.png"))  
+#ggsave(pc2ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc2.png"))  
+#ggsave(pc3ad, height = 1.2 , width = 3.25, dpi=900, filename = here("figures/Figure5-loadings-pca-plots-Adults-pc3.png"))  
 
 
 #provide combined panel  
@@ -568,7 +568,11 @@ Apc12
 all <- ggarrange(Apc12, Apc13, Apc23, common.legend = TRUE, legend = "top")
 all
 
-#ggsave(all, height = 7 , width = 7, filename = here("figures/pca-plots-adults-shapes4-bw.png"))
+
+#ggsave(here("figures/Figure4-bw-900dpi.png"), height = 8 , width = 7, dpi=900)
+
+#ggsave(all, height = 7 , width = 7, dpi=900, filename = here("figures/Figure5-pca-plots-adults-shapes4-bw-900dpi.png"))
+
 ```
 
 
