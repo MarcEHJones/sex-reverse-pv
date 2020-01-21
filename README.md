@@ -1,4 +1,4 @@
-# Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons  
+# Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons (<i>Pogona vitticeps</i>)  
 
 Author(s): [Marc EH Jones](mailto:marc.jones@ucl.ac.uk) and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)
 
