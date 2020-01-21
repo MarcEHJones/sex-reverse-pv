@@ -175,5 +175,5 @@ output <- write_output(m9, "log(HDmt)", 9)
 
 Write all outputs to file
 ```{r}
-write_csv(output, path = here("outputs/genotype-anova-results-malefemale-d.csv"))
+write_csv(output, path = here("outputs/genotype-anova-results-malefemale.csv"))
 ```
