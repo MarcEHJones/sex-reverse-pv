@@ -368,7 +368,7 @@ output <- write_output(t2, "log(Bite Force)", "log(IncTemp)", 2)
 
 Write all outputs to file
 ```{r}
-write_csv(output, path = here("outputs/bite-force-temp-results-h.csv"))
+write_csv(output, path = here("outputs/bite-force-temp-results.csv"))
 ```
 
 
