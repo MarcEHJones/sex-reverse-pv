@@ -30,7 +30,7 @@ pog <- read_csv(here("data/pogona-data.csv"))
 pogA <- 
   pog %>%
   filter(Age == "Adult") %>%
-  filter(Genotype != "ZZF")
+  filter(Genotype != "ZZf")
 ```
 
 Fit ANOVAs to look at differences in size, head shape and bite force in males and females.
