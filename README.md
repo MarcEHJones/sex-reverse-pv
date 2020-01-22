@@ -6,9 +6,14 @@ This repository contains all the code and some data used in the [paper - link wi
 
 To cite the paper: 
 > 
+Jones MEH, Pistevos JCA, Cooper N, Lappin AK, Georges A, Hutchinson MN, Holleley CE. 2020. Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons (<i>Pogona vitticeps<i/>). Journal of Experimental Zoology A
+
+
 
 To cite this repo: 
 > 
+Jones, M. E. H. & Cooper, N. 2020. Code time stamped by Zenodo [doi to be added on acceptance] 
+
 
 ## Data
 The cleaned data are available from the [xxx]()
@@ -143,5 +148,5 @@ For reproducibility purposes, here is the output of `devtools::session_info()` u
 To rerun all the code with packages as they existed on CRAN at time of our analyses we recommend using the `checkpoint` package, and running this code prior to the analysis:
 
 ```{r}
-checkpoint("2019-11-05")
+checkpoint("2020-01-23")
 ```
