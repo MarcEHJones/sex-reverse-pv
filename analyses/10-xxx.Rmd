@@ -584,3 +584,32 @@ summary(m11)
 
 output <- write_output(m11, "log(IncTemp)", 11)
 ```
+
+
+
+
+
+Version for the graphical abstract 
+
+```{r, warning = FALSE}
+bfplot <-
+  ggplot(pogA, aes(x = Genotype, y = BiteForce, 
+                colour = Genotype, fill = Genotype)) +
+  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
+  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
+  # Add mean and se from pogsumA
+  geom_point(data = pogsumA, aes(y = BiteForce_mean), size = 2) +
+  geom_errorbar(data = pogsumA, aes(y = BiteForce_mean,
+                                    ymin = BiteForce_mean - BiteForce_SE,
+                                    ymax = BiteForce_mean + BiteForce_SE),
+                width = 0.1) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  ylim(0, 100) +
+  ylab("Bite Force (N)")
+
+
+bfplot
+
+#ggsave(here("figures/GraphicalAbstract-colour.png"), width = 3, height = 2, dpi= 216)
+```
