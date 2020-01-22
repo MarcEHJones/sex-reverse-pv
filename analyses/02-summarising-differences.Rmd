@@ -312,47 +312,6 @@ svlplot <-
 ```
 
 
-Version for the graphical abstract 
-
-```{r, warning = FALSE}
-bfplot <-
-  ggplot(pogA, aes(x = Genotype, y = BiteForce, 
-                colour = Genotype, fill = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = BiteForce_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = BiteForce_mean,
-                                    ymin = BiteForce_mean - BiteForce_SE,
-                                    ymax = BiteForce_mean + BiteForce_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "none") +
-  ylim(0, 100) +
-  ylab("Bite Force (N)")
-
-
-svlplot <-
-  ggplot(pogA, aes(x = Genotype, y = SVL, 
-                colour = Genotype, fill = Genotype)) +
-  geom_jitter(alpha = 0.4, na.rm = TRUE, width = 0.2) +
-  scale_colour_manual(values = c("orange1", "red", "cornflowerblue")) +
-  # Add mean and se from pogsumA
-  geom_point(data = pogsumA, aes(y = SVL_mean), size = 2) +
-  geom_errorbar(data = pogsumA, aes(y = SVL_mean,
-                                    ymin = SVL_mean - SVL_SE,
-                                    ymax = SVL_mean + SVL_SE),
-                width = 0.1) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "none") +
-  ylim(100, 250) +
-  ylab("SVL (mm)")
-
-(bfplot / svlplot)
-
-ggsave(here("figures/GraphicalAbstract-colour.png"), width = 3, height = 4, dpi= 216)
-```
-
 4. And for the head dimensions (Figure 3)
 
 Colour version
