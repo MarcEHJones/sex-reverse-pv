@@ -420,5 +420,5 @@ Write all outputs to file
 Table 4
 
 ```{r}
-write_csv(output, path = here("outputs/bite-force-scaling-results.csv"))
+#write_csv(output, path = here("outputs/bite-force-scaling-results.csv"))
 ```
