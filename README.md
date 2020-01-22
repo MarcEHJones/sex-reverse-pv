@@ -6,7 +6,7 @@ This repository contains all the code and some data used in the [paper - link wi
 
 To cite the paper: 
 > 
-Jones MEH, Pistevos JCA, Cooper N, Lappin AK, Georges A, Hutchinson MN, Holleley CE. 2020. Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons (<i>Pogona vitticeps<i/>). Journal of Experimental Zoology A
+Jones MEH, Pistevos JCA, Cooper N, Lappin AK, Georges A, Hutchinson MN, Holleley CE. 2020. Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons (<i>Pogona vitticeps<i/>). <i>Journal of Experimental Zoology A<i/>
 
 
 
