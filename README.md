@@ -12,8 +12,7 @@ Jones MEH, Pistevos JCA, Cooper N, Lappin AK, Georges A, Hutchinson MN, Holleley
 
 To cite this repo: 
 > 
-Jones, M. E. H. & Cooper, N. 2020. Code time stamped by Zenodo [doi to be added on acceptance] 
-
+Jones, M. E. H. & Cooper, N. 2020. January 22. MarcEHJones/sex-reverse-pv: Code for sex-reverse-pv (Version v1.0). Zenodo http://doi.org/10.5281/zenodo.3623100
 
 ## Data
 The cleaned data are available from the [xxx]()
