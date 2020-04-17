@@ -2,27 +2,24 @@
 
 Author(s): [Marc EH Jones](mailto:marc.jones@ucl.ac.uk) and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)
 
-This repository contains all the code and some data used in the [paper - link will appear here](xxx). 
+This repository contains all the code and some data used in the [paper](https://doi.org/10.1002/jez.2353). 
 
 To cite the paper: 
-> 
-Jones MEH, Pistevos JCA, Cooper N, Lappin AK, Georges A, Hutchinson MN, Holleley CE. 2020. Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons (<i>Pogona vitticeps<i/>). <i>Journal of Experimental Zoology A<i/>
+> Jones MEH, Pistevos JCA, Cooper N, Lappin AK, Georges A, Hutchinson MN, Holleley CE. 2020. Reproductive phenotype predicts adult bite-force performance in sex-reversed dragons (<i>Pogona vitticeps<i/>). <i>Journal of Experimental Zoology A<i/>333: 252-263. DOI: [doi.org/10.1002/jez.2353] (https://doi.org/10.1002/jez.2353).
 
 
 
 To cite this repo: 
-> 
-Jones, M. E. H. & Cooper, N. 2020. January 22. MarcEHJones/sex-reverse-pv: Code for sex-reverse-pv (Version v1.0). Zenodo http://doi.org/10.5281/zenodo.3623100
+> Jones, M. E. H. & Cooper, N. 2020. January 22. MarcEHJones/sex-reverse-pv: Code for sex-reverse-pv (Version v1.0). Zenodo http://doi.org/10.5281/zenodo.3623100
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3623100.svg)](https://doi.org/10.5281/zenodo.3623100)
 
 ## Data
-The cleaned data are available from the [xxx]()
-
 For reproducibility purposes the data needed to rerun all the analyses is found in the `data/` folder. Note that I cannot share the raw data as it is not all published yet and does not belong solely to me.
 
 * `data/` should include `pogona-data.csv`. This is the dataset required to run the analyses.
 
-If you use the cleaned data please cite as follows: 
-> ???
+If you use the cleaned data please cite this repo.
 
 -------
 ## Data wrangling
